@@ -32,9 +32,25 @@
                     Password must be at least 6 characters.
                 </div>
             </div>
+            <div class="form-group">
+                <input type="password" id="confirmPassword" formControlName="confirmPassword"
+                    placeholder="Confirm Password" required>
+                <div *ngIf="registrationForm.get('confirmPassword')?.invalid && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)"
+                    class="error-message">
+                    Confirm Password is required.
+                </div>
+            </div>
+
+            <div *ngIf="registrationForm.errors?.['passwordsMismatch'] && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)"
+                class="error-message mismatch-error">
+                Passwords do not match.
+            </div>
             <button type="submit" [disabled]="!registrationForm.valid">SIGN UP</button>
             <div class="login-link">
-                <p>Already have an account? <a href="#">Log In</a></p>
+                <p>Already have an account? <a routerLink="/login">Log In</a></p>
+            </div>
+            <div class="login-link">
+                <a routerLink="/home">Go to Home</a>
             </div>
         </form>
     </div>

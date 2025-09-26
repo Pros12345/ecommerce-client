@@ -1,7 +1,10 @@
 <nav>
-    <a routerLink="/">Home</a> |
-    <a routerLink="/cart">Cart</a> |
-    <a routerLink="/login">Login</a> |
-    <a routerLink="/register">Register</a>
+    <a routerLink="/home">Home</a>
+
+    <!-- Show only if NOT logged in -->
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/login">Login</a>
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/register">Register</a>
+
+    <!-- Show only if logged in -->
+    <button *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</button>
 </nav>
-<hr />

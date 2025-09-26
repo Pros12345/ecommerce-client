@@ -1,33 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+export class LoginComponent {
+  loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', Validators.required]
     });
   }
 
-  onSubmit(): void {
+  onLogin(): void {
     if (this.loginForm.valid) {
-      console.log('Login data:', this.loginForm.value);
-      alert('Login successful!');
-      this.loginForm.reset();
-    } else {
-      console.log('Form is invalid.');
+      this.http.post('http://localhost:8080/api/auth/login', this.loginForm.value, { responseType: 'text' })
+        .subscribe({
+          next: (token) => {
+            localStorage.setItem('authToken', token);
+            this.router.navigate(['/home']);
+          },
+          error: (err) => {
+            alert('Invalid email or password');
+            console.error(err);
+          }
+        });
     }
   }
 }
