@@ -17,4 +17,16 @@ export class HomeComponent {
   ];
   categories: any;
   featuredProducts: any;
+  router: any;
+
+  // Check if the user is logged in by presence of token in localStorage
+  get isLoggedIn(): boolean {
+    return !!localStorage.getItem('authToken');
+  }
+  onLogout(): void {
+    localStorage.removeItem('authToken');
+    // Optionally navigate to login, or reload page for UI refresh
+    this.router.navigate(['/login']);
+  }
 }
+

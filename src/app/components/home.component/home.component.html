@@ -1,5 +1,3 @@
-<!-- home.component.html -->
-
 <!-- Header Section -->
 <header class="header fixed top-0 left-0 w-full bg-blue-600 p-4 flex items-center justify-between text-white">
   <div class="logo text-2xl font-bold cursor-pointer">Ecommerce</div>
@@ -8,11 +6,15 @@
       class="w-full p-2 rounded border border-gray-300" />
   </div>
   <nav class="nav-links space-x-6">
-    <a routerLink="/login" class="hover:underline">Login</a>
-    <a routerLink="/cart" class="hover:underline">Cart</a>
-    <a routerLink="/register" class="hover:underline">Sign up</a>
-  </nav>
+    <!-- Show these nav links only when NOT logged in -->
+    <a *ngIf="!isLoggedIn" routerLink="/login" class="hover:underline">Login</a>
+    <a *ngIf="!isLoggedIn" routerLink="/cart" class="hover:underline">Cart</a>
+    <a *ngIf="!isLoggedIn" routerLink="/register" class="hover:underline">Sign up</a>
 
+    @if (isLoggedIn) {
+    <a (click)="onLogout()" class="hover:underline cursor-pointer">Logout</a>
+    }
+  </nav>
 </header>
 
 <!-- Banner Carousel Section -->
