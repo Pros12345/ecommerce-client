@@ -6,6 +6,11 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+# Build-time variable (used by Angular at build time)
+ARG NG_APP_API_URL
+ENV NG_APP_API_URL=$NG_APP_API_URL
+
 RUN npx ng build ecommerce_client --configuration production
 
 # -------- Stage 2: Serve with Nginx --------
