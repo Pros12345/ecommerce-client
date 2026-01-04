@@ -8,11 +8,13 @@
   <nav class="nav-links space-x-6">
     <!-- Show these nav links only when NOT logged in -->
     <a *ngIf="!isLoggedIn" routerLink="/login" class="hover:underline">Login</a>
-    <a *ngIf="!isLoggedIn" routerLink="/cart" class="hover:underline">Cart</a>
     <a *ngIf="!isLoggedIn" routerLink="/register" class="hover:underline">Sign up</a>
+
 
     @if (isLoggedIn) {
     <a (click)="onLogout()" class="hover:underline cursor-pointer">Logout</a>
+    <a routerLink="/addProduct" class="hover:underline">Add Product</a>
+    <a routerLink="/cart" class="hover:underline">Cart</a>
     }
   </nav>
 </header>

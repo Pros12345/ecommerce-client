@@ -25,7 +25,7 @@ export class LoginComponent {
 
   onLogin(): void {
     if (this.loginForm.valid) {
-      this.http.post('http://localhost:8080/api/auth/login', this.loginForm.value, { responseType: 'text' })
+      this.http.post('${environment.apiBaseUrl}/api/auth/login', this.loginForm.value, { responseType: 'text' })
         .subscribe({
           next: (token) => {
             localStorage.setItem('authToken', token);
