@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
-import { APP_CONFIG } from '../../../config';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginComponent {
 
   onLogin(): void {
     if (this.loginForm.valid) {
-      this.http.post(`${APP_CONFIG.API_BASE_URL}/api/auth/login`, this.loginForm.value, { responseType: 'text' })
+      this.http.post(`${environment.apiBaseUrl}/api/auth/login`, this.loginForm.value, { responseType: 'text' })
         .subscribe({
           next: (token) => {
             localStorage.setItem('authToken', token);
