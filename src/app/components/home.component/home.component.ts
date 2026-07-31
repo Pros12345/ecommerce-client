@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { Product } from '../../../model/product';
 import { ProductService } from '../../../model/product.service';
+import { CartService } from '../cart.component/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +40,15 @@ export class HomeComponent implements OnInit {
       next: (response) => {
 
         this.products = response;
-        console.log(response);
+
+        // Initialize current image index for every product
+        this.products.forEach(product => {
+
+          product.currentImageIndex = 0;
+
+        });
+
+        console.log(this.products);
 
       },
 
@@ -49,6 +59,77 @@ export class HomeComponent implements OnInit {
       }
 
     });
+
+  }
+
+  // Returns currently selected image
+  getCurrentImage(product: Product): string {
+
+    if (!product.images || product.images.length === 0) {
+
+      return 'assets/no-image.png';
+
+    }
+
+    return 'http://localhost:8080/api/images/'
+      + product.images[product.currentImageIndex ?? 0].id;
+
+  }
+
+  // Next image
+  nextImage(product: Product): void {
+
+    if (!product.images || product.images.length <= 1) {
+
+      return;
+
+    }
+
+    product.currentImageIndex =
+      ((product.currentImageIndex ?? 0) + 1)
+      % product.images.length;
+
+  }
+
+  // Previous image
+  previousImage(product: Product): void {
+
+    if (!product.images || product.images.length <= 1) {
+
+      return;
+
+    }
+
+    product.currentImageIndex =
+      ((product.currentImageIndex ?? 0) - 1 + product.images.length)
+      % product.images.length;
+
+  }
+
+  // Click on dot
+  setCurrentImage(product: Product, index: number): void {
+
+    product.currentImageIndex = index;
+
+  }
+
+  addToCart(product: Product): void {
+
+    if (this.cartService.isInCart(product.id)) {
+
+      this.router.navigate(['/cart']);
+
+      return;
+
+    }
+
+    this.cartService.addToCart(product);
+
+  }
+
+  isAdded(product: Product): boolean {
+
+    return this.cartService.isInCart(product.id);
 
   }
 
@@ -65,4 +146,4 @@ export class HomeComponent implements OnInit {
 
   }
 
-}   
+}

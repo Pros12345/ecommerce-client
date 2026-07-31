@@ -57,8 +57,40 @@
 
     <div class="product-card" *ngFor="let product of products">
 
-      <!-- Product Image -->
-      <img [src]="'http://localhost:8080/api/images/' + product.imageUniqueName" [alt]="product.name">
+      <!-- Product Image Gallery -->
+      <div class="image-container">
+
+        <!-- Left Arrow -->
+        <button *ngIf="product.images && product.images.length > 1" class="arrow left" (click)="previousImage(product)">
+          &#10094;
+        </button>
+
+        <!-- Product Image -->
+        <img *ngIf="product.images && product.images.length > 0; else noImage" [src]="getCurrentImage(product)"
+          [alt]="product.name">
+
+        <!-- Default Image -->
+        <ng-template #noImage>
+
+          <img src="assets/no-image.png" alt="No Image">
+
+        </ng-template>
+
+        <!-- Right Arrow -->
+        <button *ngIf="product.images && product.images.length > 1" class="arrow right" (click)="nextImage(product)">
+          &#10095;
+        </button>
+
+      </div>
+
+      <!-- Image Dots -->
+      <div class="image-dots" *ngIf="product.images && product.images.length > 1">
+
+        <span *ngFor="let image of product.images; let i = index" class="dot"
+          [class.active]="i === product.currentImageIndex" (click)="setCurrentImage(product, i)">
+        </span>
+
+      </div>
 
       <!-- Product Name -->
       <h3>
@@ -72,7 +104,7 @@
 
       <!-- Quantity -->
       <p>
-        Stock :
+        In Stock :
         <strong>{{product.quantity}}</strong>
       </p>
 
@@ -81,10 +113,15 @@
         ₹{{product.price}}
       </div>
 
-      <!-- Button -->
-      <button [routerLink]="['/product', product.id]">
+      <button *ngIf="!isAdded(product)" (click)="addToCart(product)">
 
-        View Details
+        Add To Cart
+
+      </button>
+
+      <button *ngIf="isAdded(product)" routerLink="/cart">
+
+        Go To Cart
 
       </button>
 

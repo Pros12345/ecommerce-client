@@ -1,19 +1,21 @@
 export interface Product {
 
     id: number;
-
     name: string;
-
     description: string;
-
     quantity: number;
-
     price: number;
 
-    imageOriginalName: string;
+    images: ProductImage[];
 
-    imageUniqueName: string;
+    currentImageIndex?: number;
 
-    imagePath: string;
+}
+
+export interface ProductImage {
+
+    id: number;
+    fileName: string;
+    contentType: string;
 
 }
