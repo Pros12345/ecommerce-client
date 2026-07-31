@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductService } from './add-product.service';
+
 
 @Component({
     selector: 'app-add-product',
@@ -10,15 +11,21 @@ import { ProductService } from './add-product.service';
     templateUrl: './add-product.component.html',
     styleUrls: ['./add-product.component.scss'],
 })
+
 export class AddProductComponent {
+
+    @ViewChild('fileInput', { static: false })
+    fileInput!: ElementRef<HTMLInputElement>;
+
     productForm: FormGroup;
-    selectedFile: File | null = null;
+    selectedFiles: File[] = [];
     uploadSuccess = false;
     uploadError = '';
 
     constructor(
         private fb: FormBuilder,
-        private productService: ProductService
+        private productService: ProductService,
+        private cdr: ChangeDetectorRef
     ) {
         this.productForm = this.fb.group({
             name: ['', Validators.required],
@@ -29,20 +36,49 @@ export class AddProductComponent {
     }
 
     onFileChange(event: Event): void {
+
         const input = event.target as HTMLInputElement;
-        if (input.files?.length) {
-            this.selectedFile = input.files[0];
+
+        if (input.files) {
+
+            this.selectedFiles = Array.from(input.files);
+
         }
+
+    }
+
+    removeImage(index: number): void {
+
+        console.log("Before:", this.selectedFiles.length);
+
+        this.selectedFiles.splice(index, 1);
+
+        console.log("After:", this.selectedFiles.length);
+
+        const dataTransfer = new DataTransfer();
+
+        this.selectedFiles.forEach(file => {
+            dataTransfer.items.add(file);
+        });
+
+        console.log(this.fileInput);
+        this.fileInput.nativeElement.files = dataTransfer.files;
+        this.cdr.detectChanges();
+
+        console.log("Input files:", this.fileInput.nativeElement.files?.length);
     }
 
     onSubmit(): void {
-        if (this.productForm.valid && this.selectedFile) {
-            this.productService.addProduct(this.productForm.value, this.selectedFile).subscribe({
+        if (this.productForm.valid && this.selectedFiles.length > 0)
+            this.productService.addProduct(
+                this.productForm.value,
+                this.selectedFiles
+            ).subscribe({
                 next: () => {
                     this.uploadSuccess = true;
                     this.uploadError = '';
                     this.productForm.reset();
-                    this.selectedFile = null;
+                    this.selectedFiles = [];
                 },
                 error: err => {
                     this.uploadSuccess = false;
@@ -50,6 +86,6 @@ export class AddProductComponent {
                     console.error(err);
                 }
             });
-        }
     }
 }
+

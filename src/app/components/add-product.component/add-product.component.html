@@ -18,11 +18,26 @@
             <input formControlName="price" type="number" min="1" placeholder="price" required>
         </div>
         <div class="form-row">
-            <label>Image:</label>
-            <input type="file" (change)="onFileChange($event)" accept="image/*" required>
+            <label>Images:</label>
+
+            <input #fileInput type="file" multiple (change)="onFileChange($event)" accept="image/*" required>
+            <div class="selected-images" *ngIf="selectedFiles.length > 0">
+
+                <div class="image-item" *ngFor="let file of selectedFiles; let i = index">
+
+                    <span>{{ file.name }}</span>
+
+                    <button type="button" class="delete-btn" (click)="removeImage(i)">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
         <div class="form-row">
-            <button type="submit" [disabled]="productForm.invalid || !selectedFile">Add Product</button>
+            <button type="submit" [disabled]="productForm.invalid || !selectedFiles">Add Product</button>
         </div>
         <div class="form-row" *ngIf="uploadSuccess">
             <span class="success-message">Product added successfully!</span>
