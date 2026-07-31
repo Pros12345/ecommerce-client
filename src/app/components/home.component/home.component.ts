@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { Product } from '../../../model/product';
+import { ProductService } from '../../../model/product.service';
 
 @Component({
   selector: 'app-home',
@@ -9,24 +12,57 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  products = [
-    { id: 1, name: 'iPhone 15', price: 79999 },
-    { id: 2, name: 'Samsung Galaxy S24', price: 69999 },
-    { id: 3, name: 'Redmi Note 13', price: 19999 }
-  ];
+export class HomeComponent implements OnInit {
+
   categories: any;
   featuredProducts: any;
-  router: any;
 
-  // Check if the user is logged in by presence of token in localStorage
+  // Products from backend
+  products: Product[] = [];
+
+  constructor(
+    private productService: ProductService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+
+    this.loadProducts();
+
+  }
+
+  loadProducts(): void {
+
+    this.productService.getProducts().subscribe({
+
+      next: (response) => {
+
+        this.products = response;
+        console.log(response);
+
+      },
+
+      error: (error) => {
+
+        console.error(error);
+
+      }
+
+    });
+
+  }
+
   get isLoggedIn(): boolean {
-    return !!localStorage.getItem('authToken');
-  }
-  onLogout(): void {
-    localStorage.removeItem('authToken');
-    // Optionally navigate to login, or reload page for UI refresh
-    this.router.navigate(['/login']);
-  }
-}
 
+    return !!localStorage.getItem('authToken');
+
+  }
+
+  onLogout(): void {
+
+    localStorage.removeItem('authToken');
+    this.router.navigate(['/login']);
+
+  }
+
+}   
