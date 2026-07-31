@@ -1,59 +1,134 @@
-# EcommerceClient
+# 🛒 E-Commerce Frontend Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+A modern and responsive **E-Commerce Frontend Application** built using **Angular**, designed to consume REST APIs from the backend and provide a seamless user experience.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📌 Features
 
-```bash
-ng serve
+- User Login & Registration
+- Product Listing & Search
+- Product Details Page
+- Shopping Cart Management
+- Order Placement
+- Responsive UI
+- API Integration with Backend
+- Form Validation & Error Handling
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- Angular 14+
+- TypeScript
+- HTML5
+- CSS3 / SCSS
+- Bootstrap / Angular Material
+
+**Tools**
+- Node.js
+- npm
+- Angular CLI
+- VS Code
+- Git
+
+---
+
+## 🧱 Project Structure
+
+```
+src/
+ ├── app/
+ │    ├── components/
+ │    ├── services/
+ │    ├── models/
+ │    ├── guards/
+ │    ├── interceptors/
+ │    └── app.module.ts
+ │
+ ├── assets/
+ ├── environments/
+ │    ├── environment.ts
+ │    └── environment.prod.ts
+ │
+ └── index.html
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## ⚙️ Configuration
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Update backend API URL in `environment.ts`:
 
-```bash
-ng generate component component-name
+```ts
+export const environment = {
+  production: false,
+  apiBaseUrl: 'http://localhost:8080/api'
+};
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
+
+## ▶️ How to Run the Application
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+   ```bash
+   ng serve
+   ```
+
+3. Open browser:
+   ```
+   http://localhost:4200
+   ```
+
+---
+
+## 🔐 Authentication
+
+- JWT token stored securely
+- HTTP Interceptor for Authorization header
+- Route Guards for protected routes
+
+---
+
+## 📦 Build for Production
 
 ```bash
-ng generate --help
+ng build --configuration production
 ```
 
-## Building
+Build artifacts will be stored in the `dist/` directory.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🧪 Future Enhancements
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Payment Gateway UI
+- Admin Dashboard
+- Wishlist Feature
+- SEO Optimization
+- PWA Support
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 👨‍💻 Author
 
-```bash
-ng test
-```
+**Prosenjit Chakrabortty**  
+Java Backend / Full Stack Developer  
+4+ years of experience in Java, Spring Boot, Angular, Microservices
 
-## Running end-to-end tests
+📧 Email: prosenjitmaigram@gmail.com
 
-For end-to-end (e2e) testing, run:
+🔗 LinkedIn: https://www.linkedin.com/in/prosenjit98
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## ⭐ Support
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+If you find this project useful, please ⭐ the repository!
