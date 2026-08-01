@@ -31,9 +31,24 @@ $shadow-hover: 0 2px 12px rgba(0, 0, 0, 0.1);
   }
 
   .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
     cursor: pointer;
+
+    img {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+    }
+
+    span {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+
   }
 
   .nav-links {
@@ -51,17 +66,49 @@ $shadow-hover: 0 2px 12px rgba(0, 0, 0, 0.1);
   }
 }
 
-.banner-carousel {
-  margin-top: 5rem;
-  margin-bottom: 2rem;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+/* ================= Banner ================= */
+
+.banner-section {
+
+  margin-top: 90px;
+  margin-bottom: 30px;
+  padding: 0 25px;
+
+}
+
+.banner-container {
+  max-width: 1450px;
+  margin: auto;
 
   img {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: $shadow-hover;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+    transition: .4s;
+  }
+
+  img:hover {
+    transform: scale(1.01);
+  }
+}
+
+@media(max-width:1200px) {
+  .banner-container img {
+    height: 340px;
+  }
+}
+
+@media(max-width:768px) {
+  .banner-container img {
+    height: 220px;
+  }
+}
+
+@media(max-width:480px) {
+  .banner-container img {
+    height: 160px;
   }
 }
 

@@ -1,10 +1,13 @@
 <!-- Header Section -->
 <header class="header fixed top-0 left-0 w-full bg-blue-600 p-4 flex items-center justify-between text-white">
-  <div class="logo text-2xl font-bold cursor-pointer">Ecommerce</div>
+  <div class="logo" routerLink="/home">
+    <img src="assets/Logo.png" alt="Logo">
+    <span>Ecommerce</span>
+  </div>
 
   <div class="search-bar flex-grow mx-8">
     <input type="text" placeholder="Search for products, brands and more"
-      class="w-full p-2 rounded border border-gray-300" />
+      class="w-full p-2 rounded border border-gray-300" [(ngModel)]="searchText" (input)="searchProducts()">
   </div>
 
   <nav class="nav-links space-x-6">
@@ -38,14 +41,10 @@
 </header>
 
 <!-- Banner Carousel Section -->
-<section class="banner-carousel mt-16 mb-8">
-
-  <div class="carousel-container mx-auto max-w-6xl">
-
-    <img src="assets/banner1.jpg" alt="Flipkart Banner" class="w-full rounded-lg shadow-md" />
-
+<section class="banner-section">
+  <div class="banner-container">
+    <img src="assets/Banner.png" alt="Ecommerce Banner">
   </div>
-
 </section>
 
 <!-- Products Section -->

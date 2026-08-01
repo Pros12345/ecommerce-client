@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
 import { Product } from '../../../model/product';
 import { ProductService } from '../../../model/product.service';
 import { CartService } from '../cart.component/cart.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    FormsModule
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -18,8 +22,9 @@ export class HomeComponent implements OnInit {
   categories: any;
   featuredProducts: any;
 
-  // Products from backend
   products: Product[] = [];
+  allProducts: Product[] = [];
+  searchText: string = '';
 
   constructor(
     private productService: ProductService,
@@ -39,21 +44,16 @@ export class HomeComponent implements OnInit {
 
       next: (response) => {
 
-        this.products = response;
-
-        // Initialize current image index for every product
+        this.allProducts = response;
+        this.products = [...response];
         this.products.forEach(product => {
-
           product.currentImageIndex = 0;
-
         });
-
         console.log(this.products);
 
       },
 
       error: (error) => {
-
         console.error(error);
 
       }
@@ -62,11 +62,24 @@ export class HomeComponent implements OnInit {
 
   }
 
-  // Returns currently selected image
+  searchProducts(): void {
+
+    const keyword = this.searchText.trim().toLowerCase();
+    if (keyword === '') {
+      this.products = [...this.allProducts];
+      return;
+    }
+
+    this.products = this.allProducts.filter(product =>
+      product.name.toLowerCase().includes(keyword) ||
+      product.description.toLowerCase().includes(keyword)
+    );
+
+  }
+
   getCurrentImage(product: Product): string {
 
     if (!product.images || product.images.length === 0) {
-
       return 'assets/no-image.png';
 
     }
@@ -76,13 +89,10 @@ export class HomeComponent implements OnInit {
 
   }
 
-  // Next image
   nextImage(product: Product): void {
 
     if (!product.images || product.images.length <= 1) {
-
       return;
-
     }
 
     product.currentImageIndex =
@@ -91,11 +101,9 @@ export class HomeComponent implements OnInit {
 
   }
 
-  // Previous image
   previousImage(product: Product): void {
 
     if (!product.images || product.images.length <= 1) {
-
       return;
 
     }
@@ -106,7 +114,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  // Click on dot
   setCurrentImage(product: Product, index: number): void {
 
     product.currentImageIndex = index;
@@ -116,9 +123,7 @@ export class HomeComponent implements OnInit {
   addToCart(product: Product): void {
 
     if (this.cartService.isInCart(product.id)) {
-
       this.router.navigate(['/cart']);
-
       return;
 
     }
