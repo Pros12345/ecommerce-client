@@ -1,0 +1,7 @@
+{
+    "name": "ecommerce-client",
+    "compatibility_date": "2026-08-01",
+    "assets": {
+        "directory": "./dist/ecommerce_client/browser"
+    }
+}
