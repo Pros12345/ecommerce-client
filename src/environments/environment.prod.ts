@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    apiBaseUrl: 'ecommerce-server-production-cbac.up.railway.app'
+    apiBaseUrl: 'https://ecommerce-server-production-c77f.up.railway.app/api',
+    imageBaseUrl: 'https://ecommerce-server-production-c77f.up.railway.app/api/images/'
 };

@@ -5,6 +5,8 @@ import { Product } from '../../../model/product';
 import { ProductService } from '../../../model/product.service';
 import { CartService } from '../cart.component/cart.service';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment.prod';
+
 
 @Component({
   selector: 'app-home',
@@ -84,8 +86,7 @@ export class HomeComponent implements OnInit {
 
     }
 
-    return 'http://localhost:8080/api/images/'
-      + product.images[product.currentImageIndex ?? 0].id;
+    return `${environment.apiBaseUrl}/api/images/${product.images[product.currentImageIndex ?? 0].id}`;
 
   }
 
