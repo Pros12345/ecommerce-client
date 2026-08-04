@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../../model/product';
+import { environment } from '../../../environments/environment.prod';
 
 export interface CartItem {
 
@@ -43,7 +44,7 @@ export class CartService {
                 price: product.price,
                 quantity: 1,
                 image: product.images.length > 0
-                    ? 'http://localhost:8080/api/images/' + product.images[0].id
+                    ? `${environment.apiBaseUrl}/api/images/${product.images[0].id}`
                     : 'assets/no-image.png'
 
             });
