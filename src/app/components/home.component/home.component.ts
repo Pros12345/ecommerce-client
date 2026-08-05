@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
 
     }
 
-    return `${environment.apiBaseUrl}/api/images/${product.images[product.currentImageIndex ?? 0].id}`;
+    return `${environment.apiBaseUrl}/images/${product.images[product.currentImageIndex ?? 0].id}`;
 
   }
 
