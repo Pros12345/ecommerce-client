@@ -1,0 +1,124 @@
+.add-product-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #2874f0;
+    }
+
+    .form-row {
+        margin-bottom: 1.2rem;
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-weight: 500;
+            margin-bottom: .3rem;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: .6rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        input[type="file"] {
+            font-size: 1rem;
+            padding: .2rem;
+        }
+
+        button[type="submit"] {
+            background: #2874f0;
+            color: #fff;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+
+            &:hover:enabled {
+                background: #195ea7;
+            }
+
+            &:disabled {
+                background: #b5d5fa;
+                cursor: not-allowed;
+            }
+        }
+
+        .success-message {
+            color: #2e7d32;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .error-message {
+            color: #c62828;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+    }
+
+    .selected-images {
+
+        margin-top: 15px;
+
+        .image-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 8px;
+
+            margin-bottom: 8px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 5px;
+
+            background: #fff;
+
+        }
+
+        .delete-btn {
+
+            background: #e53935;
+
+            color: white;
+
+            border: none;
+
+            padding: 6px 12px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            transition: .3s;
+
+        }
+
+        .delete-btn:hover {
+
+            background: #c62828;
+
+        }
+
+    }
+}

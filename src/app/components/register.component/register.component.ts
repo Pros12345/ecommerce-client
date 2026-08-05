@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
+import { environment } from '../../../environments/environment.prod';
 import {
   FormBuilder,
   FormGroup,
@@ -54,7 +55,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registrationForm.valid) {
-      this.http.post('http://localhost:8080/api/users/register', this.registrationForm.value)
+      this.http.post(`${environment.apiBaseUrl}/users/register`, this.registrationForm.value)
         .subscribe({
           next: (response) => {
             console.log('User registered:', response);

@@ -1,0 +1,49 @@
+<div class="add-product-container">
+    <h2>Add New Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <div class="form-row">
+            <label>Name:</label>
+            <input formControlName="name" type="text" placeholder="Product Name" required>
+        </div>
+        <div class="form-row">
+            <label>Description:</label>
+            <input formControlName="description" type="text" placeholder="Product Description">
+        </div>
+        <div class="form-row">
+            <label>Quantity:</label>
+            <input formControlName="quantity" type="number" min="1" placeholder="Quantity" required>
+        </div>
+        <div class="form-row">
+            <label>Price:</label>
+            <input formControlName="price" type="number" min="1" placeholder="price" required>
+        </div>
+        <div class="form-row">
+            <label>Images:</label>
+
+            <input #fileInput type="file" multiple (change)="onFileChange($event)" accept="image/*" required>
+            <div class="selected-images" *ngIf="selectedFiles.length > 0">
+
+                <div class="image-item" *ngFor="let file of selectedFiles; let i = index">
+
+                    <span>{{ file.name }}</span>
+
+                    <button type="button" class="delete-btn" (click)="removeImage(i)">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="form-row">
+            <button type="submit" [disabled]="productForm.invalid || !selectedFiles">Add Product</button>
+        </div>
+        <div class="form-row" *ngIf="uploadSuccess">
+            <span class="success-message">Product added successfully!</span>
+        </div>
+        <div class="form-row" *ngIf="uploadError">
+            <span class="error-message">{{uploadError}}</span>
+        </div>
+    </form>
+</div>

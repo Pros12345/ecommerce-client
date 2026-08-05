@@ -1,57 +1,207 @@
-<!-- home.component.html -->
-
 <!-- Header Section -->
 <header class="header fixed top-0 left-0 w-full bg-blue-600 p-4 flex items-center justify-between text-white">
-  <div class="logo text-2xl font-bold cursor-pointer">Ecommerce</div>
+  <div class="logo" routerLink="/home">
+    <img src="assets/Logo.png" alt="Logo">
+    <span>Ecommerce</span>
+  </div>
+
   <div class="search-bar flex-grow mx-8">
     <input type="text" placeholder="Search for products, brands and more"
-      class="w-full p-2 rounded border border-gray-300" />
+      class="w-full p-2 rounded border border-gray-300" [(ngModel)]="searchText" (input)="searchProducts()">
   </div>
-  <nav class="nav-links space-x-6">
-    <a routerLink="/login" class="hover:underline">Login</a>
-    <a routerLink="/cart" class="hover:underline">Cart</a>
-    <a routerLink="/register" class="hover:underline">Sign up</a>
-  </nav>
 
+  <nav class="nav-links space-x-6">
+
+    <!-- Show these nav links only when NOT logged in -->
+    <a *ngIf="!isLoggedIn" routerLink="/login" class="hover:underline">
+      Login
+    </a>
+
+    <a *ngIf="!isLoggedIn" routerLink="/register" class="hover:underline">
+      Sign up
+    </a>
+
+    @if (isLoggedIn) {
+
+    <a (click)="onLogout()" class="hover:underline cursor-pointer">
+      Logout
+    </a>
+
+    <a routerLink="/addProduct" class="hover:underline">
+      Add Product
+    </a>
+
+    <a routerLink="/cart" class="hover:underline">
+      Cart
+    </a>
+
+    }
+
+  </nav>
 </header>
 
 <!-- Banner Carousel Section -->
-<section class="banner-carousel mt-16 mb-8">
-  <div class="carousel-container mx-auto max-w-6xl">
-    <!-- Example static image slider -->
-    <img src="assets/banner1.jpg" alt="Flipkart Banner" class="w-full rounded-lg shadow-md" />
+<section class="banner-section">
+  <div class="banner-container">
+    <img src="assets/Banner.png" alt="Ecommerce Banner">
   </div>
+</section>
+
+<!-- Products Section -->
+<section class="products-section">
+
+  <h2>All Products</h2>
+
+  <div class="products-grid">
+
+    <div class="product-card" *ngFor="let product of products">
+
+      <!-- Product Image Gallery -->
+      <div class="image-container">
+
+        <!-- Left Arrow -->
+        <button *ngIf="product.images && product.images.length > 1" class="arrow left" (click)="previousImage(product)">
+          &#10094;
+        </button>
+
+        <!-- Product Image -->
+        <img *ngIf="product.images && product.images.length > 0; else noImage" [src]="getCurrentImage(product)"
+          [alt]="product.name">
+
+        <!-- Default Image -->
+        <ng-template #noImage>
+
+          <img src="assets/no-image.png" alt="No Image">
+
+        </ng-template>
+
+        <!-- Right Arrow -->
+        <button *ngIf="product.images && product.images.length > 1" class="arrow right" (click)="nextImage(product)">
+          &#10095;
+        </button>
+
+      </div>
+
+      <!-- Image Dots -->
+      <div class="image-dots" *ngIf="product.images && product.images.length > 1">
+
+        <span *ngFor="let image of product.images; let i = index" class="dot"
+          [class.active]="i === product.currentImageIndex" (click)="setCurrentImage(product, i)">
+        </span>
+
+      </div>
+
+      <!-- Product Name -->
+      <h3>
+        {{product.name}}
+      </h3>
+
+      <!-- Description -->
+      <p>
+        {{product.description}}
+      </p>
+
+      <!-- Quantity -->
+      <p>
+        In Stock :
+        <strong>{{product.quantity}}</strong>
+      </p>
+
+      <!-- Price -->
+      <div class="price">
+        ₹{{product.price}}
+      </div>
+
+      <button *ngIf="!isAdded(product)" (click)="addToCart(product)">
+
+        Add To Cart
+
+      </button>
+
+      <button *ngIf="isAdded(product)" routerLink="/cart">
+
+        Go To Cart
+
+      </button>
+
+    </div>
+
+  </div>
+
 </section>
 
 <!-- Categories Section -->
+<!--
 <section class="categories mb-12 max-w-6xl mx-auto px-4">
   <h2 class="text-xl font-semibold mb-4">Shop by Category</h2>
+
   <div class="grid grid-cols-5 gap-6">
-    <div *ngFor="let cat of categories" class="category-item text-center cursor-pointer">
-      <img [src]="cat.image" alt="{{cat.name}}" class="mx-auto w-20 h-20 object-contain" />
-      <p class="mt-2 text-sm">{{ cat.name }}</p>
+
+    <div
+      *ngFor="let cat of categories"
+      class="category-item text-center cursor-pointer">
+
+      <img
+        [src]="cat.image"
+        alt="{{cat.name}}"
+        class="mx-auto w-20 h-20 object-contain" />
+
+      <p class="mt-2 text-sm">
+        {{ cat.name }}
+      </p>
+
     </div>
+
   </div>
+
 </section>
+-->
 
 <!-- Featured Products Section -->
+<!--
 <section class="featured-products max-w-6xl mx-auto px-4">
-  <h2 class="text-xl font-semibold mb-4">Top Deals for You</h2>
+
+  <h2 class="text-xl font-semibold mb-4">
+    Top Deals for You
+  </h2>
+
   <div class="grid grid-cols-4 gap-6">
-    <div *ngFor="let product of featuredProducts"
+
+    <div
+      *ngFor="let product of featuredProducts"
       class="product-card border rounded-lg p-4 hover:shadow-lg cursor-pointer">
-      <img [src]="product.image" alt="{{product.name}}" class="w-full h-48 object-contain mb-2" />
-      <h3 class="text-md font-semibold">{{ product.name }}</h3>
-      <p class="text-green-600 font-bold">₹{{ product.price }}</p>
-      <button routerLink="/product/{{product.id}}"
+
+      <img
+        [src]="product.image"
+        alt="{{product.name}}"
+        class="w-full h-48 object-contain mb-2" />
+
+      <h3 class="text-md font-semibold">
+        {{ product.name }}
+      </h3>
+
+      <p class="text-green-600 font-bold">
+        ₹{{ product.price }}
+      </p>
+
+      <button
+        routerLink="/product/{{product.id}}"
         class="mt-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
+
         View Details
+
       </button>
+
     </div>
+
   </div>
+
 </section>
+-->
 
 <!-- Footer Section -->
+<!--
 <footer class="footer bg-gray-200 mt-12 p-6 text-center text-sm text-gray-600">
   &copy; 2025 Flipkart.
 </footer>
+-->
