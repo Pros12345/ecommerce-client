@@ -33,6 +33,21 @@
             <input type="number" formControlName="price" min="1">
         </div>
 
+        <!-- product is inactive or active  -->
+        <div class="form-row">
+            <label>Status:</label>
+            <div class="status-group">
+                <label>
+                    <input type="radio" formControlName="status" value="Active">
+                    Active
+                </label>
+                <label>
+                    <input type="radio" formControlName="status" value="Inactive">
+                    Inactive
+                </label>
+            </div>
+        </div>
+
         <!-- Existing Images -->
 
         <div class="form-row">

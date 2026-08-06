@@ -116,6 +116,11 @@
         <strong>{{product.quantity}}</strong>
       </p>
 
+      <p *ngIf="canAddProduct">
+        Status:
+        <strong>{{ product.status }}</strong>
+      </p>
+
       <!-- Price -->
       <div class="price">
         ₹{{product.price}}

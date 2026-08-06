@@ -418,4 +418,17 @@ $shadow-hover: 0 2px 12px rgba(0, 0, 0, 0.1);
       height: 180px;
     }
   }
+
+  .status {
+    margin: 8px 0;
+    font-weight: 600;
+  }
+
+  .active {
+    color: #2e7d32;
+  }
+
+  .inactive {
+    color: #d32f2f;
+  }
 }

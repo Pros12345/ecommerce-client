@@ -20,51 +20,41 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.cartItems = this.cartService.getCartItems();
-
     this.calculateTotals();
   }
 
   incrementQuantity(item: CartItem): void {
-
+    if (item.quantity >= item.availableQuantity) {
+      alert(`Only ${item.availableQuantity} item(s) available.`);
+      return;
+    }
     item.quantity++;
     this.cartService.updateCart(this.cartItems);
     this.calculateTotals();
-
   }
 
   decrementQuantity(item: CartItem): void {
-
     if (item.quantity > 1) {
-
       item.quantity--;
       this.cartService.updateCart(this.cartItems);
       this.calculateTotals();
-
     }
-
   }
 
   removeItem(item: CartItem): void {
-
     this.cartItems =
       this.cartItems.filter(i => i.id !== item.id);
     this.cartService.updateCart(this.cartItems);
     this.calculateTotals();
-
   }
 
   calculateTotals(): void {
-
     this.totalItemPrice = this.cartItems.reduce(
       (sum, item) => sum + (item.price * item.quantity),
       0
     );
-
     this.totalDiscount = 0;
-
     this.totalAmount = this.totalItemPrice;
-
   }
 }

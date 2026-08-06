@@ -67,7 +67,8 @@ export class EditProductComponent implements OnInit {
           Validators.required,
           Validators.min(1)
         ]
-      ]
+      ],
+      status: ['Active', Validators.required]
     });
 
     this.productId = Number(
@@ -89,7 +90,8 @@ export class EditProductComponent implements OnInit {
             name: product.name,
             description: product.description,
             quantity: product.quantity,
-            price: product.price
+            price: product.price,
+            status: product.status
           });
 
           this.existingImages = product.images;

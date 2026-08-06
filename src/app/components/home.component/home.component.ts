@@ -42,44 +42,36 @@ export class HomeComponent implements OnInit {
   }
 
   loadProducts(): void {
-
     this.productService.getProducts().subscribe({
-
       next: (response) => {
+        this.allProducts = this.canAddProduct
+          ? response
+          : response.filter(product => product.status === 'Active');
 
-        this.allProducts = response;
-        this.products = [...response];
+        this.products = [...this.allProducts];
         this.products.forEach(product => {
           product.currentImageIndex = 0;
           (product as any).showMore = false;
         });
 
-        console.log(this.products);
-
       },
 
       error: (error) => {
         console.error(error);
-
       }
-
     });
-
   }
 
   searchProducts(): void {
-
     const keyword = this.searchText.trim().toLowerCase();
-    if (keyword === '') {
+    if (!keyword) {
       this.products = [...this.allProducts];
       return;
     }
-
     this.products = this.allProducts.filter(product =>
       product.name.toLowerCase().includes(keyword) ||
       product.description.toLowerCase().includes(keyword)
     );
-
   }
 
   getCurrentImage(product: Product): string {
@@ -153,8 +145,8 @@ export class HomeComponent implements OnInit {
   }
 
   get canAddProduct(): boolean {
-    const email = (localStorage.getItem('userEmail') || '').toLowerCase();
-    return email.includes('prosenjit');
+    const email = localStorage.getItem('userEmail');
+    return email?.toLowerCase().includes('prosenjit') ?? false;
   }
 
   deleteProduct(id: number): void {
