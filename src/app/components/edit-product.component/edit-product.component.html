@@ -1,0 +1,112 @@
+<div class="add-product-container">
+
+    <h2>Edit Product</h2>
+
+    <form [formGroup]="productForm" (ngSubmit)="updateProduct()" enctype="multipart/form-data">
+
+        <!-- Name -->
+
+        <div class="form-row">
+            <label>Name:</label>
+            <input type="text" formControlName="name" placeholder="Product Name">
+        </div>
+
+        <!-- Description -->
+
+        <div class="form-row">
+            <label>Description:</label>
+            <textarea rows="4" formControlName="description" placeholder="Product Description">
+            </textarea>
+        </div>
+
+        <!-- Quantity -->
+
+        <div class="form-row">
+            <label>Quantity:</label>
+            <input type="number" formControlName="quantity" min="0">
+        </div>
+
+        <!-- Price -->
+
+        <div class="form-row">
+            <label>Price:</label>
+            <input type="number" formControlName="price" min="1">
+        </div>
+
+        <!-- Existing Images -->
+
+        <div class="form-row">
+
+            <label>Existing Images</label>
+            <div class="selected-images" *ngIf="existingImages.length > 0">
+                <div class="image-item" *ngFor="let image of existingImages">
+                    <img [src]="'http://localhost:8080/api/images/' + image.id" alt="Product Image">
+                    <button type="button" class="delete-btn" (click)="removeExistingImage(image)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+
+            <div *ngIf="existingImages.length==0" class="empty-images">
+                No Existing Images
+            </div>
+
+        </div>
+
+        <!-- Upload New Images -->
+
+        <div class="form-row">
+            <label>Add New Images</label>
+            <input #fileInput type="file" multiple accept="image/*" (change)="onFileChange($event)">
+        </div>
+
+        <!-- Selected New Images -->
+
+        <div class="selected-images" *ngIf="selectedFiles.length>0">
+
+            <h4>New Images</h4>
+
+            <div class="image-item" *ngFor="let file of selectedFiles; let i=index">
+                <span>{{file.name}}</span>
+                <button type="button" class="delete-btn" (click)="removeNewImage(i)">
+                    Remove
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="button-group">
+
+            <button type="submit" [disabled]="productForm.invalid">
+                Update Product
+            </button>
+
+            <button type="button" class="cancel-btn" routerLink="/home">
+                Cancel
+            </button>
+
+        </div>
+
+        <!-- Success -->
+
+        <div class="form-row" *ngIf="uploadSuccess">
+            <span class="success-message">
+                Product Updated Successfully.
+            </span>
+
+        </div>
+
+        <!-- Error -->
+
+        <div class="form-row" *ngIf="uploadError">
+            <span class="error-message">
+                {{uploadError}}
+            </span>
+
+        </div>
+
+    </form>
+
+</div>

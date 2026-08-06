@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../model/product';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -19,4 +19,11 @@ export class ProductService {
 
     }
 
+    deleteProduct(id: number) {
+
+        return this.http.delete(
+            `${environment.apiBaseUrl}/products/${id}`,
+            { responseType: 'text' }
+        );
+    }
 }

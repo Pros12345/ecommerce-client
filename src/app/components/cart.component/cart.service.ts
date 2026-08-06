@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../../model/product';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 export interface CartItem {
 
@@ -18,6 +18,10 @@ export interface CartItem {
 export class CartService {
 
     private STORAGE_KEY = 'cartItems';
+
+    clearCart(): void {
+        localStorage.removeItem(this.STORAGE_KEY);
+    }
 
     getCartItems(): CartItem[] {
 
@@ -44,7 +48,7 @@ export class CartService {
                 price: product.price,
                 quantity: 1,
                 image: product.images.length > 0
-                    ? `${environment.apiBaseUrl}/api/images/${product.images[0].id}`
+                    ? `${environment.apiBaseUrl}/images/${product.images[0].id}`
                     : 'assets/no-image.png'
 
             });

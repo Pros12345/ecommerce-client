@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -26,17 +26,22 @@ export class LoginComponent {
 
   onLogin(): void {
     if (this.loginForm.valid) {
-      this.http.post(`${environment.apiBaseUrl}/auth/login`, this.loginForm.value, { responseType: 'text' })
-        .subscribe({
-          next: (token) => {
-            localStorage.setItem('authToken', token);
-            this.router.navigate(['/home']);
-          },
-          error: (err) => {
-            alert('Invalid email or password');
-            console.error(err);
-          }
-        });
+      this.http.post(
+        `${environment.apiBaseUrl}/auth/login`,
+        this.loginForm.value,
+        { responseType: 'text' }
+      ).subscribe({
+        next: (token) => {
+          localStorage.setItem('authToken', token);
+          localStorage.setItem('userEmail', this.loginForm.value.email); // Store email
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          alert('Invalid email or password');
+          console.error(err);
+        }
+      });
     }
   }
 }
+
