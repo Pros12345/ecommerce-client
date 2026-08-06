@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../../model/product';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 export interface CartItem {
 
@@ -8,6 +8,7 @@ export interface CartItem {
     name: string;
     price: number;
     quantity: number;
+    availableQuantity: number;
     image: string;
 
 }
@@ -18,61 +19,49 @@ export interface CartItem {
 export class CartService {
 
     private STORAGE_KEY = 'cartItems';
+    clearCart(): void {
+        localStorage.removeItem(this.STORAGE_KEY);
+    }
 
     getCartItems(): CartItem[] {
-
         return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]');
-
     }
 
     addToCart(product: Product): void {
-
         const cart = this.getCartItems();
-
         const existing = cart.find(item => item.id === product.id);
-
         if (existing) {
-
+            if (existing.quantity >= existing.availableQuantity) {
+                alert('Only ' + existing.availableQuantity + ' item(s) available in stock.');
+                return;
+            }
             existing.quantity++;
-
         } else {
-
             cart.push({
-
                 id: product.id,
                 name: product.name,
                 price: product.price,
                 quantity: 1,
+                availableQuantity: product.quantity,
                 image: product.images.length > 0
-                    ? `${environment.apiBaseUrl}/api/images/${product.images[0].id}`
+                    ? `${environment.apiBaseUrl}/images/${product.images[0].id}`
                     : 'assets/no-image.png'
-
             });
-
         }
-
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart));
-
     }
 
     removeItem(id: number): void {
-
         const cart = this.getCartItems().filter(item => item.id !== id);
-
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart));
 
     }
 
     updateCart(cart: CartItem[]): void {
-
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart));
-
     }
 
     isInCart(productId: number): boolean {
-
         return this.getCartItems().some(item => item.id === productId);
-
     }
-
 }

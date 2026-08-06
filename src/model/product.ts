@@ -5,10 +5,10 @@ export interface Product {
     description: string;
     quantity: number;
     price: number;
-
+    status: string;
     images: ProductImage[];
-
     currentImageIndex?: number;
+    showMore?: boolean;
 
 }
 

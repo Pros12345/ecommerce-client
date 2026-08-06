@@ -16,7 +16,9 @@
                     <div class="quantity-controls">
                         <button (click)="decrementQuantity(item)">-</button>
                         <span class="quantity">{{ item.quantity }}</span>
-                        <button (click)="incrementQuantity(item)">+</button>
+                        <button (click)="incrementQuantity(item)" [disabled]="item.quantity >= item.availableQuantity">
+                            +
+                        </button>
                     </div>
                     <button class="remove-button" (click)="removeItem(item)">REMOVE</button>
                 </div>
