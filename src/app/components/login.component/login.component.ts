@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 
 
 @Component({
