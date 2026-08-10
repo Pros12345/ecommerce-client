@@ -4,7 +4,9 @@
 
 .cart-container {
     display: flex;
+
     justify-content: center;
+
     align-items: flex-start;
 
     gap: 20px;
@@ -18,12 +20,14 @@
     flex-wrap: wrap;
 
     width: 100%;
+
     min-height: 100vh;
 
     box-sizing: border-box;
 
     overflow-x: hidden;
 }
+
 
 /* =========================================================
    CART ITEMS
@@ -49,6 +53,7 @@
     box-sizing: border-box;
 }
 
+
 /* =========================================================
    CART HEADER
 ========================================================= */
@@ -69,6 +74,7 @@
     }
 }
 
+
 /* =========================================================
    CART ITEM LIST
 ========================================================= */
@@ -82,6 +88,7 @@
 
     width: 100%;
 }
+
 
 /* =========================================================
    CART ITEM
@@ -113,6 +120,7 @@
     }
 }
 
+
 /* =========================================================
    ITEM DETAILS
 ========================================================= */
@@ -129,6 +137,7 @@
     flex: 1;
 }
 
+
 /* =========================================================
    ITEM IMAGE
 ========================================================= */
@@ -142,6 +151,7 @@
 
     flex-shrink: 0;
 }
+
 
 /* =========================================================
    ITEM INFO
@@ -164,6 +174,8 @@
         color: #333;
 
         word-break: break-word;
+
+        margin: 0;
     }
 
     .item-price {
@@ -172,8 +184,11 @@
         font-weight: 600;
 
         color: #333;
+
+        margin: 0;
     }
 }
+
 
 /* =========================================================
    ITEM ACTIONS
@@ -190,6 +205,7 @@
 
     flex-shrink: 0;
 }
+
 
 /* =========================================================
    QUANTITY CONTROLS
@@ -229,12 +245,24 @@
 
         transition: 0.2s;
 
-        &:hover {
+        &:hover:not(:disabled) {
             background-color: #f5f5f5;
+
+            border-color: #999;
         }
 
-        &:active {
+        &:active:not(:disabled) {
             transform: scale(0.95);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+
+            color: #aaa;
+
+            background-color: #f8f8f8;
+
+            border-color: #ddd;
         }
     }
 
@@ -252,8 +280,11 @@
         padding: 5px 0;
 
         font-size: 14px;
+
+        box-sizing: border-box;
     }
 }
+
 
 /* =========================================================
    REMOVE BUTTON
@@ -274,10 +305,15 @@
 
     padding: 5px 0;
 
+    transition: color 0.2s ease;
+
     &:hover {
+        color: #1557b0;
+
         text-decoration: underline;
     }
 }
+
 
 /* =========================================================
    CART SUMMARY
@@ -303,6 +339,7 @@
     box-sizing: border-box;
 }
 
+
 /* =========================================================
    PRICE DETAILS HEADER
 ========================================================= */
@@ -324,6 +361,7 @@
         margin: 0;
     }
 }
+
 
 /* =========================================================
    PRICE DETAILS BODY
@@ -349,6 +387,12 @@
 
         word-break: break-word;
 
+        span:last-child {
+            text-align: right;
+
+            white-space: nowrap;
+        }
+
         &.total-amount {
             font-size: 18px;
 
@@ -370,6 +414,7 @@
         }
     }
 }
+
 
 /* =========================================================
    PLACE ORDER BUTTON
@@ -398,16 +443,145 @@
 
     margin-top: 20px;
 
-    transition: 0.2s;
-
-    &:hover {
-        background-color: #e85a16;
-    }
-
-    &:active {
-        transform: scale(0.99);
-    }
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
 }
+
+.place-order-button:hover {
+    background-color: #e85a16;
+
+    box-shadow: 0 3px 8px rgba(251, 100, 27, 0.2);
+
+    transform: translateY(-1px);
+}
+
+.place-order-button:active {
+    transform: scale(0.99);
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   GO TO HOME
+   IMPORTANT:
+   This is GLOBAL.
+   Do NOT put this inside max-width: 360px.
+========================================================= */
+
+.home-link {
+    width: 100%;
+
+    margin-top: 14px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid #eeeeee;
+
+    box-sizing: border-box;
+}
+
+.home-link a {
+    width: 100%;
+
+    min-height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 16px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #2874f0;
+
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #2874f0;
+
+    text-decoration: none;
+
+    font-family: Roboto, Arial, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.1px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+/* Home icon */
+
+.home-icon {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 20px;
+
+    height: 20px;
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    font-weight: 700;
+}
+
+
+/* Home hover */
+
+.home-link a:hover {
+    background-color: #2874f0;
+
+    border-color: #2874f0;
+
+    color: #ffffff;
+
+    box-shadow: 0 3px 8px rgba(40, 116, 240, 0.2);
+
+    transform: translateY(-1px);
+}
+
+
+/* Home active */
+
+.home-link a:active {
+    transform: translateY(0);
+
+    box-shadow: none;
+}
+
+
+/* Home keyboard focus */
+
+.home-link a:focus-visible {
+    outline: 3px solid rgba(40, 116, 240, 0.25);
+
+    outline-offset: 2px;
+}
+
 
 /* =========================================================
    EMPTY CART
@@ -455,6 +629,7 @@
     }
 }
 
+
 /* =========================================================
    LARGE TABLET / SMALL LAPTOP
    1024px
@@ -470,6 +645,7 @@
 
     .cart-items {
         max-width: 100%;
+
         flex: 1 1 100%;
     }
 
@@ -479,6 +655,7 @@
         flex: 1 1 100%;
     }
 }
+
 
 /* =========================================================
    TABLET
@@ -529,6 +706,7 @@
     }
 
     .item-info {
+
         .item-name {
             font-size: 15px;
         }
@@ -543,10 +721,26 @@
 
         button {
             width: 32px;
+
             height: 32px;
+
+            min-width: 32px;
         }
     }
+
+    /* Home button */
+
+    .home-link {
+        margin-top: 12px;
+
+        padding-top: 13px;
+    }
+
+    .home-link a {
+        min-height: 46px;
+    }
 }
+
 
 /* =========================================================
    MOBILE
@@ -573,7 +767,10 @@
         border-radius: 4px;
     }
 
-    /* Cart heading */
+
+    /* -----------------------------------------------------
+       Cart heading
+    ----------------------------------------------------- */
 
     .cart-header {
         padding-bottom: 12px;
@@ -585,7 +782,10 @@
         }
     }
 
-    /* Product */
+
+    /* -----------------------------------------------------
+       Product
+    ----------------------------------------------------- */
 
     .cart-item {
         display: grid;
@@ -627,7 +827,10 @@
         }
     }
 
-    /* Actions move below product */
+
+    /* -----------------------------------------------------
+       Actions move below product
+    ----------------------------------------------------- */
 
     .item-actions {
         width: 100%;
@@ -667,7 +870,10 @@
         padding: 8px 4px;
     }
 
-    /* Summary */
+
+    /* -----------------------------------------------------
+       Summary
+    ----------------------------------------------------- */
 
     .price-details-header {
         padding-bottom: 12px;
@@ -693,6 +899,11 @@
         }
     }
 
+
+    /* -----------------------------------------------------
+       Place Order
+    ----------------------------------------------------- */
+
     .place-order-button {
         min-height: 50px;
 
@@ -701,7 +912,33 @@
         margin-top: 16px;
     }
 
-    /* Empty cart */
+
+    /* -----------------------------------------------------
+       Go To Home
+    ----------------------------------------------------- */
+
+    .home-link {
+        margin-top: 10px;
+
+        padding-top: 12px;
+    }
+
+    .home-link a {
+        min-height: 48px;
+
+        font-size: 15px;
+
+        border-radius: 5px;
+    }
+
+    .home-icon {
+        font-size: 18px;
+    }
+
+
+    /* -----------------------------------------------------
+       Empty cart
+    ----------------------------------------------------- */
 
     .empty-cart {
         padding: 40px 15px;
@@ -723,6 +960,7 @@
         }
     }
 }
+
 
 /* =========================================================
    VERY SMALL PHONES
@@ -751,6 +989,7 @@
     }
 
     .item-info {
+
         .item-name {
             font-size: 14px;
         }
@@ -784,5 +1023,11 @@
 
     .place-order-button {
         font-size: 15px;
+    }
+
+    .home-link a {
+        min-height: 48px;
+
+        font-size: 14px;
     }
 }

@@ -39,6 +39,11 @@
         <div class="form-row">
             <button type="submit" [disabled]="productForm.invalid || !selectedFiles">Add Product</button>
         </div>
+
+        <div class="home-link">
+            <a routerLink="/home">Go to Home</a>
+        </div>
+
         <div class="form-row" *ngIf="uploadSuccess">
             <span class="success-message">Product added successfully!</span>
         </div>

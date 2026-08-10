@@ -2,12 +2,12 @@ import { Component, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/co
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductService } from './add-product.service';
-
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-add-product',
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule],
+    imports: [ReactiveFormsModule, CommonModule, RouterLink],
     templateUrl: './add-product.component.html',
     styleUrls: ['./add-product.component.scss'],
 })

@@ -1,57 +1,153 @@
 <div class="registration-container">
+
     <div class="registration-card">
+
+        <!-- Header -->
         <div class="card-header">
-            <h2>Signup</h2>
-            <p>Enter your details below to get started</p>
-        </div>
-        <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <input type="text" id="firstName" formControlName="firstName" placeholder="First Name" required>
-                <div *ngIf="registrationForm.get('firstName')?.invalid && (registrationForm.get('firstName')?.dirty || registrationForm.get('firstName')?.touched)"
-                    class="error-message">
-                    First Name is required.
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="email" id="email" formControlName="email" placeholder="Email" required>
-                <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)"
-                    class="error-message">
-                    <div *ngIf="registrationForm.get('email')?.errors?.['required']">
-                        Email is required.
-                    </div>
-                    <div *ngIf="registrationForm.get('email')?.errors?.['email']">
-                        Please enter a valid email.
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="password" id="password" formControlName="password"
-                    placeholder="Password (min 6 characters)" required>
-                <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)"
-                    class="error-message">
-                    Password must be at least 6 characters.
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="password" id="confirmPassword" formControlName="confirmPassword"
-                    placeholder="Confirm Password" required>
-                <div *ngIf="registrationForm.get('confirmPassword')?.invalid && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)"
-                    class="error-message">
-                    Confirm Password is required.
-                </div>
+
+            <div class="brand-logo">
+                <span class="brand-icon">🛒</span>
+                <span>MyStore</span>
             </div>
 
-            <div *ngIf="registrationForm.errors?.['passwordsMismatch'] && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)"
-                class="error-message mismatch-error">
+            <h2>Create Account</h2>
+
+            <p>
+                Sign up to start shopping with us
+            </p>
+
+        </div>
+
+
+        <!-- Registration Form -->
+        <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+
+            <!-- Name -->
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input id="name" type="text" formControlName="name" placeholder="Enter your full name"
+                    autocomplete="name">
+
+                <div class="error-message" *ngIf="
+                        registrationForm.get('name')?.invalid &&
+                        registrationForm.get('name')?.touched
+                    ">
+
+                    Please enter your name.
+
+                </div>
+
+            </div>
+
+
+            <!-- Email -->
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input id="email" type="email" formControlName="email" placeholder="Enter your email"
+                    autocomplete="email">
+
+                <div class="error-message" *ngIf="
+                        registrationForm.get('email')?.invalid &&
+                        registrationForm.get('email')?.touched
+                    ">
+
+                    Please enter a valid email address.
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input id="password" type="password" formControlName="password" placeholder="Create a password"
+                    autocomplete="new-password">
+
+            </div>
+
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input id="confirmPassword" type="password" formControlName="confirmPassword"
+                    placeholder="Confirm your password" autocomplete="new-password">
+
+            </div>
+
+
+            <!-- Password mismatch -->
+            <div *ngIf="
+                    registrationForm.errors?.['passwordsMismatch'] &&
+                    (
+                        registrationForm.get('confirmPassword')?.dirty ||
+                        registrationForm.get('confirmPassword')?.touched
+                    )
+                " class="error-message mismatch-error">
+
+                <span>⚠</span>
                 Passwords do not match.
+
             </div>
-            <button type="submit" [disabled]="!registrationForm.valid">SIGN UP</button>
+
+
+            <!-- Submit -->
+            <button type="submit" class="signup-button" [disabled]="!registrationForm.valid">
+
+                <span>CREATE ACCOUNT</span>
+
+            </button>
+
+
+            <!-- Login -->
             <div class="login-link">
-                <p>Already have an account? <a routerLink="/login">Log In</a></p>
+
+                <p>
+                    Already have an account?
+
+                    <a routerLink="/login">
+                        Log In
+                    </a>
+                </p>
+
             </div>
-            <div class="login-link">
-                <a routerLink="/home">Go to Home</a>
+
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>OR</span>
             </div>
+
+
+            <!-- Home -->
+            <div class="home-link">
+
+                <a routerLink="/home">
+                    <span class="home-icon">⌂</span>
+                    Back to Home
+                </a>
+
+            </div>
+
         </form>
+
     </div>
+
 </div>

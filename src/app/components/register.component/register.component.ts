@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
-// import { environment } from '../../../environments/environment';
 import { environment } from '../../../environments/environment';
 import {
   FormBuilder,

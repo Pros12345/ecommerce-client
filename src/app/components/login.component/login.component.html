@@ -1,26 +1,94 @@
 <div class="login-container">
 
-  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <form class="login-card" [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
-    <h2>Login</h2>
+    <!-- Header -->
 
-    <div class="form-group">
-      <input type="email" formControlName="email" placeholder="Email" required>
+    <div class="login-header">
+
+      <div class="brand-logo">
+        <span class="brand-icon">🛒</span>
+        <span>MyStore</span>
+      </div>
+
+      <h2>Welcome Back</h2>
+
+      <p>
+        Login to continue shopping
+      </p>
+
     </div>
 
+
+    <!-- Email -->
+
     <div class="form-group">
-      <input type="password" formControlName="password" placeholder="Password" required>
+
+      <label for="email">
+        Email Address
+      </label>
+
+      <input id="email" type="email" formControlName="email" placeholder="Enter your email" autocomplete="email">
+
     </div>
 
-    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+
+    <!-- Password -->
+
+    <div class="form-group">
+
+      <label for="password">
+        Password
+      </label>
+
+      <input id="password" type="password" formControlName="password" placeholder="Enter your password"
+        autocomplete="current-password">
+
+    </div>
+
+
+    <!-- Login -->
+
+    <button type="submit" class="login-button" [disabled]="!loginForm.valid">
+
+      LOGIN
+
+    </button>
+
+
+    <!-- Register -->
 
     <div class="registration-link">
-      <p>Wants to register ? <a routerLink="/register">Sign Up</a></p>
+
+      <p>
+        Don't have an account?
+
+        <a routerLink="/register">
+          Sign Up
+        </a>
+      </p>
+
     </div>
 
+
+    <!-- Divider -->
+
+    <div class="divider">
+      <span>OR</span>
+    </div>
+
+
+    <!-- Home -->
+
     <div class="home-link">
-      <a routerLink="/home">Go to Home</a>
+
+      <a routerLink="/home">
+        <span class="home-icon">⌂</span>
+        Back to Home
+      </a>
+
     </div>
 
   </form>
+
 </div>
