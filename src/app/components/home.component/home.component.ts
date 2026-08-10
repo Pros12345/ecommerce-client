@@ -6,7 +6,7 @@ import { ProductService } from '../../../model/product.service';
 import { CartService } from '../cart.component/cart.service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../authservice/authservice.component';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
