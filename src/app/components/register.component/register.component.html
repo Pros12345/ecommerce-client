@@ -33,13 +33,9 @@
                 <input id="name" type="text" formControlName="firstName" placeholder="Enter your full name"
                     autocomplete="name">
 
-                <div class="error-message" *ngIf="
-                        registrationForm.get('name')?.invalid &&
-                        registrationForm.get('name')?.touched
-                    ">
-
+                <div class="error-message"
+                    *ngIf=" registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
                     Please enter your name.
-
                 </div>
 
             </div>
