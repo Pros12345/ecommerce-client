@@ -436,6 +436,194 @@
 
 
 /* =========================================================
+   PAGE ANIMATIONS
+========================================================= */
+
+.registration-container {
+    position: relative;
+    isolation: isolate;
+}
+
+.registration-container::before,
+.registration-container::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: registerFloat 8s ease-in-out infinite;
+}
+
+.registration-container::before {
+    width: 270px;
+    height: 270px;
+    top: 6%;
+    left: 7%;
+    background: rgba(40, 116, 240, 0.10);
+}
+
+.registration-container::after {
+    width: 230px;
+    height: 230px;
+    right: 7%;
+    bottom: 6%;
+    background: rgba(251, 100, 27, 0.10);
+    animation-delay: -3s;
+}
+
+.registration-card {
+    animation: cardEnter 0.75s cubic-bezier(.22, 1, .36, 1) both;
+    transform-origin: center;
+}
+
+.card-header .brand-logo {
+    animation: logoEnter 0.7s 0.15s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.card-header h2 {
+    animation: fadeUp 0.6s 0.25s ease-out both;
+}
+
+.card-header p {
+    animation: fadeUp 0.6s 0.35s ease-out both;
+}
+
+.registration-form .form-group:nth-child(1) {
+    animation: fadeUp 0.5s 0.4s ease-out both;
+}
+
+.registration-form .form-group:nth-child(2) {
+    animation: fadeUp 0.5s 0.48s ease-out both;
+}
+
+.registration-form .form-group:nth-child(3) {
+    animation: fadeUp 0.5s 0.56s ease-out both;
+}
+
+.registration-form .form-group:nth-child(4) {
+    animation: fadeUp 0.5s 0.64s ease-out both;
+}
+
+.signup-button {
+    animation: fadeUp 0.55s 0.72s ease-out both;
+}
+
+.login-link,
+.divider,
+.home-link {
+    animation: fadeUp 0.55s 0.82s ease-out both;
+}
+
+.brand-icon {
+    display: inline-block;
+    animation: cartBounce 2.8s ease-in-out infinite;
+}
+
+.form-group input {
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.form-group input:focus {
+    transform: translateY(-2px);
+}
+
+.signup-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    transform: skewX(-20deg);
+    background: rgba(255, 255, 255, 0.18);
+    transition: left 0.55s ease;
+}
+
+.signup-button:hover:not(:disabled)::after {
+    left: 140%;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes logoEnter {
+    from {
+        opacity: 0;
+        transform: scale(0.75) rotate(-5deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes cartBounce {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-4px) rotate(-4deg);
+    }
+}
+
+@keyframes registerFloat {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -22px, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .registration-container *,
+    .registration-container::before,
+    .registration-container::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* =========================================================
    TABLET
 ========================================================= */
 
