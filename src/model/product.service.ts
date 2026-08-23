@@ -9,13 +9,19 @@ import { environment } from '../environments/environment';
 })
 export class ProductService {
 
-    private url = `${environment.apiBaseUrl}/productsDisplay`;
+    private url =
+        `${environment.apiBaseUrl}/productsDisplay`;
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient
+    ) { }
+
 
     getProducts(): Observable<Product[]> {
 
-        return this.http.get<Product[]>(this.url);
+        return this.http.get<Product[]>(
+            this.url
+        );
 
     }
 
@@ -23,7 +29,22 @@ export class ProductService {
 
         return this.http.delete(
             `${environment.apiBaseUrl}/products/${id}`,
-            { responseType: 'text' }
+            {
+                responseType: 'text'
+            }
         );
+
     }
+
+    permanentlyDeleteProduct(id: number) {
+
+        return this.http.delete(
+            `${environment.apiBaseUrl}/products/permanent/${id}`,
+            {
+                responseType: 'text'
+            }
+        );
+
+    }
+
 }

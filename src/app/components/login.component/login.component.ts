@@ -7,41 +7,227 @@ import { environment } from '../../../environments/environment';
 
 
 @Component({
+
   selector: 'app-login',
+
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    RouterModule
+  ],
+
   templateUrl: './login.component.html',
+
   styleUrls: ['./login.component.scss']
+
 })
 export class LoginComponent {
+
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router
+  // ==============================
+  // ERROR POPUP
+  // ==============================
+
+  showErrorPopup: boolean = false;
+
+  errorMessage: string = '';
+
+
+  constructor(
+
+    private fb: FormBuilder,
+
+    private http: HttpClient,
+
+    private router: Router
+
   ) {
+
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+
+      identifier: [
+
+        '',
+
+        Validators.required
+
+      ],
+
+      password: [
+
+        '',
+
+        Validators.required
+
+      ]
+
     });
+
   }
+
 
   onLogin(): void {
-    if (this.loginForm.valid) {
-      this.http.post(
-        `${environment.apiBaseUrl}/auth/login`,
-        this.loginForm.value,
-        { responseType: 'text' }
-      ).subscribe({
-        next: (token) => {
-          localStorage.setItem('authToken', token);
-          localStorage.setItem('userEmail', this.loginForm.value.email); // Store email
-          this.router.navigate(['/home']);
-        },
-        error: (err) => {
-          alert('Invalid email or password');
-          console.error(err);
-        }
-      });
-    }
-  }
-}
 
+    // ==============================
+    // FORM VALIDATION
+    // ==============================
+
+    if (!this.loginForm.valid) {
+
+      this.loginForm.markAllAsTouched();
+
+      return;
+
+    }
+
+
+    // ==============================
+    // LOGIN REQUEST
+    // ==============================
+
+    const loginRequest = {
+
+      identifier:
+        this.loginForm.value.identifier.trim(),
+
+      password:
+        this.loginForm.value.password
+
+    };
+
+
+    console.log(
+      'Login Request:',
+      loginRequest
+    );
+
+
+    // ==============================
+    // API CALL
+    // ==============================
+
+    this.http.post<any>(
+
+      `${environment.apiBaseUrl}/auth/login`,
+
+      loginRequest,
+
+      {
+        responseType: 'json'
+      }
+
+    )
+      .subscribe({
+
+        // ==============================
+        // SUCCESS
+        // ==============================
+
+        next: (response) => {
+
+          console.log(
+            'Login successful:',
+            response
+          );
+
+
+          // JWT TOKEN
+
+          localStorage.setItem(
+
+            'authToken',
+
+            response.token
+
+          );
+
+
+          // USER EMAIL / LOGIN IDENTIFIER
+
+          localStorage.setItem(
+
+            'userEmail',
+
+            loginRequest.identifier
+
+          );
+
+
+          localStorage.setItem(
+
+            'loginIdentifier',
+
+            loginRequest.identifier
+
+          );
+
+
+          // USER NAME
+
+          localStorage.setItem(
+
+            'userName',
+
+            response.firstName
+
+          );
+
+
+          // NAVIGATE TO HOME
+
+          this.router.navigate([
+
+            '/home'
+
+          ]);
+
+        },
+
+
+        // ==============================
+        // ERROR
+        // ==============================
+
+        error: (err) => {
+
+          console.error(
+
+            'Login error:',
+
+            err
+
+          );
+
+
+          // Error message for popup
+
+          this.errorMessage =
+
+            'Invalid email/mobile number or password';
+
+
+          // Show custom popup
+
+          this.showErrorPopup = true;
+
+        }
+
+      });
+
+  }
+
+
+  // ==============================
+  // CLOSE ERROR POPUP
+  // ==============================
+
+  closeErrorPopup(): void {
+
+    this.showErrorPopup = false;
+
+  }
+
+}

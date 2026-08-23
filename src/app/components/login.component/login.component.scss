@@ -3,6 +3,7 @@
 ========================================================= */
 
 .login-container {
+
     min-height: 100vh;
 
     width: 100%;
@@ -22,7 +23,10 @@
             #f1f3f6 0%,
             #eef3fb 100%);
 
-    font-family: Roboto, Arial, sans-serif;
+    font-family:
+        Roboto,
+        Arial,
+        sans-serif;
 
     overflow-x: hidden;
 }
@@ -33,6 +37,7 @@
 ========================================================= */
 
 .login-card {
+
     width: 100%;
 
     max-width: 400px;
@@ -45,7 +50,8 @@
 
     border-radius: 12px;
 
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    border:
+        1px solid rgba(0, 0, 0, 0.04);
 
     box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.10);
@@ -57,12 +63,15 @@
 ========================================================= */
 
 .login-header {
+
     text-align: center;
 
     margin-bottom: 28px;
 }
 
+
 .brand-logo {
+
     display: flex;
 
     justify-content: center;
@@ -80,14 +89,19 @@
     font-weight: 700;
 }
 
+
 .brand-icon {
+
     font-size: 25px;
 
     line-height: 1;
 }
 
+
 .login-header h2 {
-    margin: 0 0 8px;
+
+    margin:
+        0 0 8px;
 
     color: #212121;
 
@@ -96,7 +110,9 @@
     font-weight: 600;
 }
 
+
 .login-header p {
+
     margin: 0;
 
     color: #878787;
@@ -110,10 +126,13 @@
 ========================================================= */
 
 .form-group {
+
     margin-bottom: 18px;
 }
 
+
 .form-group label {
+
     display: block;
 
     margin-bottom: 7px;
@@ -125,16 +144,20 @@
     font-weight: 600;
 }
 
+
 .form-group input {
+
     width: 100%;
 
     height: 46px;
 
-    padding: 0 13px;
+    padding:
+        0 13px;
 
     box-sizing: border-box;
 
-    border: 1px solid #d5d5d5;
+    border:
+        1px solid #d5d5d5;
 
     border-radius: 6px;
 
@@ -153,11 +176,15 @@
         box-shadow 0.2s ease;
 }
 
+
 .form-group input::placeholder {
+
     color: #aaaaaa;
 }
 
+
 .form-group input:focus {
+
     border-color: #2874f0;
 
     box-shadow:
@@ -166,10 +193,33 @@
 
 
 /* =========================================================
+   FRONTEND VALIDATION ERROR
+========================================================= */
+
+.error-message {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 6px;
+
+    color: #d32f2f;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
    LOGIN BUTTON
 ========================================================= */
 
 .login-button {
+
     width: 100%;
 
     height: 48px;
@@ -196,22 +246,30 @@
         transform 0.15s ease;
 }
 
+
 .login-button:hover:not(:disabled) {
+
     background: #e95712;
 
     box-shadow:
         0 4px 12px rgba(251, 100, 27, 0.25);
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
 
+
 .login-button:active:not(:disabled) {
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
 
     box-shadow: none;
 }
 
+
 .login-button:disabled {
+
     background: #ffb99b;
 
     cursor: not-allowed;
@@ -225,6 +283,7 @@
 ========================================================= */
 
 .registration-link {
+
     margin-top: 20px;
 
     text-align: center;
@@ -234,11 +293,15 @@
     font-size: 14px;
 }
 
+
 .registration-link p {
+
     margin: 0;
 }
 
+
 .registration-link a {
+
     margin-left: 4px;
 
     color: #2874f0;
@@ -248,7 +311,9 @@
     font-weight: 600;
 }
 
+
 .registration-link a:hover {
+
     color: #1557b0;
 
     text-decoration: underline;
@@ -260,13 +325,15 @@
 ========================================================= */
 
 .divider {
+
     display: flex;
 
     align-items: center;
 
     gap: 12px;
 
-    margin: 22px 0 16px;
+    margin:
+        22px 0 16px;
 
     color: #aaaaaa;
 
@@ -275,8 +342,10 @@
     font-weight: 500;
 }
 
+
 .divider::before,
 .divider::after {
+
     content: "";
 
     flex: 1;
@@ -286,7 +355,9 @@
     background: #eeeeee;
 }
 
+
 .divider span {
+
     flex-shrink: 0;
 }
 
@@ -296,10 +367,13 @@
 ========================================================= */
 
 .home-link {
+
     width: 100%;
 }
 
+
 .home-link a {
+
     width: 100%;
 
     min-height: 44px;
@@ -314,7 +388,8 @@
 
     box-sizing: border-box;
 
-    border: 1px solid #2874f0;
+    border:
+        1px solid #2874f0;
 
     border-radius: 6px;
 
@@ -335,7 +410,9 @@
         transform 0.15s ease;
 }
 
+
 .home-link a:hover {
+
     background: #2874f0;
 
     color: #ffffff;
@@ -343,14 +420,20 @@
     box-shadow:
         0 3px 8px rgba(40, 116, 240, 0.20);
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
+
 
 .home-link a:active {
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
 }
 
+
 .home-icon {
+
     font-size: 17px;
 
     line-height: 1;
@@ -362,178 +445,515 @@
 ========================================================= */
 
 .login-container {
+
     position: relative;
+
     isolation: isolate;
 }
 
+
 .login-container::before,
 .login-container::after {
+
     content: "";
+
     position: absolute;
+
     z-index: -1;
+
     border-radius: 50%;
+
     pointer-events: none;
+
     filter: blur(2px);
-    animation: loginFloat 8s ease-in-out infinite;
+
+    animation:
+        loginFloat 8s ease-in-out infinite;
 }
+
 
 .login-container::before {
+
     width: 260px;
+
     height: 260px;
+
     top: 8%;
+
     left: 8%;
-    background: rgba(40, 116, 240, 0.10);
+
+    background:
+        rgba(40, 116, 240, 0.10);
 }
 
+
 .login-container::after {
+
     width: 220px;
+
     height: 220px;
+
     right: 8%;
+
     bottom: 8%;
-    background: rgba(251, 100, 27, 0.10);
+
+    background:
+        rgba(251, 100, 27, 0.10);
+
     animation-delay: -3s;
 }
 
+
 .login-card {
-    animation: cardEnter 0.75s cubic-bezier(.22, 1, .36, 1) both;
+
+    animation:
+        cardEnter 0.75s cubic-bezier(.22, 1, .36, 1) both;
+
     transform-origin: center;
 }
 
+
 .login-header .brand-logo {
-    animation: logoEnter 0.7s 0.15s cubic-bezier(.22, 1, .36, 1) both;
+
+    animation:
+        logoEnter 0.7s 0.15s cubic-bezier(.22, 1, .36, 1) both;
 }
+
 
 .login-header h2 {
-    animation: fadeUp 0.6s 0.25s ease-out both;
+
+    animation:
+        fadeUp 0.6s 0.25s ease-out both;
 }
+
 
 .login-header p {
-    animation: fadeUp 0.6s 0.35s ease-out both;
+
+    animation:
+        fadeUp 0.6s 0.35s ease-out both;
 }
 
-.login-form .form-group:nth-child(1) {
-    animation: fadeUp 0.55s 0.4s ease-out both;
-}
-
-.login-form .form-group:nth-child(2) {
-    animation: fadeUp 0.55s 0.5s ease-out both;
-}
 
 .login-button {
-    animation: fadeUp 0.55s 0.6s ease-out both;
+
+    animation:
+        fadeUp 0.55s 0.6s ease-out both;
 }
+
 
 .registration-link,
 .divider,
 .home-link {
-    animation: fadeUp 0.55s 0.7s ease-out both;
+
+    animation:
+        fadeUp 0.55s 0.7s ease-out both;
 }
+
 
 .brand-icon {
+
     display: inline-block;
-    animation: cartBounce 2.8s ease-in-out infinite;
+
+    animation:
+        cartBounce 2.8s ease-in-out infinite;
 }
 
+
 .form-group input {
+
     transition:
         border-color 0.25s ease,
         box-shadow 0.25s ease,
         transform 0.25s ease;
 }
 
+
 .form-group input:focus {
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
 
+
 .login-button {
+
     position: relative;
+
     overflow: hidden;
 }
 
+
 .login-button::after {
+
     content: "";
+
     position: absolute;
+
     top: 0;
+
     left: -120%;
+
     width: 70%;
+
     height: 100%;
-    transform: skewX(-20deg);
-    background: rgba(255, 255, 255, 0.18);
-    transition: left 0.55s ease;
+
+    transform:
+        skewX(-20deg);
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    transition:
+        left 0.55s ease;
 }
 
+
 .login-button:hover:not(:disabled)::after {
+
     left: 140%;
 }
 
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
 @keyframes cardEnter {
+
     from {
+
         opacity: 0;
-        transform: translateY(35px) scale(0.96);
+
+        transform:
+            translateY(35px) scale(0.96);
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0) scale(1);
     }
 }
+
 
 @keyframes fadeUp {
+
     from {
+
         opacity: 0;
-        transform: translateY(18px);
+
+        transform:
+            translateY(18px);
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 }
+
 
 @keyframes logoEnter {
+
     from {
+
         opacity: 0;
-        transform: scale(0.75) rotate(-5deg);
+
+        transform:
+            scale(0.75) rotate(-5deg);
     }
 
     to {
+
         opacity: 1;
-        transform: scale(1) rotate(0);
+
+        transform:
+            scale(1) rotate(0);
     }
 }
+
 
 @keyframes cartBounce {
 
     0%,
     100% {
-        transform: translateY(0) rotate(0);
+
+        transform:
+            translateY(0) rotate(0);
     }
 
     50% {
-        transform: translateY(-4px) rotate(-4deg);
+
+        transform:
+            translateY(-4px) rotate(-4deg);
     }
 }
+
 
 @keyframes loginFloat {
 
     0%,
     100% {
-        transform: translate3d(0, 0, 0);
+
+        transform:
+            translate3d(0, 0, 0);
     }
 
     50% {
-        transform: translate3d(0, -22px, 0);
+
+        transform:
+            translate3d(0, -22px, 0);
     }
 }
+
+
+/* =========================================================
+   ERROR POPUP
+========================================================= */
+
+.error-overlay {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+        rgba(0, 0, 0, 0.55);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+
+    animation:
+        errorOverlayFade 0.2s ease-out;
+}
+
+
+/* =========================================================
+   ERROR POPUP BOX
+========================================================= */
+
+.error-popup {
+
+    width: 90%;
+
+    max-width: 380px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    padding: 30px 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    animation:
+        errorPopupEnter 0.25s ease-out;
+}
+
+
+/* =========================================================
+   ERROR ICON
+========================================================= */
+
+.error-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius: 50%;
+
+    background:
+        #ffe5e5;
+
+    color:
+        #d32f2f;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ERROR TITLE
+========================================================= */
+
+.error-popup h3 {
+
+    margin:
+        0 0 10px;
+
+    color:
+        #212121;
+
+    font-size:
+        21px;
+
+    font-weight:
+        600;
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+.error-popup p {
+
+    margin:
+        0 0 25px;
+
+    color:
+        #666666;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.5;
+}
+
+
+/* =========================================================
+   ERROR OK BUTTON
+========================================================= */
+
+.error-ok-button {
+
+    width:
+        100%;
+
+    height:
+        44px;
+
+    border:
+        none;
+
+    border-radius:
+        6px;
+
+    background:
+        #2874f0;
+
+    color:
+        #ffffff;
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.error-ok-button:hover {
+
+    background:
+        #1557b0;
+
+    transform:
+        translateY(-1px);
+}
+
+
+.error-ok-button:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   ERROR POPUP ANIMATIONS
+========================================================= */
+
+@keyframes errorOverlayFade {
+
+    from {
+
+        opacity: 0;
+    }
+
+    to {
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes errorPopupEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.85) translateY(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1) translateY(0);
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
     .login-container *,
     .login-container::before,
     .login-container::after {
-        animation: none !important;
-        transition: none !important;
+
+        animation:
+            none !important;
+
+        transition:
+            none !important;
     }
+
 }
 
 
@@ -544,13 +964,19 @@
 @media (max-width: 768px) {
 
     .login-container {
-        padding: 25px 16px;
+
+        padding:
+            25px 16px;
     }
 
-    .login-card {
-        max-width: 430px;
 
-        padding: 30px 25px;
+    .login-card {
+
+        max-width:
+            430px;
+
+        padding:
+            30px 25px;
     }
 
 }
@@ -563,55 +989,103 @@
 @media (max-width: 480px) {
 
     .login-container {
-        align-items: flex-start;
 
-        padding: 30px 10px 20px;
+        align-items:
+            flex-start;
+
+        padding:
+            30px 10px 20px;
     }
+
 
     .login-card {
-        padding: 25px 18px;
 
-        border-radius: 10px;
+        padding:
+            25px 18px;
+
+        border-radius:
+            10px;
     }
+
 
     .login-header {
-        margin-bottom: 23px;
+
+        margin-bottom:
+            23px;
     }
+
 
     .brand-logo {
-        font-size: 20px;
 
-        margin-bottom: 16px;
+        font-size:
+            20px;
+
+        margin-bottom:
+            16px;
     }
+
 
     .login-header h2 {
-        font-size: 23px;
+
+        font-size:
+            23px;
     }
+
 
     .login-header p {
-        font-size: 13px;
+
+        font-size:
+            13px;
     }
+
 
     .form-group {
-        margin-bottom: 16px;
+
+        margin-bottom:
+            16px;
     }
+
 
     .form-group input {
-        height: 48px;
+
+        height:
+            48px;
     }
+
 
     .login-button {
-        height: 50px;
 
-        font-size: 14px;
+        height:
+            50px;
+
+        font-size:
+            14px;
     }
+
 
     .registration-link {
-        font-size: 13px;
+
+        font-size:
+            13px;
     }
 
+
     .home-link a {
-        min-height: 48px;
+
+        min-height:
+            48px;
+    }
+
+
+    /* Mobile popup */
+
+    .error-popup {
+
+        width:
+            calc(100% - 40px);
+
+        padding:
+            25px 20px;
     }
 
 }
@@ -624,17 +1098,51 @@
 @media (max-width: 360px) {
 
     .login-container {
-        padding-left: 8px;
 
-        padding-right: 8px;
+        padding-left:
+            8px;
+
+        padding-right:
+            8px;
     }
+
 
     .login-card {
-        padding: 22px 15px;
+
+        padding:
+            22px 15px;
     }
 
+
     .login-header h2 {
-        font-size: 21px;
+
+        font-size:
+            21px;
+    }
+
+
+    .error-message {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            5px;
+
+        margin-top:
+            6px;
+
+        color:
+            #d32f2f;
+
+        font-size:
+            12px;
+
+        line-height:
+            1.4;
     }
 
 }

@@ -1,17 +1,36 @@
 <div class="login-container">
 
+
+  <!-- ==========================================
+       LOGIN FORM
+  =========================================== -->
+
   <form class="login-card" [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
-    <!-- Header -->
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
 
     <div class="login-header">
 
       <div class="brand-logo">
-        <span class="brand-icon">🛒</span>
-        <span>MyStore</span>
+
+        <span class="brand-icon">
+          🛒
+        </span>
+
+        <span>
+          MyStore
+        </span>
+
       </div>
 
-      <h2>Welcome Back</h2>
+
+      <h2>
+        Welcome Back
+      </h2>
+
 
       <p>
         Login to continue shopping
@@ -20,26 +39,49 @@
     </div>
 
 
-    <!-- Email -->
+    <!-- ==========================================
+         EMAIL / MOBILE
+    =========================================== -->
 
     <div class="form-group">
 
-      <label for="email">
-        Email Address
+      <label for="identifier">
+
+        Email or Mobile Number
+
       </label>
 
-      <input id="email" type="email" formControlName="email" placeholder="Enter your email" autocomplete="email">
+
+      <input id="identifier" type="text" formControlName="identifier" placeholder="Enter email or mobile number"
+        autocomplete="username">
+
+
+      <!-- Frontend validation -->
+
+      <div class="error-message" *ngIf="
+          loginForm.get('identifier')?.invalid &&
+          loginForm.get('identifier')?.touched
+        ">
+
+        Please enter your email or mobile number.
+
+      </div>
 
     </div>
 
 
-    <!-- Password -->
+    <!-- ==========================================
+         PASSWORD
+    =========================================== -->
 
     <div class="form-group">
 
       <label for="password">
+
         Password
+
       </label>
+
 
       <input id="password" type="password" formControlName="password" placeholder="Enter your password"
         autocomplete="current-password">
@@ -47,7 +89,9 @@
     </div>
 
 
-    <!-- Login -->
+    <!-- ==========================================
+         LOGIN BUTTON
+    =========================================== -->
 
     <button type="submit" class="login-button" [disabled]="!loginForm.valid">
 
@@ -56,39 +100,111 @@
     </button>
 
 
-    <!-- Register -->
+    <!-- ==========================================
+         REGISTER
+    =========================================== -->
 
     <div class="registration-link">
 
       <p>
+
         Don't have an account?
 
         <a routerLink="/register">
+
           Sign Up
+
         </a>
+
       </p>
 
     </div>
 
 
-    <!-- Divider -->
+    <!-- ==========================================
+         DIVIDER
+    =========================================== -->
 
     <div class="divider">
-      <span>OR</span>
+
+      <span>
+        OR
+      </span>
+
     </div>
 
 
-    <!-- Home -->
+    <!-- ==========================================
+         HOME
+    =========================================== -->
 
     <div class="home-link">
 
       <a routerLink="/home">
-        <span class="home-icon">⌂</span>
+
         Back to Home
+
       </a>
 
     </div>
 
+
   </form>
+
+
+  <!-- ==========================================
+       CUSTOM ERROR POPUP
+  =========================================== -->
+
+  <div class="error-overlay" *ngIf="showErrorPopup" (click)="closeErrorPopup()">
+
+
+    <!-- ========================================
+         POPUP BOX
+    ========================================= -->
+
+    <div class="error-popup" (click)="$event.stopPropagation()">
+
+
+      <!-- ERROR ICON -->
+
+      <div class="error-icon">
+
+        !
+
+      </div>
+
+
+      <!-- TITLE -->
+
+      <h3>
+
+        Login Failed
+
+      </h3>
+
+
+      <!-- ERROR MESSAGE -->
+
+      <p>
+
+        {{ errorMessage }}
+
+      </p>
+
+
+      <!-- OK BUTTON -->
+
+      <button type="button" class="error-ok-button" (click)="closeErrorPopup()">
+
+        OK
+
+      </button>
+
+
+    </div>
+
+  </div>
+
 
 </div>

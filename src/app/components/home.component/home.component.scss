@@ -5,6 +5,22 @@ $text-gray: #555;
 $text-white: #fff;
 $shadow-hover: 0 2px 12px rgba(0, 0, 0, 0.1);
 
+.permanent-delete-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #b91c1c;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.permanent-delete-btn:hover {
+  background-color: #991b1b;
+}
+
 /* =========================================================
    GLOBAL
 ========================================================= */

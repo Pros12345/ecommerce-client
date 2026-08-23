@@ -1,21 +1,32 @@
+<!-- Error Popup -->
+<div class="popup-overlay" *ngIf="showError">
+    <div class="error-popup">
+        <div class="popup-icon">
+            ⚠
+        </div>
+        <h3>Registration Failed</h3>
+        <p>
+            {{ errorMessage }}
+        </p>
+        <button type="button" class="popup-button" (click)="closeErrorPopup()">
+            OK
+        </button>
+    </div>
+</div>
+
 <div class="registration-container">
 
     <div class="registration-card">
-
         <!-- Header -->
         <div class="card-header">
-
             <div class="brand-logo">
                 <span class="brand-icon">🛒</span>
                 <span>MyStore</span>
             </div>
-
             <h2>Create Account</h2>
-
             <p>
                 Sign up to start shopping with us
             </p>
-
         </div>
 
 
@@ -62,6 +73,40 @@
 
             </div>
 
+            <!-- Mobile Number -->
+            <div class="form-group">
+
+                <label for="mobileNumber">
+                    Mobile Number
+                </label>
+
+                <div class="mobile-input-container">
+
+                    <!-- Country Code -->
+                    <select id="countryCode" formControlName="countryCode">
+
+                        <option value="+91">🇮🇳 +91</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+61">🇦🇺 +61</option>
+                        <option value="+971">🇦🇪 +971</option>
+
+                    </select>
+
+                    <!-- Mobile -->
+                    <input id="mobileNumber" type="tel" formControlName="mobileNumber" placeholder="Enter mobile number"
+                        maxlength="10" autocomplete="tel" />
+
+                </div>
+
+                <div class="error-message" *ngIf="
+            registrationForm.get('mobileNumber')?.invalid &&
+            registrationForm.get('mobileNumber')?.touched
+        ">
+                    Please enter a valid 10 digit mobile number.
+                </div>
+
+            </div>
 
             <!-- Password -->
             <div class="form-group">
@@ -134,9 +179,7 @@
 
             <!-- Home -->
             <div class="home-link">
-
                 <a routerLink="/home">
-                    <span class="home-icon">⌂</span>
                     Back to Home
                 </a>
 

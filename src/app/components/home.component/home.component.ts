@@ -5,6 +5,7 @@ import { Product } from '../../../model/product';
 import { ProductService } from '../../../model/product.service';
 import { CartService } from '../cart.component/cart.service';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { AuthService } from '../authservice/authservice.component';
 import { environment } from '../../../environments/environment';
 
@@ -23,7 +24,6 @@ export class HomeComponent implements OnInit {
 
   categories: any;
   featuredProducts: any;
-
   products: Product[] = [];
   allProducts: Product[] = [];
   searchText: string = '';
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -149,6 +149,11 @@ export class HomeComponent implements OnInit {
     return email?.toLowerCase().includes('prosenjit') ?? false;
   }
 
+  get canPermanentlyDelete(): boolean {
+    const email = localStorage.getItem('userEmail');
+    return email?.toLowerCase().includes('prosenjitchakrabortty') ?? false;
+  }
+
   deleteProduct(id: number): void {
 
     if (!confirm('Are you sure you want to delete this product?')) {
@@ -173,6 +178,59 @@ export class HomeComponent implements OnInit {
 
   }
 
+  permanentlyDeleteProduct(id: number): void {
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This product and its images will be permanently deleted.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      reverseButtons: true
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+
+        this.productService
+          .permanentlyDeleteProduct(id)
+          .subscribe({
+
+            next: () => {
+
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Product permanently deleted successfully.',
+                icon: 'success',
+                confirmButtonColor: '#3085d6'
+              });
+
+              this.loadProducts();
+            },
+
+            error: (err) => {
+
+              console.error(
+                'Permanent delete error:',
+                err
+              );
+
+              Swal.fire({
+                title: 'Error',
+                text: 'Unable to permanently delete product.',
+                icon: 'error'
+              });
+
+            }
+
+          });
+
+      }
+
+    });
+  }
   editProduct(id: number): void {
 
     this.router.navigate(

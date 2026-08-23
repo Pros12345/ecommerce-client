@@ -732,3 +732,148 @@
     }
 
 }
+
+.mobile-input-container {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+}
+
+.mobile-input-container select {
+    width: 105px;
+    height: 46px;
+
+    padding: 0 8px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #212121;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.mobile-input-container select:focus {
+    border-color: #2874f0;
+
+    box-shadow:
+        0 0 0 3px rgba(40, 116, 240, 0.10);
+}
+
+.mobile-input-container input {
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 480px) {
+
+    .mobile-input-container select {
+        width: 100px;
+        height: 48px;
+    }
+
+}
+
+/* ============================= */
+/* Error Popup */
+/* ============================= */
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+.error-popup {
+    width: 420px;
+    max-width: 90%;
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: popupAnimation 0.25s ease-out;
+}
+
+
+.popup-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #ffe5e5;
+    color: #dc3545;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.error-popup h3 {
+    margin: 10px 0;
+    color: #333;
+    font-size: 22px;
+}
+
+
+.error-popup p {
+    margin: 15px 0 25px;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.popup-button {
+    width: 120px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #ff5a1f;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.popup-button:hover {
+    background: #e64d16;
+}
+
+
+@keyframes popupAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

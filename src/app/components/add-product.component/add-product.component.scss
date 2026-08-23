@@ -71,54 +71,43 @@
     }
 
     .selected-images {
-
         margin-top: 15px;
 
         .image-item {
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             padding: 8px;
-
             margin-bottom: 8px;
-
             border: 1px solid #ddd;
-
             border-radius: 5px;
-
             background: #fff;
-
         }
 
         .delete-btn {
-
             background: #e53935;
-
             color: white;
-
             border: none;
-
             padding: 6px 12px;
-
             border-radius: 4px;
-
             cursor: pointer;
-
             font-size: 14px;
-
             transition: .3s;
-
         }
 
         .delete-btn:hover {
-
             background: #c62828;
-
         }
+    }
 
+    .home-link {
+        margin-top: 10px;
+        padding-top: 12px;
+    }
+
+    .home-link a {
+        min-height: 48px;
+        font-size: 15px;
+        border-radius: 5px;
     }
 }
