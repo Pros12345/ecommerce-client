@@ -1,151 +1,355 @@
-<!-- Header Section -->
-<header class="header fixed top-0 left-0 w-full bg-blue-600 p-4 flex items-center justify-between text-white">
+<!-- ==========================================
+     HEADER
+=========================================== -->
+
+<header class="header">
+
+  <!-- ==========================================
+       LOGO
+  =========================================== -->
+
   <div class="logo" routerLink="/home">
+
     <img src="assets/Logo.png" alt="Logo">
-    <span>Ecommerce</span>
+
+    <span>
+      Ecommerce
+    </span>
+
   </div>
 
-  <div class="search-bar flex-grow mx-8">
-    <input type="text" placeholder="Search for products, brands and more"
-      class="w-full p-2 rounded border border-gray-300" [(ngModel)]="searchText" (input)="searchProducts()">
+
+  <!-- ==========================================
+       SEARCH BAR
+  =========================================== -->
+
+  <div class="search-bar">
+
+    <input type="text" placeholder="Search for products, brands and more" [(ngModel)]="searchText"
+      (input)="searchProducts()">
+
   </div>
 
-  <nav class="nav-links space-x-6">
 
-    <!-- Show these nav links only when NOT logged in -->
-    <a *ngIf="!isLoggedIn" routerLink="/login" class="hover:underline">
-      Login
-    </a>
+  <!-- ==========================================
+       NAVIGATION
+  =========================================== -->
 
-    <a *ngIf="!isLoggedIn" routerLink="/register" class="hover:underline">
-      Sign up
-    </a>
+  <nav class="nav-links">
 
-    @if (isLoggedIn) {
 
-    <a (click)="onLogout()" class="hover:underline cursor-pointer">
-      Logout
-    </a>
+    <!-- ========================================
+         WHEN USER IS LOGGED IN
+    ========================================= -->
 
-    <a *ngIf="canAddProduct" routerLink="/addProduct" class="hover:underline">
-      Add Product
-    </a>
-    <a routerLink="/cart" class="hover:underline">
-      Cart
-    </a>
+    <ng-container *ngIf="isLoggedIn; else loggedOutMenu">
 
-    }
+
+      <!-- ======================================
+           ADD PRODUCT
+      ======================================= -->
+
+      <a *ngIf="canAddProduct" routerLink="/addProduct" class="nav-link">
+        Add Product
+      </a>
+
+
+      <!-- ======================================
+           CART
+      ======================================= -->
+
+      <a routerLink="/cart" class="nav-link">
+        Cart
+      </a>
+
+
+      <!-- ======================================
+           LOGOUT
+      ======================================= -->
+
+      <a (click)="onLogout()" class="nav-link logout-link">
+        Logout
+      </a>
+
+
+      <!-- ======================================
+           PROFILE
+           THIS WILL BE THE RIGHTMOST ITEM
+      ======================================= -->
+
+      <div class="profile-menu" routerLink="/profile">
+
+        <div class="profile-avatar">
+          🐵
+        </div>
+
+        <span class="profile-name">
+          {{ userName }}
+        </span>
+
+      </div>
+
+
+    </ng-container>
+
+
+    <!-- ========================================
+         WHEN USER IS NOT LOGGED IN
+    ========================================= -->
+
+    <ng-template #loggedOutMenu>
+
+      <a routerLink="/login" class="nav-link">
+        Login
+      </a>
+
+      <a routerLink="/register" class="nav-link">
+        Register
+      </a>
+
+      <a routerLink="/cart" class="nav-link">
+        Cart
+      </a>
+
+    </ng-template>
+
 
   </nav>
+
 </header>
 
-<!-- Banner Carousel Section -->
+
+
+<!-- ==========================================
+     BANNER
+=========================================== -->
+
 <section class="banner-section">
+
   <div class="banner-container">
+
     <img src="assets/Banner.png" alt="Ecommerce Banner">
+
   </div>
+
 </section>
 
-<!-- Products Section -->
+
+
+<!-- ==========================================
+     PRODUCTS SECTION
+=========================================== -->
+
 <section class="products-section">
 
-  <h2>All Products</h2>
+  <h2>
+    All Products
+  </h2>
+
 
   <div class="products-grid">
 
+
+    <!-- ======================================
+         PRODUCT CARD
+    ======================================= -->
+
     <div class="product-card" *ngFor="let product of products">
 
-      <!-- Product Image Gallery -->
+
+      <!-- ====================================
+           IMAGE GALLERY
+      ===================================== -->
+
       <div class="image-container">
 
-        <!-- Left Arrow -->
+
+        <!-- LEFT ARROW -->
+
         <button *ngIf="product.images && product.images.length > 1" class="arrow left" (click)="previousImage(product)">
           &#10094;
         </button>
 
-        <!-- Product Image -->
-        <img *ngIf="product.images && product.images.length > 0; else noImage" [src]="getCurrentImage(product)"
-          [alt]="product.name">
 
-        <!-- Default Image -->
+        <!-- PRODUCT IMAGE -->
+
+        <img *ngIf="
+            product.images &&
+            product.images.length > 0;
+            else noImage
+          " [src]="getCurrentImage(product)" [alt]="product.name">
+
+
+        <!-- DEFAULT IMAGE -->
+
         <ng-template #noImage>
 
           <img src="assets/no-image.png" alt="No Image">
 
         </ng-template>
 
-        <!-- Right Arrow -->
+
+        <!-- RIGHT ARROW -->
+
         <button *ngIf="product.images && product.images.length > 1" class="arrow right" (click)="nextImage(product)">
           &#10095;
         </button>
 
+
       </div>
 
-      <!-- Image Dots -->
+
+
+      <!-- ====================================
+           IMAGE DOTS
+      ===================================== -->
+
       <div class="image-dots" *ngIf="product.images && product.images.length > 1">
 
-        <span *ngFor="let image of product.images; let i = index" class="dot"
-          [class.active]="i === product.currentImageIndex" (click)="setCurrentImage(product, i)">
+        <span *ngFor="
+            let image of product.images;
+            let i = index
+          " class="dot" [class.active]="
+            i === product.currentImageIndex
+          " (click)="setCurrentImage(product, i)">
         </span>
 
       </div>
 
-      <!-- Product Name -->
+
+
+      <!-- ====================================
+           PRODUCT NAME
+      ===================================== -->
+
       <h3>
-        {{product.name}}
+        {{ product.name }}
       </h3>
 
-      <!-- Description -->
+
+
+      <!-- ====================================
+           DESCRIPTION
+      ===================================== -->
+
       <div class="description">
 
         <p [class.expanded]="product.showMore">
           {{ product.description }}
         </p>
 
-        <a *ngIf="product.description.length > 100" class="show-more" (click)="product.showMore = !product.showMore">
 
-          {{ product.showMore ? 'Show Less' : 'Show More' }}
-
+        <a *ngIf="product.description.length > 100" class="show-more" (click)="
+            product.showMore = !product.showMore
+          ">
+          {{
+          product.showMore
+          ? 'Show Less'
+          : 'Show More'
+          }}
         </a>
 
       </div>
 
-      <!-- Quantity -->
+
+
+      <!-- ====================================
+           STOCK
+      ===================================== -->
+
       <p>
-        In Stock :
-        <strong>{{product.quantity}}</strong>
+
+        In Stock:
+
+        <strong>
+          {{ product.quantity }}
+        </strong>
+
       </p>
+
+
+
+      <!-- ====================================
+           STATUS
+      ===================================== -->
 
       <p *ngIf="canAddProduct">
+
         Status:
-        <strong>{{ product.status }}</strong>
+
+        <strong>
+          {{ product.status }}
+        </strong>
+
       </p>
 
-      <!-- Price -->
+
+
+      <!-- ====================================
+           PRICE
+      ===================================== -->
+
       <div class="price">
-        ₹{{product.price}}
+
+        ₹{{ product.price }}
+
       </div>
+
+
+
+      <!-- ====================================
+           PRODUCT ACTIONS
+      ===================================== -->
 
       <div class="product-actions">
 
-        <!-- Main Action -->
-        <button class="primary-btn" *ngIf="product.quantity > 0 && !isAdded(product)" (click)="addToCart(product)">
+
+        <!-- ADD TO CART -->
+
+        <button class="primary-btn" *ngIf="
+            product.quantity > 0 &&
+            !isAdded(product)
+          " (click)="addToCart(product)">
           Add To Cart
         </button>
 
-        <button class="primary-btn" *ngIf="product.quantity > 0 && isAdded(product)" routerLink="/cart">
+
+
+        <!-- GO TO CART -->
+
+        <button class="primary-btn" *ngIf="
+            product.quantity > 0 &&
+            isAdded(product)
+          " routerLink="/cart">
           Go To Cart
         </button>
+
+
+
+        <!-- OUT OF STOCK -->
 
         <button class="primary-btn out-of-stock" *ngIf="product.quantity === 0" disabled>
           Out of Stock
         </button>
 
-        <!-- Admin Actions -->
-        <div class="admin-actions" *ngIf="isLoggedIn && canAddProduct">
-          <button class="edit-btn" [routerLink]="['/editProduct', product.id]">
+
+
+        <!-- ==================================
+             ADMIN ACTIONS
+        =================================== -->
+
+        <div class="admin-actions" *ngIf="
+            isLoggedIn &&
+            canAddProduct
+          ">
+
+          <button class="edit-btn" [routerLink]="[
+              '/editProduct',
+              product.id
+            ]">
             Edit
           </button>
+
 
           <button class="delete-btn" (click)="deleteProduct(product.id)">
             Delete
@@ -153,13 +357,24 @@
 
         </div>
 
-        <!-- Permanent Delete -->
-        <button *ngIf="isLoggedIn && canPermanentlyDelete" class="permanent-delete-btn"
-          (click)="permanentlyDeleteProduct(product.id)">
+
+
+        <!-- ==================================
+             PERMANENT DELETE
+        =================================== -->
+
+        <button *ngIf="
+            isLoggedIn &&
+            canPermanentlyDelete
+          " class="permanent-delete-btn" (click)="
+            permanentlyDeleteProduct(product.id)
+          ">
           Permanent Delete
         </button>
 
+
       </div>
+
 
     </div>
 

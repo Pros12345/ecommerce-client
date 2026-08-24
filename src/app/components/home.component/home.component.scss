@@ -1,454 +1,160 @@
-$blue-primary: #2874f0;
-$gray-light: #f7f7f7;
-$gray-border: #ddd;
-$text-gray: #555;
-$text-white: #fff;
-$shadow-hover: 0 2px 12px rgba(0, 0, 0, 0.1);
-
-.permanent-delete-btn {
-  width: 100%;
-  margin-top: 8px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #b91c1c;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.permanent-delete-btn:hover {
-  background-color: #991b1b;
-}
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-:host {
-  display: block;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* =========================================================
+/* ==========================================
    HEADER
-========================================================= */
+========================================== */
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background-color: $blue-primary;
-  color: $text-white;
-
-  padding: 12px 24px;
 
   position: fixed;
+
   top: 0;
+
   left: 0;
 
   width: 100%;
-  min-height: 70px;
 
-  z-index: 1000;
+  height: 70px;
 
   box-sizing: border-box;
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    cursor: pointer;
-
-    flex-shrink: 0;
-
-    img {
-      width: 34px;
-      height: 34px;
-      border-radius: 6px;
-      object-fit: contain;
-    }
-
-    span {
-      font-size: 26px;
-      font-weight: 700;
-      color: white;
-      white-space: nowrap;
-    }
-  }
-
-  .search-bar {
-    flex: 1;
-    margin: 0 30px;
-
-    min-width: 0;
-
-    input {
-      width: 100%;
-      height: 42px;
-
-      padding: 0 14px;
-
-      border-radius: 6px;
-      border: 1px solid $gray-border;
-
-      font-size: 15px;
-
-      outline: none;
-
-      box-sizing: border-box;
-
-      &:focus {
-        border-color: #1565c0;
-        box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.15);
-      }
-    }
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-
-    flex-shrink: 0;
-
-    white-space: nowrap;
-
-    a {
-      color: white;
-
-      margin: 0 8px;
-
-      text-decoration: none;
-
-      font-size: 15px;
-
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
-/* =========================================================
-   BANNER
-========================================================= */
-
-.banner-section {
-  margin-top: 90px;
-  margin-bottom: 30px;
-
-  padding: 0 25px;
-}
-
-.banner-container {
-  width: 100%;
-  max-width: 1450px;
-
-  margin: 0 auto;
-
-  img {
-    display: block;
-
-    width: 100%;
-    height: auto;
-
-    border-radius: 18px;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-
-    transition: 0.3s;
-  }
-
-  img:hover {
-    transform: scale(1.01);
-  }
-}
-
-/* =========================================================
-   PRODUCTS SECTION
-========================================================= */
-
-.products-section {
-  width: 100%;
-  max-width: 1200px;
-
-  margin: 0 auto;
-
-  padding: 0 16px 40px;
-
-  h2 {
-    margin: 0 0 24px;
-
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
-}
-
-/* =========================================================
-   PRODUCT GRID
-========================================================= */
-
-.products-grid {
-  display: grid;
-
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-
-  gap: 24px;
-
-  width: 100%;
-}
-
-/* =========================================================
-   PRODUCT CARD
-========================================================= */
-
-.product-card {
-  width: 100%;
-
-  background: white;
-
-  border: 1px solid $gray-border;
-  border-radius: 8px;
-
-  padding: 16px;
-
   display: flex;
-  flex-direction: column;
-
-  min-width: 0;
-
-  transition: 0.3s;
-
-  &:hover {
-    box-shadow: $shadow-hover;
-    transform: translateY(-5px);
-  }
-
-  h3 {
-    font-size: 18px;
-    font-weight: 600;
-
-    margin: 0 0 10px;
-
-    color: #222;
-
-    min-height: 48px;
-
-    word-break: break-word;
-  }
-
-  p {
-    color: $text-gray;
-
-    font-size: 14px;
-
-    margin: 6px 0;
-
-    word-break: break-word;
-  }
-
-  .price {
-    font-size: 23px;
-
-    color: green;
-
-    font-weight: bold;
-
-    margin-top: auto;
-
-    padding-top: 10px;
-  }
-}
-
-/* =========================================================
-   PRODUCT IMAGE
-========================================================= */
-
-.image-container {
-  position: relative;
-
-  width: 100%;
-
-  height: 240px;
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  overflow: hidden;
-
-  img {
-    display: block;
-
-    width: 100%;
-    height: 220px;
-
-    object-fit: contain;
-  }
-}
-
-/* =========================================================
-   IMAGE ARROWS
-========================================================= */
-
-.arrow {
-  position: absolute;
-
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  width: 32px;
-  height: 44px;
-
-  border: none;
-
-  border-radius: 4px;
-
-  background: rgba(255, 255, 255, 0.95);
-
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-
-  z-index: 10;
-
-  transition: 0.2s;
-}
-
-.arrow:hover {
-  transform: translateY(-50%) scale(1.05);
-}
-
-.left {
-  left: 5px;
-}
-
-.right {
-  right: 5px;
-}
-
-/* =========================================================
-   IMAGE DOTS
-========================================================= */
-
-.image-dots {
-  display: flex;
-
-  justify-content: center;
 
   align-items: center;
 
-  gap: 6px;
+  gap: 25px;
 
-  margin: 8px 0 15px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-
-  border-radius: 50%;
-
-  background: #ccc;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-}
-
-.dot.active {
-  width: 22px;
-
-  border-radius: 20px;
-
-  background: $blue-primary;
-}
-
-/* =========================================================
-   DESCRIPTION
-========================================================= */
-
-.description {
-  min-height: 90px;
-}
-
-.description p {
-  display: -webkit-box;
-
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-
-  overflow: hidden;
-
-  line-height: 1.5;
-}
-
-.description p.expanded {
-  display: block;
-}
-
-.show-more {
-  color: $blue-primary;
-
-  cursor: pointer;
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  display: inline-block;
-
-  margin-top: 5px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-/* =========================================================
-   PRODUCT ACTIONS
-========================================================= */
-
-.product-actions {
-  margin-top: auto;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 12px;
-}
-
-.primary-btn {
-  width: 100%;
-
-  min-height: 44px;
-
-  padding: 10px 12px;
-
-  border: none;
-
-  border-radius: 8px;
+  padding: 12px 25px;
 
   background: #2874f0;
 
   color: white;
+
+  z-index: 1000;
+
+}
+
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  min-width: 145px;
+
+  cursor: pointer;
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+}
+
+
+.logo img {
+
+  width: 38px;
+
+  height: 38px;
+
+  object-fit: contain;
+
+}
+
+
+.logo span {
+
+  color: white;
+
+}
+
+
+
+/* ==========================================
+   SEARCH BAR
+========================================== */
+
+.search-bar {
+
+  flex: 1;
+
+  min-width: 150px;
+
+}
+
+
+.search-bar input {
+
+  width: 100%;
+
+  height: 42px;
+
+  box-sizing: border-box;
+
+  padding: 0 15px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  outline: none;
+
+  font-size: 14px;
+
+  background: white;
+
+  color: #333;
+
+}
+
+
+.search-bar input::placeholder {
+
+  color: #777;
+
+}
+
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+.nav-links {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 22px;
+
+  margin-left: auto;
+
+  white-space: nowrap;
+
+}
+
+
+
+/* ==========================================
+   NAV LINKS
+========================================== */
+
+.nav-link {
+
+  color: white;
+
+  text-decoration: none;
 
   font-size: 15px;
 
@@ -456,41 +162,104 @@ $shadow-hover: 0 2px 12px rgba(0, 0, 0, 0.1);
 
   cursor: pointer;
 
-  transition: all 0.3s ease;
+  transition: opacity 0.2s ease;
+
 }
 
-.primary-btn:hover {
-  background: #1565c0;
+
+.nav-link:hover {
+
+  opacity: 0.8;
+
+  text-decoration: underline;
+
 }
 
-.primary-btn:disabled {
-  background: #9e9e9e;
 
-  cursor: not-allowed;
+.logout-link {
+
+  cursor: pointer;
+
 }
 
-/* =========================================================
-   ADMIN ACTIONS
-========================================================= */
 
-.admin-actions {
+
+/* ==========================================
+   PROFILE
+========================================== */
+
+.profile-menu {
+
   display: flex;
 
-  gap: 10px;
+  align-items: center;
 
-  width: 100%;
+  gap: 8px;
+
+  padding: 5px 10px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease;
+
 }
 
-.admin-actions button {
-  flex: 1;
 
-  min-height: 42px;
+.profile-menu:hover {
 
-  padding: 10px;
+  background: rgba(255,
+      255,
+      255,
+      0.15);
 
-  border: none;
+}
 
-  border-radius: 8px;
+
+
+/* ==========================================
+   PROFILE AVATAR
+========================================== */
+
+.profile-avatar {
+
+  width: 34px;
+
+  height: 34px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: white;
+
+  color: #2874f0;
+
+  font-size: 18px;
+
+}
+
+
+
+/* ==========================================
+   PROFILE NAME
+========================================== */
+
+.profile-name {
+
+  max-width: 120px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
 
   color: white;
 
@@ -498,359 +267,557 @@ $shadow-hover: 0 2px 12px rgba(0, 0, 0, 0.1);
 
   font-weight: 600;
 
+}
+
+
+
+/* ==========================================
+   BANNER
+========================================== */
+
+.banner-section {
+
+  margin-top: 90px;
+
+  padding: 0 20px;
+
+}
+
+
+.banner-container {
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 15px;
+
+}
+
+
+.banner-container img {
+
+  width: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+}
+
+
+
+/* ==========================================
+   PRODUCTS SECTION
+========================================== */
+
+.products-section {
+
+  padding: 30px;
+
+}
+
+
+.products-section h2 {
+
+  margin-bottom: 25px;
+
+  font-size: 28px;
+
+}
+
+
+
+/* ==========================================
+   PRODUCT GRID
+========================================== */
+
+.products-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill,
+      minmax(250px, 1fr));
+
+  gap: 25px;
+
+}
+
+
+
+/* ==========================================
+   PRODUCT CARD
+========================================== */
+
+.product-card {
+
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
+
+  padding: 15px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+}
+
+
+.product-card:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+/* ==========================================
+   IMAGE CONTAINER
+========================================== */
+
+.image-container {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 220px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+}
+
+
+.image-container img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+}
+
+
+
+/* ==========================================
+   IMAGE ARROWS
+========================================== */
+
+.arrow {
+
+  position: absolute;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  width: 32px;
+
+  height: 32px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(0,
+      0,
+      0,
+      0.5);
+
+  color: white;
+
   cursor: pointer;
 
-  transition: all 0.3s ease;
+  z-index: 2;
+
 }
 
-.edit-btn {
-  background: #fb8c00;
+
+.arrow.left {
+
+  left: 5px;
+
 }
 
-.edit-btn:hover {
-  background: #ef6c00;
+
+.arrow.right {
+
+  right: 5px;
+
 }
 
-.delete-btn {
-  background: #e53935;
+
+
+/* ==========================================
+   IMAGE DOTS
+========================================== */
+
+.image-dots {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  margin-top: 8px;
+
 }
 
-.delete-btn:hover {
-  background: #c62828;
+
+.dot {
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ccc;
+
+  cursor: pointer;
+
 }
+
+
+.dot.active {
+
+  background: #2874f0;
+
+}
+
+
+
+/* ==========================================
+   PRODUCT DESCRIPTION
+========================================== */
+
+.description p {
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  line-height: 1.5;
+
+}
+
+
+.description p.expanded {
+
+  display: block;
+
+}
+
+
+.show-more {
+
+  color: #2874f0;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+}
+
+
+
+/* ==========================================
+   PRICE
+========================================== */
+
+.price {
+
+  margin: 12px 0;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  color: #2874f0;
+
+}
+
+
+
+/* ==========================================
+   PRODUCT ACTIONS
+========================================== */
+
+.product-actions {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+}
+
+
+.primary-btn {
+
+  width: 100%;
+
+  padding: 11px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: #ff641f;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+}
+
+
+.primary-btn:hover {
+
+  opacity: 0.9;
+
+}
+
 
 .out-of-stock {
-  background: #757575 !important;
+
+  background: #999;
+
+  cursor: not-allowed;
+
 }
 
-/* =========================================================
-   LARGE TABLET / SMALL LAPTOP
-   1024px and below
-========================================================= */
 
-@media (max-width: 1024px) {
 
-  .header {
-    padding: 12px 18px;
+/* ==========================================
+   ADMIN ACTIONS
+========================================== */
 
-    .logo span {
-      font-size: 22px;
-    }
+.admin-actions {
 
-    .search-bar {
-      margin: 0 18px;
-    }
+  display: flex;
 
-    .nav-links a {
-      margin: 0 5px;
-      font-size: 14px;
-    }
-  }
+  gap: 10px;
 
-  .products-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    gap: 18px;
-  }
-
-  .products-section {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
 }
 
-/* =========================================================
-   TABLETS
-   768px and below
-========================================================= */
 
-@media (max-width: 768px) {
+.edit-btn,
+.delete-btn {
+
+  flex: 1;
+
+  padding: 9px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  color: white;
+
+  cursor: pointer;
+
+}
+
+
+.edit-btn {
+
+  background: #2874f0;
+
+}
+
+
+.delete-btn {
+
+  background: #e53935;
+
+}
+
+
+.permanent-delete-btn {
+
+  width: 100%;
+
+  padding: 9px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: #b71c1c;
+
+  color: white;
+
+  cursor: pointer;
+
+}
+
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1000px) {
 
   .header {
-    min-height: 120px;
 
-    padding: 10px 14px;
+    gap: 12px;
+
+    padding: 10px 15px;
+
+  }
+
+
+  .logo {
+
+    min-width: auto;
+
+  }
+
+
+  .logo span {
+
+    display: none;
+
+  }
+
+
+  .nav-links {
+
+    gap: 12px;
+
+  }
+
+
+  .profile-name {
+
+    max-width: 80px;
+
+  }
+
+}
+
+
+
+@media (max-width: 700px) {
+
+  .header {
+
+    height: auto;
+
+    min-height: 70px;
 
     flex-wrap: wrap;
 
-    align-content: center;
-
-    .logo {
-      order: 1;
-
-      img {
-        width: 30px;
-        height: 30px;
-      }
-
-      span {
-        font-size: 20px;
-      }
-    }
-
-    .nav-links {
-      order: 2;
-
-      margin-left: auto;
-
-      a {
-        font-size: 14px;
-        margin: 0 4px;
-      }
-    }
-
-    .search-bar {
-      order: 3;
-
-      width: 100%;
-
-      flex-basis: 100%;
-
-      margin: 8px 0 0;
-
-      input {
-        height: 40px;
-
-        font-size: 14px;
-      }
-    }
   }
+
+
+  .logo {
+
+    order: 1;
+
+  }
+
+
+  .search-bar {
+
+    order: 3;
+
+    flex-basis: 100%;
+
+  }
+
+
+  .nav-links {
+
+    order: 2;
+
+    margin-left: auto;
+
+  }
+
 
   .banner-section {
-    margin-top: 135px;
 
-    margin-bottom: 24px;
+    margin-top: 140px;
 
-    padding: 0 15px;
+    padding: 0 10px;
+
   }
 
-  .banner-container img {
-    border-radius: 12px;
-  }
 
   .products-section {
-    padding: 0 15px 30px;
 
-    h2 {
-      font-size: 1.5rem;
+    padding: 20px 10px;
 
-      margin-bottom: 18px;
-    }
   }
 
-  .products-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 16px;
-  }
-
-  .product-card {
-    padding: 12px;
-
-    h3 {
-      font-size: 16px;
-
-      min-height: 42px;
-    }
-
-    .price {
-      font-size: 21px;
-    }
-  }
-
-  .image-container {
-    height: 200px;
-
-    img {
-      height: 185px;
-    }
-  }
-
-  .description {
-    min-height: 80px;
-  }
 }
 
-/* =========================================================
-   MOBILE
-   480px and below
-========================================================= */
+
 
 @media (max-width: 480px) {
 
-  .header {
-    min-height: 125px;
+  .nav-links {
 
-    padding: 8px 10px;
-
-    .logo {
-      gap: 5px;
-
-      img {
-        width: 28px;
-        height: 28px;
-      }
-
-      span {
-        font-size: 18px;
-      }
-    }
-
-    .nav-links {
-      max-width: 65%;
-
-      overflow-x: auto;
-
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-      a {
-        font-size: 12px;
-
-        margin: 0 3px;
-      }
-    }
-
-    .search-bar {
-      margin-top: 8px;
-
-      input {
-        height: 38px;
-
-        padding: 0 10px;
-
-        font-size: 13px;
-      }
-    }
-  }
-
-  .banner-section {
-    margin-top: 140px;
-
-    margin-bottom: 20px;
-
-    padding: 0 10px;
-  }
-
-  .banner-container img {
-    border-radius: 8px;
-
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  }
-
-  .products-section {
-    padding: 0 10px 25px;
-
-    h2 {
-      font-size: 1.3rem;
-
-      margin-bottom: 15px;
-    }
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-
-    gap: 16px;
-  }
-
-  .product-card {
-    padding: 14px;
-
-    h3 {
-      font-size: 17px;
-
-      min-height: auto;
-    }
-
-    p {
-      font-size: 14px;
-    }
-
-    .price {
-      font-size: 22px;
-    }
-  }
-
-  .image-container {
-    height: 220px;
-
-    img {
-      height: 205px;
-    }
-  }
-
-  .arrow {
-    width: 34px;
-    height: 44px;
-  }
-
-  .description {
-    min-height: auto;
-
-    margin-bottom: 8px;
-  }
-
-  .description p {
-    -webkit-line-clamp: 3;
-  }
-
-  .primary-btn {
-    min-height: 46px;
-
-    font-size: 15px;
-  }
-
-  .admin-actions {
     gap: 8px;
+
   }
 
-  .admin-actions button {
-    min-height: 44px;
-  }
-}
 
-/* =========================================================
-   VERY SMALL PHONES
-   360px and below
-========================================================= */
+  .nav-link {
 
-@media (max-width: 360px) {
+    font-size: 13px;
 
-  .header {
-    .logo span {
-      font-size: 16px;
-    }
-
-    .nav-links a {
-      font-size: 11px;
-    }
   }
 
-  .banner-section {
-    margin-top: 135px;
+
+  .profile-name {
+
+    display: none;
+
   }
 
-  .products-grid {
-    gap: 12px;
+
+  .profile-menu {
+
+    padding: 3px;
+
   }
 
-  .product-card {
-    padding: 10px;
+
+  .profile-avatar {
+
+    width: 32px;
+
+    height: 32px;
+
   }
 
-  .image-container {
-    height: 190px;
-
-    img {
-      height: 175px;
-    }
-  }
-
-  .primary-btn {
-    font-size: 14px;
-  }
 }
