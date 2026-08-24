@@ -7,14 +7,12 @@ import { environment } from '../../../environments/environment';
     providedIn: 'root'
 })
 export class ProductService {
-    private baseUrl = `${environment.apiBaseUrl}/products`;
 
+    private baseUrl = `${environment.apiBaseUrl}/products`;
     constructor(private http: HttpClient) { }
 
     addProduct(productData: any, images: File[]): Observable<any> {
-
         const formData = new FormData();
-
         formData.append(
             'product',
             new Blob(
@@ -22,11 +20,9 @@ export class ProductService {
                 { type: 'application/json' }
             )
         );
-
         images.forEach(image => {
             formData.append('images', image);
         });
-
         return this.http.post(this.baseUrl, formData, {
             responseType: 'text'
         });

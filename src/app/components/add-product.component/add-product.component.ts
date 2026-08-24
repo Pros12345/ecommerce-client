@@ -36,35 +36,23 @@ export class AddProductComponent {
     }
 
     onFileChange(event: Event): void {
-
         const input = event.target as HTMLInputElement;
-
         if (input.files) {
-
             this.selectedFiles = Array.from(input.files);
-
         }
-
     }
 
     removeImage(index: number): void {
-
         console.log("Before:", this.selectedFiles.length);
-
         this.selectedFiles.splice(index, 1);
-
         console.log("After:", this.selectedFiles.length);
-
         const dataTransfer = new DataTransfer();
-
         this.selectedFiles.forEach(file => {
             dataTransfer.items.add(file);
         });
-
         console.log(this.fileInput);
         this.fileInput.nativeElement.files = dataTransfer.files;
         this.cdr.detectChanges();
-
         console.log("Input files:", this.fileInput.nativeElement.files?.length);
     }
 

@@ -1,253 +1,133 @@
-/* =========================================================
-   CART CONTAINER
-========================================================= */
-
 .cart-container {
     display: flex;
-
     justify-content: center;
-
     align-items: flex-start;
-
     gap: 20px;
-
     padding: 20px;
-
     background-color: #f1f3f6;
-
     font-family: Roboto, Arial, sans-serif;
-
     flex-wrap: wrap;
-
     width: 100%;
-
     min-height: 100vh;
-
     box-sizing: border-box;
-
     overflow-x: hidden;
 }
 
-
-/* =========================================================
-   CART ITEMS
-========================================================= */
-
 .cart-items {
     flex: 2;
-
     background-color: #fff;
-
     border-radius: 4px;
-
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-
     padding: 20px;
-
     max-width: 700px;
-
     width: 100%;
-
     min-width: 0;
-
     box-sizing: border-box;
 }
 
-
-/* =========================================================
-   CART HEADER
-========================================================= */
-
 .cart-header {
     border-bottom: 1px solid #e0e0e0;
-
     padding-bottom: 15px;
-
     margin-bottom: 15px;
 
     h2 {
         font-size: 20px;
-
         font-weight: 500;
-
         margin: 0;
     }
 }
 
-
-/* =========================================================
-   CART ITEM LIST
-========================================================= */
-
 .cart-item-list {
     display: flex;
-
     flex-direction: column;
-
     gap: 20px;
-
     width: 100%;
 }
 
-
-/* =========================================================
-   CART ITEM
-========================================================= */
-
 .cart-item {
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     gap: 20px;
-
     border-bottom: 1px solid #f0f0f0;
-
     padding-bottom: 15px;
-
     width: 100%;
-
     min-width: 0;
-
     box-sizing: border-box;
 
     &:last-child {
         border-bottom: none;
-
         padding-bottom: 0;
     }
 }
 
-
-/* =========================================================
-   ITEM DETAILS
-========================================================= */
-
 .item-details {
     display: flex;
-
     align-items: center;
-
     gap: 20px;
-
     min-width: 0;
-
     flex: 1;
 }
 
-
-/* =========================================================
-   ITEM IMAGE
-========================================================= */
-
 .item-image {
     width: 100px;
-
     height: 100px;
-
     object-fit: contain;
-
     flex-shrink: 0;
 }
 
-
-/* =========================================================
-   ITEM INFO
-========================================================= */
-
 .item-info {
     display: flex;
-
     flex-direction: column;
-
     gap: 5px;
-
     min-width: 0;
 
     .item-name {
         font-size: 16px;
-
         font-weight: 500;
-
         color: #333;
-
         word-break: break-word;
-
         margin: 0;
     }
 
     .item-price {
         font-size: 18px;
-
         font-weight: 600;
-
         color: #333;
-
         margin: 0;
     }
 }
 
-
-/* =========================================================
-   ITEM ACTIONS
-========================================================= */
-
 .item-actions {
     display: flex;
-
     flex-direction: column;
-
     align-items: flex-end;
-
     gap: 10px;
-
     flex-shrink: 0;
 }
 
-
-/* =========================================================
-   QUANTITY CONTROLS
-========================================================= */
-
 .quantity-controls {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
 
     button {
         width: 32px;
-
         height: 32px;
-
         min-width: 32px;
-
         border-radius: 50%;
-
         border: 1px solid #c2c2c2;
-
         background-color: #fff;
-
         font-size: 18px;
-
         font-weight: 600;
-
         cursor: pointer;
-
         display: flex;
-
         justify-content: center;
-
         align-items: center;
-
         transition: 0.2s;
 
         &:hover:not(:disabled) {
             background-color: #f5f5f5;
-
             border-color: #999;
         }
 
@@ -257,149 +137,88 @@
 
         &:disabled {
             cursor: not-allowed;
-
             color: #aaa;
-
             background-color: #f8f8f8;
-
             border-color: #ddd;
         }
     }
 
     .quantity {
         width: 36px;
-
         min-width: 36px;
-
         text-align: center;
-
         border: 1px solid #c2c2c2;
-
         border-radius: 2px;
-
         padding: 5px 0;
-
         font-size: 14px;
-
         box-sizing: border-box;
     }
 }
 
-
-/* =========================================================
-   REMOVE BUTTON
-========================================================= */
-
 .remove-button {
     background: none;
-
     border: none;
-
     color: #2874f0;
-
     font-size: 14px;
-
     font-weight: 500;
-
     cursor: pointer;
-
     padding: 5px 0;
-
     transition: color 0.2s ease;
 
     &:hover {
         color: #1557b0;
-
         text-decoration: underline;
     }
 }
 
-
-/* =========================================================
-   CART SUMMARY
-========================================================= */
-
 .cart-summary {
     flex: 1;
-
     background-color: #fff;
-
     border-radius: 4px;
-
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-
     padding: 20px;
-
     max-width: 400px;
-
     width: 100%;
-
     align-self: flex-start;
-
     box-sizing: border-box;
 }
 
-
-/* =========================================================
-   PRICE DETAILS HEADER
-========================================================= */
-
 .price-details-header {
     border-bottom: 1px solid #e0e0e0;
-
     padding-bottom: 15px;
-
     margin-bottom: 15px;
 
     h3 {
         font-size: 16px;
-
         font-weight: 500;
-
         color: #878787;
-
         margin: 0;
     }
 }
 
 
-/* =========================================================
-   PRICE DETAILS BODY
-========================================================= */
-
 .price-details-body {
     display: flex;
-
     flex-direction: column;
-
     gap: 15px;
 
     .price-item {
         display: flex;
-
         justify-content: space-between;
-
         align-items: center;
-
         gap: 15px;
-
         font-size: 14px;
-
         word-break: break-word;
 
         span:last-child {
             text-align: right;
-
             white-space: nowrap;
         }
 
         &.total-amount {
             font-size: 18px;
-
             font-weight: 600;
-
             padding-top: 15px;
-
             border-top: 1px dashed #e0e0e0;
         }
 
@@ -409,38 +228,22 @@
 
         .delivery-charges {
             color: #388e3c;
-
             font-weight: 500;
         }
     }
 }
 
-
-/* =========================================================
-   PLACE ORDER BUTTON
-========================================================= */
-
 .place-order-button {
     width: 100%;
-
     min-height: 48px;
-
     padding: 12px;
-
     background-color: #fb641b;
-
     color: #fff;
-
     border: none;
-
     border-radius: 4px;
-
     font-size: 16px;
-
     font-weight: 500;
-
     cursor: pointer;
-
     margin-top: 20px;
 
     transition:
@@ -451,73 +254,41 @@
 
 .place-order-button:hover {
     background-color: #e85a16;
-
     box-shadow: 0 3px 8px rgba(251, 100, 27, 0.2);
-
     transform: translateY(-1px);
 }
 
 .place-order-button:active {
     transform: scale(0.99);
-
     box-shadow: none;
 }
 
-
-/* =========================================================
-   GO TO HOME
-   IMPORTANT:
-   This is GLOBAL.
-   Do NOT put this inside max-width: 360px.
-========================================================= */
-
 .home-link {
     width: 100%;
-
     margin-top: 14px;
-
     padding-top: 14px;
-
     border-top: 1px solid #eeeeee;
-
     box-sizing: border-box;
 }
 
 .home-link a {
     width: 100%;
-
     min-height: 46px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 8px;
-
     padding: 11px 16px;
-
     box-sizing: border-box;
-
     border: 1px solid #2874f0;
-
     border-radius: 5px;
-
     background-color: #ffffff;
-
     color: #2874f0;
-
     text-decoration: none;
-
     font-family: Roboto, Arial, sans-serif;
-
     font-size: 14px;
-
     font-weight: 600;
-
     letter-spacing: 0.1px;
-
     cursor: pointer;
 
     transition:
@@ -528,112 +299,63 @@
         transform 0.15s ease;
 }
 
-
-/* Home icon */
-
 .home-icon {
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     width: 20px;
-
     height: 20px;
-
     font-size: 18px;
-
     line-height: 1;
-
     font-weight: 700;
 }
 
-
-/* Home hover */
-
 .home-link a:hover {
     background-color: #2874f0;
-
     border-color: #2874f0;
-
     color: #ffffff;
-
     box-shadow: 0 3px 8px rgba(40, 116, 240, 0.2);
-
     transform: translateY(-1px);
 }
 
-
-/* Home active */
-
 .home-link a:active {
     transform: translateY(0);
-
     box-shadow: none;
 }
 
-
-/* Home keyboard focus */
-
 .home-link a:focus-visible {
     outline: 3px solid rgba(40, 116, 240, 0.25);
-
     outline-offset: 2px;
 }
 
-
-/* =========================================================
-   EMPTY CART
-========================================================= */
-
 .empty-cart {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
     text-align: center;
-
     padding: 50px 20px;
 
     img {
         width: 100px;
-
         height: 100px;
-
         object-fit: contain;
-
         margin-bottom: 20px;
     }
 
     h3 {
         font-size: 18px;
-
         color: #333;
-
         font-weight: 500;
-
         margin: 0 0 5px;
     }
 
     p {
         font-size: 14px;
-
         color: #878787;
-
         margin: 0;
     }
 }
-
-
-/* =========================================================
-   LARGE TABLET / SMALL LAPTOP
-   1024px
-========================================================= */
 
 @media (max-width: 1024px) {
 
@@ -655,12 +377,6 @@
         flex: 1 1 100%;
     }
 }
-
-
-/* =========================================================
-   TABLET
-   768px
-========================================================= */
 
 @media (max-width: 768px) {
 
@@ -728,8 +444,6 @@
         }
     }
 
-    /* Home button */
-
     .home-link {
         margin-top: 12px;
 
@@ -740,12 +454,6 @@
         min-height: 46px;
     }
 }
-
-
-/* =========================================================
-   MOBILE
-   480px
-========================================================= */
 
 @media (max-width: 480px) {
 
@@ -766,11 +474,6 @@
 
         border-radius: 4px;
     }
-
-
-    /* -----------------------------------------------------
-       Cart heading
-    ----------------------------------------------------- */
 
     .cart-header {
         padding-bottom: 12px;

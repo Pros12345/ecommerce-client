@@ -1,40 +1,81 @@
-<!-- Error Popup -->
-<div class="popup-overlay" *ngIf="showError">
-    <div class="error-popup">
+<!-- ==========================================
+     ERROR POPUP
+========================================== -->
+
+<div class="popup-overlay" *ngIf="showError" (click)="closeErrorPopup()">
+
+    <div class="error-popup" (click)="$event.stopPropagation()">
+
         <div class="popup-icon">
             ⚠
         </div>
-        <h3>Registration Failed</h3>
+
+        <h3>
+            Registration Failed
+        </h3>
+
         <p>
             {{ errorMessage }}
         </p>
+
         <button type="button" class="popup-button" (click)="closeErrorPopup()">
             OK
         </button>
+
     </div>
+
 </div>
+
+
+<!-- ==========================================
+     REGISTRATION CONTAINER
+========================================== -->
 
 <div class="registration-container">
 
     <div class="registration-card">
-        <!-- Header -->
+
+
+        <!-- ==========================================
+         HEADER
+    =========================================== -->
+
         <div class="card-header">
+
             <div class="brand-logo">
-                <span class="brand-icon">🛒</span>
-                <span>MyStore</span>
+
+                <span class="brand-icon">
+                    🛒
+                </span>
+
+                <span>
+                    MyStore
+                </span>
+
             </div>
-            <h2>Create Account</h2>
+
+            <h2>
+                Create Account
+            </h2>
+
             <p>
                 Sign up to start shopping with us
             </p>
+
         </div>
 
 
-        <!-- Registration Form -->
+        <!-- ==========================================
+         REGISTRATION FORM
+    =========================================== -->
+
         <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
 
 
-            <!-- Name -->
+            <!-- ==========================================
+           NAME
+      =========================================== -->
+
             <div class="form-group">
 
                 <label for="name">
@@ -44,15 +85,20 @@
                 <input id="name" type="text" formControlName="firstName" placeholder="Enter your full name"
                     autocomplete="name">
 
-                <div class="error-message"
-                    *ngIf=" registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
+                <div class="error-message" *ngIf="
+            registrationForm.get('firstName')?.invalid &&
+            registrationForm.get('firstName')?.touched
+          ">
                     Please enter your name.
                 </div>
 
             </div>
 
 
-            <!-- Email -->
+            <!-- ==========================================
+           EMAIL
+      =========================================== -->
+
             <div class="form-group">
 
                 <label for="email">
@@ -63,17 +109,19 @@
                     autocomplete="email">
 
                 <div class="error-message" *ngIf="
-                        registrationForm.get('email')?.invalid &&
-                        registrationForm.get('email')?.touched
-                    ">
-
+            registrationForm.get('email')?.invalid &&
+            registrationForm.get('email')?.touched
+          ">
                     Please enter a valid email address.
-
                 </div>
 
             </div>
 
-            <!-- Mobile Number -->
+
+            <!-- ==========================================
+           MOBILE NUMBER
+      =========================================== -->
+
             <div class="form-group">
 
                 <label for="mobileNumber">
@@ -83,46 +131,73 @@
                 <div class="mobile-input-container">
 
                     <!-- Country Code -->
+
                     <select id="countryCode" formControlName="countryCode">
 
-                        <option value="+91">🇮🇳 +91</option>
-                        <option value="+1">🇺🇸 +1</option>
-                        <option value="+44">🇬🇧 +44</option>
-                        <option value="+61">🇦🇺 +61</option>
-                        <option value="+971">🇦🇪 +971</option>
+                        <option value="+91">
+                            🇮🇳 +91
+                        </option>
+
+                        <option value="+1">
+                            🇺🇸 +1
+                        </option>
+
+                        <option value="+44">
+                            🇬🇧 +44
+                        </option>
+
+                        <option value="+61">
+                            🇦🇺 +61
+                        </option>
+
+                        <option value="+971">
+                            🇦🇪 +971
+                        </option>
 
                     </select>
 
+
                     <!-- Mobile -->
+
                     <input id="mobileNumber" type="tel" formControlName="mobileNumber" placeholder="Enter mobile number"
-                        maxlength="10" autocomplete="tel" />
+                        maxlength="10" autocomplete="tel">
 
                 </div>
+
 
                 <div class="error-message" *ngIf="
             registrationForm.get('mobileNumber')?.invalid &&
             registrationForm.get('mobileNumber')?.touched
-        ">
+          ">
                     Please enter a valid 10 digit mobile number.
                 </div>
 
             </div>
 
-            <!-- Password -->
+
+            <!-- ==========================================
+           PASSWORD
+      =========================================== -->
+
             <div class="form-group">
 
                 <label for="password">
                     Password
                 </label>
 
-                <div class="password-input-container">
+
+                <div class="password-container">
 
                     <input id="password" [type]="showRegistrationPassword ? 'text' : 'password'"
                         formControlName="password" placeholder="Create a password" autocomplete="new-password">
 
-                    <button type="button" class="password-eye-button" (click)="toggleRegistrationPassword()"
+
+                    <!-- Eye Button -->
+
+                    <button type="button" class="eye-button"
+                        (click)="showRegistrationPassword = !showRegistrationPassword"
                         [attr.aria-label]="showRegistrationPassword ? 'Hide password' : 'Show password'">
-                        {{ showRegistrationPassword ? '🙈' : '👁️' }}
+                        {{ showRegistrationPassword ? '🙉' : '🙈' }}
                     </button>
 
                 </div>
@@ -130,22 +205,33 @@
             </div>
 
 
-            <!-- Confirm Password -->
+            <!-- ==========================================
+           CONFIRM PASSWORD
+      =========================================== -->
+
             <div class="form-group">
 
                 <label for="confirmPassword">
                     Confirm Password
                 </label>
 
-                <div class="password-input-container">
+
+                <div class="password-container">
 
                     <input id="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'"
                         formControlName="confirmPassword" placeholder="Confirm your password"
                         autocomplete="new-password">
 
-                    <button type="button" class="password-eye-button" (click)="toggleConfirmPassword()"
-                        [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'">
-                        {{ showConfirmPassword ? '🙈' : '👁️' }}
+
+                    <!-- Eye Button -->
+
+                    <button type="button" class="eye-button" (click)="showConfirmPassword = !showConfirmPassword"
+                        [attr.aria-label]="
+              showConfirmPassword
+                ? 'Hide confirm password'
+                : 'Show confirm password'
+            ">
+                        {{ showConfirmPassword ? '🙉' : '🙈' }}
                     </button>
 
                 </div>
@@ -153,51 +239,76 @@
             </div>
 
 
-            <!-- Password mismatch -->
+            <!-- ==========================================
+           PASSWORD MISMATCH
+      =========================================== -->
+
             <div *ngIf="
-                    registrationForm.errors?.['passwordsMismatch'] &&
-                    (
-                        registrationForm.get('confirmPassword')?.dirty ||
-                        registrationForm.get('confirmPassword')?.touched
-                    )
-                " class="error-message mismatch-error">
+          registrationForm.errors?.['passwordsMismatch'] &&
+          (
+            registrationForm.get('confirmPassword')?.dirty ||
+            registrationForm.get('confirmPassword')?.touched
+          )
+        " class="error-message mismatch-error">
 
                 <span>⚠</span>
+
                 Passwords do not match.
 
             </div>
 
 
-            <!-- Submit -->
+            <!-- ==========================================
+           SUBMIT
+      =========================================== -->
+
             <button type="submit" class="signup-button" [disabled]="!registrationForm.valid">
 
-                <span>CREATE ACCOUNT</span>
+                <span>
+                    CREATE ACCOUNT
+                </span>
 
             </button>
 
 
-            <!-- Login -->
+            <!-- ==========================================
+           LOGIN
+      =========================================== -->
+
             <div class="login-link">
 
                 <p>
+
                     Already have an account?
 
                     <a routerLink="/login">
                         Log In
                     </a>
+
                 </p>
 
             </div>
 
 
-            <!-- Divider -->
+            <!-- ==========================================
+           DIVIDER
+      =========================================== -->
+
             <div class="divider">
-                <span>OR</span>
+
+                <span>
+                    OR
+                </span>
+
             </div>
 
 
-            <!-- Home -->
+            <!-- ==========================================
+           HOME
+      =========================================== -->
+
             <div class="home-link">
+
                 <a routerLink="/home">
                     Back to Home
                 </a>

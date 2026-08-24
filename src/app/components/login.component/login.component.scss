@@ -1,69 +1,48 @@
-/* =========================================================
-   LOGIN PAGE
-========================================================= */
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
 
 .login-container {
-
     min-height: 100vh;
-
-    width: 100%;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
-    padding: 30px 20px;
-
-    box-sizing: border-box;
-
     background:
-        linear-gradient(135deg,
-            #f1f3f6 0%,
-            #eef3fb 100%);
+        radial-gradient(circle at 8% 25%, #dbe7f8 0, #dbe7f8 8%, transparent 8.2%),
+        radial-gradient(circle at 90% 65%, #f8e8e5 0, #f8e8e5 9%, transparent 9.2%),
+        #f4f7fb;
 
-    font-family:
-        Roboto,
-        Arial,
-        sans-serif;
-
-    overflow-x: hidden;
+    padding: 20px;
 }
 
 
-/* =========================================================
+/* ==========================================
    LOGIN CARD
-========================================================= */
+========================================== */
 
 .login-card {
-
-    width: 100%;
-
-    max-width: 400px;
-
-    padding: 35px 32px;
-
-    box-sizing: border-box;
+    width: 400px;
+    max-width: 100%;
 
     background: #ffffff;
 
+    padding: 32px;
+
     border-radius: 12px;
 
-    border:
-        1px solid rgba(0, 0, 0, 0.04);
-
     box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.10);
+        0 8px 30px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
 }
 
 
-/* =========================================================
+/* ==========================================
    HEADER
-========================================================= */
+========================================== */
 
 .login-header {
-
     text-align: center;
 
     margin-bottom: 28px;
@@ -71,155 +50,196 @@
 
 
 .brand-logo {
-
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
-    gap: 7px;
+    gap: 8px;
 
-    margin-bottom: 20px;
-
-    color: #2874f0;
-
-    font-size: 22px;
-
+    font-size: 24px;
     font-weight: 700;
-}
 
-
-.brand-icon {
-
-    font-size: 25px;
-
-    line-height: 1;
-}
-
-
-.login-header h2 {
-
-    margin:
-        0 0 8px;
-
-    color: #212121;
-
-    font-size: 26px;
-
-    font-weight: 600;
-}
-
-
-.login-header p {
-
-    margin: 0;
-
-    color: #878787;
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   FORM GROUP
-========================================================= */
-
-.form-group {
+    color: #2878e8;
 
     margin-bottom: 18px;
 }
 
 
-.form-group label {
-
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #333333;
-
-    font-size: 13px;
-
-    font-weight: 600;
+.brand-icon {
+    font-size: 28px;
 }
 
 
-.form-group input {
+.login-header h2 {
+    margin: 0;
 
+    font-size: 28px;
+
+    color: #222;
+}
+
+
+.login-header p {
+    margin-top: 8px;
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   FORM GROUP
+========================================== */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+}
+
+
+/* ==========================================
+   INPUT
+========================================== */
+
+.form-group>input {
     width: 100%;
 
     height: 46px;
 
-    padding:
-        0 13px;
+    padding: 0 14px;
 
     box-sizing: border-box;
 
-    border:
-        1px solid #d5d5d5;
+    border: 1px solid #cfd6df;
 
     border-radius: 6px;
 
-    background: #ffffff;
-
-    color: #212121;
-
-    font-family: inherit;
+    background: #edf4fd;
 
     font-size: 14px;
 
     outline: none;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: border-color 0.2s;
 }
 
 
-.form-group input::placeholder {
-
-    color: #aaaaaa;
+.form-group>input:focus {
+    border-color: #2878e8;
 }
 
 
-.form-group input:focus {
+/* ==========================================
+   PASSWORD CONTAINER
+========================================== */
 
-    border-color: #2874f0;
+.password-container {
+    position: relative;
 
-    box-shadow:
-        0 0 0 3px rgba(40, 116, 240, 0.10);
+    width: 100%;
 }
 
 
-/* =========================================================
-   FRONTEND VALIDATION ERROR
-========================================================= */
+/* Password input */
 
-.error-message {
+.password-container input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 45px 0 14px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cfd6df;
+
+    border-radius: 6px;
+
+    background: #edf4fd;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.password-container input:focus {
+    border-color: #2878e8;
+}
+
+
+/* ==========================================
+   EYE BUTTON
+========================================== */
+
+.eye-button {
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    color: #666;
+
+    font-size: 18px;
 
     display: flex;
 
     align-items: center;
+    justify-content: center;
 
-    gap: 5px;
-
-    margin-top: 6px;
-
-    color: #d32f2f;
-
-    font-size: 12px;
-
-    line-height: 1.4;
+    padding: 0;
 }
 
 
-/* =========================================================
+.eye-button:hover {
+    color: #2878e8;
+}
+
+
+/* ==========================================
+   ERROR MESSAGE
+========================================== */
+
+.error-message {
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    color: #e53935;
+}
+
+
+/* ==========================================
    LOGIN BUTTON
-========================================================= */
+========================================== */
 
 .login-button {
-
     width: 100%;
 
     height: 48px;
@@ -228,11 +248,9 @@
 
     border-radius: 6px;
 
-    background: #fb641b;
+    background: #ff641f;
 
-    color: #ffffff;
-
-    font-family: inherit;
+    color: white;
 
     font-size: 15px;
 
@@ -240,162 +258,110 @@
 
     cursor: pointer;
 
-    transition:
-        background 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.15s ease;
+    transition: background 0.2s;
 }
 
 
 .login-button:hover:not(:disabled) {
-
-    background: #e95712;
-
-    box-shadow:
-        0 4px 12px rgba(251, 100, 27, 0.25);
-
-    transform:
-        translateY(-1px);
-}
-
-
-.login-button:active:not(:disabled) {
-
-    transform:
-        translateY(0);
-
-    box-shadow: none;
+    background: #e95616;
 }
 
 
 .login-button:disabled {
-
-    background: #ffb99b;
+    opacity: 0.6;
 
     cursor: not-allowed;
-
-    box-shadow: none;
 }
 
 
-/* =========================================================
+/* ==========================================
    REGISTRATION LINK
-========================================================= */
+========================================== */
 
 .registration-link {
-
-    margin-top: 20px;
-
     text-align: center;
 
-    color: #555555;
+    margin-top: 20px;
+}
+
+
+.registration-link p {
+    margin: 0;
+
+    color: #666;
 
     font-size: 14px;
 }
 
 
-.registration-link p {
-
-    margin: 0;
-}
-
-
 .registration-link a {
+    margin-left: 5px;
 
-    margin-left: 4px;
-
-    color: #2874f0;
-
-    text-decoration: none;
+    color: #2878e8;
 
     font-weight: 600;
+
+    text-decoration: none;
 }
 
 
 .registration-link a:hover {
-
-    color: #1557b0;
-
     text-decoration: underline;
 }
 
 
-/* =========================================================
+/* ==========================================
    DIVIDER
-========================================================= */
+========================================== */
 
 .divider {
-
     display: flex;
 
     align-items: center;
 
     gap: 12px;
 
-    margin:
-        22px 0 16px;
+    margin: 26px 0;
 
-    color: #aaaaaa;
+    color: #999;
 
-    font-size: 11px;
-
-    font-weight: 500;
+    font-size: 12px;
 }
 
 
 .divider::before,
 .divider::after {
-
     content: "";
 
     flex: 1;
 
     height: 1px;
 
-    background: #eeeeee;
+    background: #e2e2e2;
 }
 
 
-.divider span {
-
-    flex-shrink: 0;
-}
-
-
-/* =========================================================
-   HOME BUTTON
-========================================================= */
-
-.home-link {
-
-    width: 100%;
-}
-
+/* ==========================================
+   HOME LINK
+========================================== */
 
 .home-link a {
-
-    width: 100%;
-
-    min-height: 44px;
-
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    gap: 7px;
+    width: 100%;
+
+    height: 44px;
 
     box-sizing: border-box;
 
-    border:
-        1px solid #2874f0;
+    border: 1px solid #2878e8;
 
     border-radius: 6px;
 
-    background: #ffffff;
-
-    color: #2874f0;
+    color: #2878e8;
 
     text-decoration: none;
 
@@ -403,746 +369,110 @@
 
     font-weight: 600;
 
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.15s ease;
+    transition: all 0.2s;
 }
 
 
 .home-link a:hover {
+    background: #2878e8;
 
-    background: #2874f0;
-
-    color: #ffffff;
-
-    box-shadow:
-        0 3px 8px rgba(40, 116, 240, 0.20);
-
-    transform:
-        translateY(-1px);
+    color: white;
 }
 
 
-.home-link a:active {
-
-    transform:
-        translateY(0);
-}
-
-
-.home-icon {
-
-    font-size: 17px;
-
-    line-height: 1;
-}
-
-
-/* =========================================================
-   PAGE ANIMATIONS
-========================================================= */
-
-.login-container {
-
-    position: relative;
-
-    isolation: isolate;
-}
-
-
-.login-container::before,
-.login-container::after {
-
-    content: "";
-
-    position: absolute;
-
-    z-index: -1;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    filter: blur(2px);
-
-    animation:
-        loginFloat 8s ease-in-out infinite;
-}
-
-
-.login-container::before {
-
-    width: 260px;
-
-    height: 260px;
-
-    top: 8%;
-
-    left: 8%;
-
-    background:
-        rgba(40, 116, 240, 0.10);
-}
-
-
-.login-container::after {
-
-    width: 220px;
-
-    height: 220px;
-
-    right: 8%;
-
-    bottom: 8%;
-
-    background:
-        rgba(251, 100, 27, 0.10);
-
-    animation-delay: -3s;
-}
-
-
-.login-card {
-
-    animation:
-        cardEnter 0.75s cubic-bezier(.22, 1, .36, 1) both;
-
-    transform-origin: center;
-}
-
-
-.login-header .brand-logo {
-
-    animation:
-        logoEnter 0.7s 0.15s cubic-bezier(.22, 1, .36, 1) both;
-}
-
-
-.login-header h2 {
-
-    animation:
-        fadeUp 0.6s 0.25s ease-out both;
-}
-
-
-.login-header p {
-
-    animation:
-        fadeUp 0.6s 0.35s ease-out both;
-}
-
-
-.login-button {
-
-    animation:
-        fadeUp 0.55s 0.6s ease-out both;
-}
-
-
-.registration-link,
-.divider,
-.home-link {
-
-    animation:
-        fadeUp 0.55s 0.7s ease-out both;
-}
-
-
-.brand-icon {
-
-    display: inline-block;
-
-    animation:
-        cartBounce 2.8s ease-in-out infinite;
-}
-
-
-.form-group input {
-
-    transition:
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.25s ease;
-}
-
-
-.form-group input:focus {
-
-    transform:
-        translateY(-2px);
-}
-
-
-.login-button {
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-.login-button::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -120%;
-
-    width: 70%;
-
-    height: 100%;
-
-    transform:
-        skewX(-20deg);
-
-    background:
-        rgba(255, 255, 255, 0.18);
-
-    transition:
-        left 0.55s ease;
-}
-
-
-.login-button:hover:not(:disabled)::after {
-
-    left: 140%;
-}
-
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes cardEnter {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(35px) scale(0.96);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0) scale(1);
-    }
-}
-
-
-@keyframes fadeUp {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(18px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-@keyframes logoEnter {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(0.75) rotate(-5deg);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1) rotate(0);
-    }
-}
-
-
-@keyframes cartBounce {
-
-    0%,
-    100% {
-
-        transform:
-            translateY(0) rotate(0);
-    }
-
-    50% {
-
-        transform:
-            translateY(-4px) rotate(-4deg);
-    }
-}
-
-
-@keyframes loginFloat {
-
-    0%,
-    100% {
-
-        transform:
-            translate3d(0, 0, 0);
-    }
-
-    50% {
-
-        transform:
-            translate3d(0, -22px, 0);
-    }
-}
-
-
-/* =========================================================
-   ERROR POPUP
-========================================================= */
+/* ==========================================
+   ERROR POPUP OVERLAY
+========================================== */
 
 .error-overlay {
-
     position: fixed;
 
-    top: 0;
+    inset: 0;
 
-    left: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    background:
-        rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.45);
 
     display: flex;
 
+    align-items: center;
     justify-content: center;
 
-    align-items: center;
-
     z-index: 9999;
-
-    animation:
-        errorOverlayFade 0.2s ease-out;
 }
 
 
-/* =========================================================
-   ERROR POPUP BOX
-========================================================= */
+/* ==========================================
+   ERROR POPUP
+========================================== */
 
 .error-popup {
+    width: 350px;
+    max-width: 90%;
 
-    width: 90%;
+    background: white;
 
-    max-width: 380px;
+    border-radius: 10px;
 
-    background: #ffffff;
-
-    border-radius: 12px;
-
-    padding: 30px 25px;
+    padding: 30px;
 
     text-align: center;
 
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.25);
-
-    animation:
-        errorPopupEnter 0.25s ease-out;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
 
-/* =========================================================
-   ERROR ICON
-========================================================= */
-
 .error-icon {
+    width: 45px;
+    height: 45px;
 
-    width: 55px;
-
-    height: 55px;
-
-    margin:
-        0 auto 15px;
+    margin: 0 auto 15px;
 
     border-radius: 50%;
 
-    background:
-        #ffe5e5;
+    background: #ffebee;
 
-    color:
-        #d32f2f;
+    color: #e53935;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    font-size: 30px;
+    font-size: 24px;
 
-    font-weight: 700;
+    font-weight: bold;
 }
 
-
-/* =========================================================
-   ERROR TITLE
-========================================================= */
 
 .error-popup h3 {
+    margin-bottom: 10px;
 
-    margin:
-        0 0 10px;
-
-    color:
-        #212121;
-
-    font-size:
-        21px;
-
-    font-weight:
-        600;
+    color: #333;
 }
 
-
-/* =========================================================
-   ERROR MESSAGE
-========================================================= */
 
 .error-popup p {
+    color: #666;
 
-    margin:
-        0 0 25px;
+    font-size: 14px;
 
-    color:
-        #666666;
-
-    font-size:
-        14px;
-
-    line-height:
-        1.5;
+    line-height: 1.5;
 }
 
-
-/* =========================================================
-   ERROR OK BUTTON
-========================================================= */
 
 .error-ok-button {
+    margin-top: 15px;
 
-    width:
-        100%;
+    padding: 10px 30px;
 
-    height:
-        44px;
+    border: none;
 
-    border:
-        none;
+    border-radius: 5px;
 
-    border-radius:
-        6px;
+    background: #ff641f;
 
-    background:
-        #2874f0;
+    color: white;
 
-    color:
-        #ffffff;
+    font-weight: 600;
 
-    font-size:
-        14px;
-
-    font-weight:
-        600;
-
-    cursor:
-        pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.15s ease;
-}
-
-
-.error-ok-button:hover {
-
-    background:
-        #1557b0;
-
-    transform:
-        translateY(-1px);
-}
-
-
-.error-ok-button:active {
-
-    transform:
-        translateY(0);
-}
-
-
-/* =========================================================
-   ERROR POPUP ANIMATIONS
-========================================================= */
-
-@keyframes errorOverlayFade {
-
-    from {
-
-        opacity: 0;
-    }
-
-    to {
-
-        opacity: 1;
-    }
-}
-
-
-@keyframes errorPopupEnter {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(0.85) translateY(10px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1) translateY(0);
-    }
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .login-container *,
-    .login-container::before,
-    .login-container::after {
-
-        animation:
-            none !important;
-
-        transition:
-            none !important;
-    }
-
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 768px) {
-
-    .login-container {
-
-        padding:
-            25px 16px;
-    }
-
-
-    .login-card {
-
-        max-width:
-            430px;
-
-        padding:
-            30px 25px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .login-container {
-
-        align-items:
-            flex-start;
-
-        padding:
-            30px 10px 20px;
-    }
-
-
-    .login-card {
-
-        padding:
-            25px 18px;
-
-        border-radius:
-            10px;
-    }
-
-
-    .login-header {
-
-        margin-bottom:
-            23px;
-    }
-
-
-    .brand-logo {
-
-        font-size:
-            20px;
-
-        margin-bottom:
-            16px;
-    }
-
-
-    .login-header h2 {
-
-        font-size:
-            23px;
-    }
-
-
-    .login-header p {
-
-        font-size:
-            13px;
-    }
-
-
-    .form-group {
-
-        margin-bottom:
-            16px;
-    }
-
-
-    .form-group input {
-
-        height:
-            48px;
-    }
-
-
-    .login-button {
-
-        height:
-            50px;
-
-        font-size:
-            14px;
-    }
-
-
-    .registration-link {
-
-        font-size:
-            13px;
-    }
-
-
-    .home-link a {
-
-        min-height:
-            48px;
-    }
-
-
-    /* Mobile popup */
-
-    .error-popup {
-
-        width:
-            calc(100% - 40px);
-
-        padding:
-            25px 20px;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-@media (max-width: 360px) {
-
-    .login-container {
-
-        padding-left:
-            8px;
-
-        padding-right:
-            8px;
-    }
-
-
-    .login-card {
-
-        padding:
-            22px 15px;
-    }
-
-
-    .login-header h2 {
-
-        font-size:
-            21px;
-    }
-
-
-    .error-message {
-
-        display:
-            flex;
-
-        align-items:
-            center;
-
-        gap:
-            5px;
-
-        margin-top:
-            6px;
-
-        color:
-            #d32f2f;
-
-        font-size:
-            12px;
-
-        line-height:
-            1.4;
-    }
-
+    cursor: pointer;
 }
