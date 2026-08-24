@@ -77,14 +77,20 @@
     <div class="form-group">
 
       <label for="password">
-
         Password
-
       </label>
 
+      <div class="password-input-container">
 
-      <input id="password" type="password" formControlName="password" placeholder="Enter your password"
-        autocomplete="current-password">
+        <input id="password" [type]="showLoginPassword ? 'text' : 'password'" formControlName="password"
+          placeholder="Enter your password" autocomplete="current-password">
+
+        <button type="button" class="password-eye-button" (click)="toggleLoginPassword()"
+          [attr.aria-label]="showLoginPassword ? 'Hide password' : 'Show password'">
+          {{ showLoginPassword ? '🙈' : '👁️' }}
+        </button>
+
+      </div>
 
     </div>
 

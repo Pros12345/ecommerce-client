@@ -115,8 +115,17 @@
                     Password
                 </label>
 
-                <input id="password" type="password" formControlName="password" placeholder="Create a password"
-                    autocomplete="new-password">
+                <div class="password-input-container">
+
+                    <input id="password" [type]="showRegistrationPassword ? 'text' : 'password'"
+                        formControlName="password" placeholder="Create a password" autocomplete="new-password">
+
+                    <button type="button" class="password-eye-button" (click)="toggleRegistrationPassword()"
+                        [attr.aria-label]="showRegistrationPassword ? 'Hide password' : 'Show password'">
+                        {{ showRegistrationPassword ? '🙈' : '👁️' }}
+                    </button>
+
+                </div>
 
             </div>
 
@@ -128,8 +137,18 @@
                     Confirm Password
                 </label>
 
-                <input id="confirmPassword" type="password" formControlName="confirmPassword"
-                    placeholder="Confirm your password" autocomplete="new-password">
+                <div class="password-input-container">
+
+                    <input id="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'"
+                        formControlName="confirmPassword" placeholder="Confirm your password"
+                        autocomplete="new-password">
+
+                    <button type="button" class="password-eye-button" (click)="toggleConfirmPassword()"
+                        [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'">
+                        {{ showConfirmPassword ? '🙈' : '👁️' }}
+                    </button>
+
+                </div>
 
             </div>
 

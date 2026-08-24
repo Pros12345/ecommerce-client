@@ -26,7 +26,11 @@ import { environment } from '../../../environments/environment';
 export class LoginComponent {
 
   loginForm: FormGroup;
+  showLoginPassword = false;
 
+  toggleLoginPassword(): void {
+    this.showLoginPassword = !this.showLoginPassword;
+  }
   // ==============================
   // ERROR POPUP
   // ==============================

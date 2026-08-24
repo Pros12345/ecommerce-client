@@ -34,7 +34,16 @@ export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
   showError: boolean = false;
   errorMessage: string = '';
+  showRegistrationPassword = false;
+  showConfirmPassword = false;
 
+  toggleRegistrationPassword(): void {
+    this.showRegistrationPassword = !this.showRegistrationPassword;
+  }
+
+  toggleConfirmPassword(): void {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
