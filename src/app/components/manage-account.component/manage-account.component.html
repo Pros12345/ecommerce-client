@@ -29,7 +29,7 @@
 
 
         <!-- ======================================
-             SUCCESS
+             SUCCESS MESSAGE
         ======================================= -->
 
         <div class="success-message" *ngIf="successMessage">
@@ -40,7 +40,7 @@
 
 
         <!-- ======================================
-             ERROR
+             ERROR MESSAGE
         ======================================= -->
 
         <div class="error-message" *ngIf="errorMessage">
@@ -121,7 +121,7 @@
             </div>
 
 
-            <!-- EDIT -->
+            <!-- EDIT BUTTON -->
 
             <button type="button" class="edit-button" (click)="enableEdit()">
 
@@ -137,6 +137,7 @@
         ======================================= -->
 
         <form *ngIf="!loading && isEditMode" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+
 
             <!-- NAME -->
 
@@ -236,7 +237,10 @@
 
             </div>
 
-            <!-- CURRENT PASSWORD -->
+
+            <!-- ======================================
+                 CURRENT PASSWORD FOR PROFILE UPDATE
+            ======================================= -->
 
             <div class="form-group">
 
@@ -244,12 +248,13 @@
                     Current Password
                 </label>
 
+
                 <div class="password-container">
 
                     <input [type]="
                             showCurrentPassword
-                            ? 'text'
-                            : 'password'
+                                ? 'text'
+                                : 'password'
                         " formControlName="currentPassword" placeholder="Enter current password">
 
 
@@ -258,7 +263,8 @@
                             !showCurrentPassword
                         ">
 
-                        {{ showCurrentPassword
+                        {{
+                        showCurrentPassword
                         ? '🙉'
                         : '🙈'
                         }}
@@ -280,7 +286,9 @@
             </div>
 
 
-            <!-- BUTTONS -->
+            <!-- ======================================
+                 PROFILE ACTIONS
+            ======================================= -->
 
             <div class="profile-actions">
 
@@ -313,6 +321,8 @@
         <div class="password-section">
 
 
+            <!-- TOGGLE -->
+
             <button type="button" class="password-toggle" (click)="togglePasswordSection()">
 
                 {{
@@ -323,6 +333,8 @@
 
             </button>
 
+
+            <!-- CHANGE PASSWORD FORM -->
 
             <form *ngIf="showPasswordSection" [formGroup]="passwordForm" (ngSubmit)="changePassword()">
 
@@ -366,6 +378,8 @@
                 </div>
 
 
+                <!-- CHANGE PASSWORD BUTTON -->
+
                 <button type="submit" class="change-password-button" [disabled]="changingPassword">
 
                     {{
@@ -382,7 +396,120 @@
 
 
         <!-- ======================================
-             BACK
+             DELETE ACCOUNT - DANGER ZONE
+        ======================================= -->
+
+        <div class="danger-zone">
+
+            <h3>
+                Delete Account
+            </h3>
+
+
+            <p>
+                Permanently delete your account and all associated
+                data. This action cannot be undone.
+            </p>
+
+
+            <button type="button" class="delete-account-btn" (click)="openDeleteAccountModal()">
+
+                Delete Account
+
+            </button>
+
+        </div>
+
+
+        <!-- ======================================
+             DELETE ACCOUNT MODAL
+        ======================================= -->
+
+        <div class="delete-modal-backdrop" *ngIf="showDeleteModal" (click)="closeDeleteAccountModal()">
+
+
+            <div class="delete-modal" (click)="$event.stopPropagation()">
+
+
+                <!-- MODAL HEADER -->
+
+                <h2>
+                    Delete Account
+                </h2>
+
+
+                <!-- WARNING -->
+
+                <p>
+                    Are you sure you want to permanently delete
+                    your account?
+                    This action cannot be undone.
+                </p>
+
+
+                <!-- CURRENT PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Current Password
+                    </label>
+
+
+                    <input type="password" [(ngModel)]="deletePassword" placeholder="Enter your current password"
+                        autocomplete="current-password" [disabled]="deletingAccount">
+
+                </div>
+
+
+                <!-- DELETE ERROR -->
+
+                <div class="delete-error" *ngIf="deleteError">
+
+                    {{ deleteError }}
+
+                </div>
+
+
+                <!-- MODAL ACTIONS -->
+
+                <div class="modal-actions">
+
+
+                    <!-- CANCEL -->
+
+                    <button type="button" class="cancel-btn" (click)="closeDeleteAccountModal()"
+                        [disabled]="deletingAccount">
+
+                        Cancel
+
+                    </button>
+
+
+                    <!-- CONFIRM DELETE -->
+
+                    <button type="button" class="confirm-delete-btn" (click)="deleteAccount()" [disabled]="
+                            deletingAccount ||
+                            !deletePassword
+                        ">
+
+                        {{
+                        deletingAccount
+                        ? 'Deleting...'
+                        : 'Delete Account'
+                        }}
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             BACK TO PROFILE
         ======================================= -->
 
         <button type="button" class="back-button" (click)="goBackToProfile()">
