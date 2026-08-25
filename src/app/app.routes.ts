@@ -7,7 +7,10 @@ import { RegisterComponent } from './components/register.component/register.comp
 import { AddProductComponent } from './components/add-product.component/add-product.component';
 import { EditProductComponent } from './components/edit-product.component/edit-product.component';
 import { ProfileComponent } from './components/profile.component/profile.component';
+import { EditAddressComponent } from './components/saved-address.component/edit-address.component/edit-address.component';
+import { SavedAddressComponent } from './components/saved-address.component/saved-address.component';
 import { ManageAccountComponent } from './components/manage-account.component/manage-account.component';
+import { CheckoutAddressComponent } from './components/address/checkout-address.component/checkout-address.component';
 import { authGuard } from './guards/auth.guard';
 
 
@@ -40,5 +43,20 @@ export const routes: Routes = [
         path: 'manage-account',
         component: ManageAccountComponent,
         canActivate: [authGuard]
-    }
+    },
+    {
+        path: 'checkout-address',
+        component: CheckoutAddressComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'saved-address',
+        component: SavedAddressComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'edit-address/:id',
+        component: EditAddressComponent,
+        canActivate: [authGuard]
+    },
 ];

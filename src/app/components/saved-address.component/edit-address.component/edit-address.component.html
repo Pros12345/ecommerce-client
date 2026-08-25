@@ -1,0 +1,226 @@
+<div class="edit-address-page">
+
+    <div class="edit-address-card">
+
+
+        <!-- ==========================================
+             HEADER
+        =========================================== -->
+
+        <div class="page-header">
+
+            <h2>
+                Edit Address
+            </h2>
+
+            <p>
+                Update your saved delivery address
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             LOADING
+        =========================================== -->
+
+        <div *ngIf="loading" class="loading">
+
+            Loading address...
+
+        </div>
+
+
+        <!-- ==========================================
+             FORM
+        =========================================== -->
+
+        <form *ngIf="!loading" [formGroup]="addressForm" (ngSubmit)="updateAddress()">
+
+
+            <!-- FULL NAME -->
+
+            <div class="form-group">
+
+                <label>
+                    Full Name *
+                </label>
+
+                <input type="text" formControlName="fullName" placeholder="Enter full name">
+
+                <small *ngIf="isInvalid('fullName')">
+
+                    Full name is required.
+
+                </small>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label>
+                    Mobile Number *
+                </label>
+
+                <input type="text" maxlength="10" formControlName="mobileNumber" placeholder="Enter mobile number">
+
+                <small *ngIf="isInvalid('mobileNumber')">
+
+                    Enter a valid 10-digit mobile number.
+
+                </small>
+
+            </div>
+
+
+            <!-- ADDRESS LINE 1 -->
+
+            <div class="form-group">
+
+                <label>
+                    Address *
+                </label>
+
+                <input type="text" formControlName="addressLine1" placeholder="House No, Street, Area">
+
+                <small *ngIf="isInvalid('addressLine1')">
+
+                    Address is required.
+
+                </small>
+
+            </div>
+
+
+            <!-- ADDRESS LINE 2 -->
+
+            <div class="form-group">
+
+                <label>
+                    Address Line 2
+                </label>
+
+                <input type="text" formControlName="addressLine2" placeholder="Apartment, Building, etc.">
+
+            </div>
+
+
+            <!-- CITY -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>
+                        City *
+                    </label>
+
+                    <input type="text" formControlName="city" placeholder="City">
+
+                </div>
+
+
+                <!-- STATE -->
+
+                <div class="form-group">
+
+                    <label>
+                        State *
+                    </label>
+
+                    <input type="text" formControlName="state" placeholder="State">
+
+                </div>
+
+            </div>
+
+
+            <!-- PINCODE -->
+
+            <div class="form-group">
+
+                <label>
+                    Pincode *
+                </label>
+
+                <input type="text" maxlength="6" formControlName="pincode" placeholder="Enter pincode">
+
+                <small *ngIf="isInvalid('pincode')">
+
+                    Enter a valid 6-digit pincode.
+
+                </small>
+
+            </div>
+
+
+            <!-- LANDMARK -->
+
+            <div class="form-group">
+
+                <label>
+                    Landmark
+                </label>
+
+                <input type="text" formControlName="landmark" placeholder="Nearby landmark">
+
+            </div>
+
+
+            <!-- ADDRESS TYPE -->
+
+            <div class="form-group">
+
+                <label>
+                    Address Type *
+                </label>
+
+                <select formControlName="addressType">
+
+                    <option value="Home">
+                        Home
+                    </option>
+
+                    <option value="Work">
+                        Work
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==========================================
+                 BUTTONS
+            =========================================== -->
+
+            <div class="form-actions">
+
+                <button type="button" class="cancel-button" (click)="cancel()">
+
+                    Cancel
+
+                </button>
+
+
+                <button type="submit" class="update-button" [disabled]="saving">
+
+                    {{ saving ? 'Updating...' : 'Update Address' }}
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>

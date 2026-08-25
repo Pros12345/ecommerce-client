@@ -1,0 +1,197 @@
+<div class="saved-address-page">
+
+    <div class="saved-address-card">
+
+
+        <!-- ==========================================
+             HEADER
+        =========================================== -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    My Saved Addresses
+                </h2>
+
+                <p>
+                    Manage your saved delivery addresses
+                </p>
+
+            </div>
+
+
+            <button type="button" class="add-address-button" (click)="addNewAddress()">
+
+                + Add New Address
+
+            </button>
+
+        </div>
+
+
+        <!-- ==========================================
+             LOADING
+        =========================================== -->
+
+        <div *ngIf="loading" class="loading">
+
+            Loading addresses...
+
+        </div>
+
+
+        <!-- ==========================================
+             NO ADDRESS
+        =========================================== -->
+
+        <div *ngIf="!loading && addresses.length === 0" class="no-address">
+
+            <div class="no-address-icon">
+                📍
+            </div>
+
+            <h3>
+                No Saved Addresses
+            </h3>
+
+            <p>
+                You haven't saved any delivery address yet.
+            </p>
+
+            <button type="button" class="add-first-address-button" (click)="addNewAddress()">
+
+                Add New Address
+
+            </button>
+
+        </div>
+
+
+        <!-- ==========================================
+             ADDRESS LIST
+        =========================================== -->
+
+        <div *ngIf="!loading && addresses.length > 0" class="address-list">
+
+
+            <div class="address-card" *ngFor="let address of addresses">
+
+
+                <!-- ==================================
+                     ADDRESS HEADER
+                =================================== -->
+
+                <div class="address-header">
+
+                    <div class="address-type">
+
+                        <span class="address-type-icon">
+                            📍
+                        </span>
+
+                        <strong>
+                            {{ address.addressType }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="address-actions">
+
+                        <button type="button" class="edit-button" (click)="editAddress(address)">
+
+                            Edit
+
+                        </button>
+
+
+                        <button type="button" class="delete-button" (click)="deleteAddress(address)">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     ADDRESS DETAILS
+                =================================== -->
+
+                <div class="address-details">
+
+                    <h3>
+                        {{ address.fullName }}
+                    </h3>
+
+                    <p>
+                        <strong>
+                            Mobile:
+                        </strong>
+
+                        {{ address.mobileNumber }}
+                    </p>
+
+
+                    <p>
+
+                        {{ address.addressLine1 }}
+
+                        <span *ngIf="address.addressLine2">
+
+                            , {{ address.addressLine2 }}
+
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        {{ address.city }},
+
+                        {{ address.state }}
+
+                        -
+
+                        {{ address.pincode }}
+
+                    </p>
+
+
+                    <p *ngIf="address.landmark">
+
+                        <strong>
+                            Landmark:
+                        </strong>
+
+                        {{ address.landmark }}
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             BACK TO PROFILE
+        =========================================== -->
+
+        <button type="button" class="back-button" (click)="goBack()">
+
+            ← Back to Profile
+
+        </button>
+
+
+    </div>
+
+</div>

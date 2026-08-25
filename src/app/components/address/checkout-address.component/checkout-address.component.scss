@@ -1,0 +1,496 @@
+.checkout-page {
+
+    min-height: 100vh;
+
+    padding: 100px 20px 40px;
+
+    background: #f1f3f6;
+
+}
+
+
+.checkout-container {
+
+    max-width: 900px;
+
+    margin: auto;
+
+}
+
+
+.checkout-header {
+
+    background: white;
+
+    padding: 22px;
+
+    margin-bottom: 15px;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.checkout-header h2 {
+
+    margin: 0 0 6px;
+
+    font-size: 22px;
+
+}
+
+
+.checkout-header p {
+
+    margin: 0;
+
+    color: #777;
+
+}
+
+
+/* ==========================================
+   ADDRESS CARD
+========================================== */
+
+.address-card {
+
+    position: relative;
+
+    background: white;
+
+    padding: 20px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.address-card:hover {
+
+    border-color: #2874f0;
+
+}
+
+
+.address-card.selected {
+
+    border: 2px solid #2874f0;
+
+    background: #f8fbff;
+
+}
+
+
+.address-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.address-top strong {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 17px;
+
+}
+
+
+.address-type {
+
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    background: #eee;
+
+    border-radius: 3px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+}
+
+
+.address-details {
+
+    margin-top: 12px;
+
+    padding-right: 80px;
+
+}
+
+
+.address-details p {
+
+    margin: 5px 0;
+
+    color: #555;
+
+    line-height: 1.4;
+
+}
+
+
+.edit-address-btn {
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 20px;
+
+    border: 1px solid #2874f0;
+
+    background: white;
+
+    color: #2874f0;
+
+    padding: 7px 18px;
+
+    border-radius: 3px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+
+.edit-address-btn:hover {
+
+    background: #2874f0;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   ADD ADDRESS
+========================================== */
+
+.add-address-btn {
+
+    width: 100%;
+
+    padding: 15px;
+
+    background: white;
+
+    color: #2874f0;
+
+    border: 1px solid #2874f0;
+
+    border-radius: 4px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.add-address-btn:hover {
+
+    background: #f0f6ff;
+
+}
+
+
+/* ==========================================
+   FORM
+========================================== */
+
+.address-form {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.address-form h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+}
+
+
+.form-group {
+
+    margin-bottom: 16px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 4px;
+
+    outline: none;
+
+    font-size: 14px;
+
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #2874f0;
+
+}
+
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+
+}
+
+
+.form-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+}
+
+
+.cancel-btn,
+.save-btn {
+
+    padding: 11px 25px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+
+.cancel-btn {
+
+    background: white;
+
+    border: 1px solid #aaa;
+
+}
+
+
+.save-btn {
+
+    background: #2874f0;
+
+    border: none;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   CHECKOUT ACTIONS
+========================================== */
+
+.checkout-actions {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+}
+
+
+.back-btn {
+
+    flex: 1;
+
+    height: 48px;
+
+    background: white;
+
+    border: 1px solid #2874f0;
+
+    color: #2874f0;
+
+    border-radius: 4px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.confirm-btn {
+
+    flex: 2;
+
+    height: 48px;
+
+    background: #ff641f;
+
+    border: none;
+
+    color: white;
+
+    border-radius: 4px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.confirm-btn:hover {
+
+    background: #e95518;
+
+}
+
+
+/* ==========================================
+   NO ADDRESS
+========================================== */
+
+.no-address {
+
+    background: white;
+
+    padding: 40px;
+
+    text-align: center;
+
+    border-radius: 5px;
+
+}
+
+
+.no-address h3 {
+
+    margin-bottom: 8px;
+
+}
+
+
+.no-address p {
+
+    color: #777;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .checkout-page {
+
+        padding: 90px 10px 30px;
+
+    }
+
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+
+    .checkout-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .back-btn,
+    .confirm-btn {
+
+        flex: auto;
+
+        width: 100%;
+
+    }
+
+}

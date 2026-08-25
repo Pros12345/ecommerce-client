@@ -1,0 +1,247 @@
+.edit-address-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 100px 20px 50px;
+
+    background: #f4f7fb;
+
+    box-sizing: border-box;
+}
+
+
+.edit-address-card {
+
+    width: 650px;
+
+    max-width: 100%;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+}
+
+
+.page-header {
+
+    margin-bottom: 25px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #e1e5eb;
+}
+
+
+.page-header h2 {
+
+    margin: 0 0 5px;
+
+    font-size: 25px;
+
+    color: #222;
+}
+
+
+.page-header p {
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+.form-group {
+
+    margin-bottom: 18px;
+
+    flex: 1;
+}
+
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 12px;
+
+    border: 1px solid #d5dbe3;
+
+    border-radius: 6px;
+
+    box-sizing: border-box;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #2874f0;
+
+}
+
+
+.form-group small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #e53935;
+
+    font-size: 12px;
+}
+
+
+.form-row {
+
+    display: flex;
+
+    gap: 15px;
+}
+
+
+.loading {
+
+    text-align: center;
+
+    padding: 40px;
+
+    color: #777;
+}
+
+
+.form-actions {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+.cancel-button,
+.update-button {
+
+    flex: 1;
+
+    height: 44px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.cancel-button {
+
+    border: 1px solid #2874f0;
+
+    background: white;
+
+    color: #2874f0;
+}
+
+
+.cancel-button:hover {
+
+    background: #f5f8ff;
+}
+
+
+.update-button {
+
+    border: none;
+
+    background: #2874f0;
+
+    color: white;
+}
+
+
+.update-button:hover {
+
+    background: #1558c0;
+}
+
+
+.update-button:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+@media (max-width: 600px) {
+
+    .edit-address-page {
+
+        padding: 90px 12px 30px;
+
+    }
+
+
+    .edit-address-card {
+
+        padding: 20px;
+
+    }
+
+
+    .form-row {
+
+        flex-direction: column;
+
+        gap: 0;
+
+    }
+
+
+    .form-actions {
+
+        flex-direction: column;
+
+    }
+
+}
