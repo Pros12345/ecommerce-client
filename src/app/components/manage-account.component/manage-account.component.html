@@ -1,0 +1,397 @@
+<div class="manage-account-page">
+
+    <div class="manage-account-card">
+
+
+        <!-- ======================================
+             HEADER
+        ======================================= -->
+
+        <div class="account-header">
+
+            <div class="account-icon">
+                👤
+            </div>
+
+            <div>
+
+                <h2>
+                    Manage My Account
+                </h2>
+
+                <p>
+                    View and manage your personal information
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             SUCCESS
+        ======================================= -->
+
+        <div class="success-message" *ngIf="successMessage">
+
+            {{ successMessage }}
+
+        </div>
+
+
+        <!-- ======================================
+             ERROR
+        ======================================= -->
+
+        <div class="error-message" *ngIf="errorMessage">
+
+            {{ errorMessage }}
+
+        </div>
+
+
+        <!-- ======================================
+             LOADING
+        ======================================= -->
+
+        <div class="loading-message" *ngIf="loading">
+
+            Loading profile...
+
+        </div>
+
+
+        <!-- ======================================
+             VIEW MODE
+        ======================================= -->
+
+        <div *ngIf="!loading && !isEditMode">
+
+
+            <!-- NAME -->
+
+            <div class="profile-field">
+
+                <label>
+                    Full Name
+                </label>
+
+                <div class="profile-value">
+
+                    {{ profileForm.get('firstName')?.value }}
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="profile-field">
+
+                <label>
+                    Email
+                </label>
+
+                <div class="profile-value">
+
+                    {{ profileForm.get('email')?.value }}
+
+                </div>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div class="profile-field">
+
+                <label>
+                    Mobile Number
+                </label>
+
+                <div class="profile-value">
+
+                    {{ profileForm.get('countryCode')?.value }}
+
+                    {{ profileForm.get('mobileNumber')?.value }}
+
+                </div>
+
+            </div>
+
+
+            <!-- EDIT -->
+
+            <button type="button" class="edit-button" (click)="enableEdit()">
+
+                Edit
+
+            </button>
+
+        </div>
+
+
+        <!-- ======================================
+             EDIT MODE
+        ======================================= -->
+
+        <form *ngIf="!loading && isEditMode" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input type="text" formControlName="firstName" placeholder="Enter your name">
+
+
+                <small *ngIf="
+                        profileForm.get('firstName')?.invalid &&
+                        profileForm.get('firstName')?.touched
+                    ">
+
+                    Name is required.
+
+                </small>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input type="email" formControlName="email" placeholder="Enter your email">
+
+
+                <small *ngIf="
+                        profileForm.get('email')?.invalid &&
+                        profileForm.get('email')?.touched
+                    ">
+
+                    Please enter a valid email.
+
+                </small>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label>
+                    Mobile Number
+                </label>
+
+
+                <div class="mobile-container">
+
+                    <select formControlName="countryCode">
+
+                        <option value="+91">
+                            🇮🇳 +91
+                        </option>
+
+                        <option value="+1">
+                            🇺🇸 +1
+                        </option>
+
+                        <option value="+44">
+                            🇬🇧 +44
+                        </option>
+
+                        <option value="+61">
+                            🇦🇺 +61
+                        </option>
+
+                        <option value="+971">
+                            🇦🇪 +971
+                        </option>
+
+                    </select>
+
+
+                    <input type="tel" formControlName="mobileNumber" maxlength="10" placeholder="Mobile number">
+
+                </div>
+
+
+                <small *ngIf="
+                        profileForm.get('mobileNumber')?.invalid &&
+                        profileForm.get('mobileNumber')?.touched
+                    ">
+
+                    Mobile number must contain 10 digits.
+
+                </small>
+
+            </div>
+
+            <!-- CURRENT PASSWORD -->
+
+            <div class="form-group">
+
+                <label>
+                    Current Password
+                </label>
+
+                <div class="password-container">
+
+                    <input [type]="
+                            showCurrentPassword
+                            ? 'text'
+                            : 'password'
+                        " formControlName="currentPassword" placeholder="Enter current password">
+
+
+                    <button type="button" class="eye-button" (click)="
+                            showCurrentPassword =
+                            !showCurrentPassword
+                        ">
+
+                        {{ showCurrentPassword
+                        ? '🙉'
+                        : '🙈'
+                        }}
+
+                    </button>
+
+                </div>
+
+
+                <small *ngIf="
+                        profileForm.get('currentPassword')?.invalid &&
+                        profileForm.get('currentPassword')?.touched
+                    ">
+
+                    Current password is required.
+
+                </small>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="profile-actions">
+
+                <button type="submit" class="save-button" [disabled]="savingProfile">
+
+                    {{
+                    savingProfile
+                    ? 'Saving...'
+                    : 'Save Changes'
+                    }}
+
+                </button>
+
+
+                <button type="button" class="cancel-button" (click)="cancelEdit()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- ======================================
+             CHANGE PASSWORD
+        ======================================= -->
+
+        <div class="password-section">
+
+
+            <button type="button" class="password-toggle" (click)="togglePasswordSection()">
+
+                {{
+                showPasswordSection
+                ? 'Cancel Change Password'
+                : 'Change Password'
+                }}
+
+            </button>
+
+
+            <form *ngIf="showPasswordSection" [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+
+
+                <!-- CURRENT PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Current Password
+                    </label>
+
+                    <input type="password" formControlName="currentPassword" placeholder="Enter current password">
+
+                </div>
+
+
+                <!-- NEW PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        New Password
+                    </label>
+
+                    <input type="password" formControlName="newPassword" placeholder="Enter new password">
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Confirm New Password
+                    </label>
+
+                    <input type="password" formControlName="confirmPassword" placeholder="Confirm new password">
+
+                </div>
+
+
+                <button type="submit" class="change-password-button" [disabled]="changingPassword">
+
+                    {{
+                    changingPassword
+                    ? 'Changing...'
+                    : 'Change Password'
+                    }}
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ======================================
+             BACK
+        ======================================= -->
+
+        <button type="button" class="back-button" (click)="goBackToProfile()">
+
+            Back to Profile
+
+        </button>
+
+
+    </div>
+
+</div>

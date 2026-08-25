@@ -36,4 +36,16 @@ export class ProfileService {
       passwordData
     );
   }
+
+  deleteAccount(currentPassword: string): Observable<MessageResponse> {
+
+    return this.http.delete<MessageResponse>(
+      `${this.apiUrl}/profile`,
+      {
+        body: {
+          currentPassword: currentPassword
+        }
+      }
+    );
+  }
 }

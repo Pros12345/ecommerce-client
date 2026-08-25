@@ -10,248 +10,98 @@
                 👤
             </div>
 
-            <div>
-                <h2>My Profile</h2>
+            <div class="profile-user-info">
+
+                <h2>
+                    My Profile
+                </h2>
 
                 <p>
-                    Manage your account details
+                    Manage your account
                 </p>
+
             </div>
 
         </div>
 
 
-        <!-- SUCCESS -->
+        <!-- MANAGE MY ACCOUNT -->
 
-        <div class="success-message" *ngIf="successMessage">
+        <div class="profile-option" routerLink="/manage-account">
 
-            {{ successMessage }}
+            <div class="option-icon">
+                👤
+            </div>
+
+            <div class="option-content">
+
+                <h3>
+                    Manage My Account
+                </h3>
+
+                <p>
+                    View and edit your personal information
+                </p>
+
+            </div>
+
+            <div class="option-arrow">
+                →
+            </div>
 
         </div>
 
 
-        <!-- ERROR -->
+        <!-- SAVED ADDRESS -->
 
-        <div class="error-message" *ngIf="errorMessage">
+        <div class="profile-option">
 
-            {{ errorMessage }}
+            <div class="option-icon">
+                📍
+            </div>
+
+            <div class="option-content">
+
+                <h3>
+                    My Saved Address
+                </h3>
+
+                <p>
+                    Manage your saved delivery addresses
+                </p>
+
+            </div>
+
+            <div class="option-arrow">
+                →
+            </div>
 
         </div>
 
 
-        <!-- PROFILE DETAILS -->
+        <!-- ORDERS -->
 
-        <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+        <div class="profile-option">
 
-            <div class="form-group">
+            <div class="option-icon">
+                📦
+            </div>
 
-                <label>
-                    Full Name
-                </label>
+            <div class="option-content">
 
-                <input type="text" formControlName="firstName" placeholder="Enter your name">
+                <h3>
+                    My Orders
+                </h3>
 
-                <small *ngIf="
-            profileForm.get('firstName')?.invalid &&
-            profileForm.get('firstName')?.touched
-          ">
-
-                    Name is required.
-
-                </small>
+                <p>
+                    View your order history
+                </p>
 
             </div>
 
-
-            <div class="form-group">
-
-                <label>
-                    Email
-                </label>
-
-                <input type="email" formControlName="email" placeholder="Enter your email">
-
-                <small *ngIf="
-            profileForm.get('email')?.invalid &&
-            profileForm.get('email')?.touched
-          ">
-
-                    Please enter a valid email.
-
-                </small>
-
+            <div class="option-arrow">
+                →
             </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Mobile Number
-                </label>
-
-                <div class="mobile-container">
-
-                    <select formControlName="countryCode">
-
-                        <option value="+91">
-                            🇮🇳 +91
-                        </option>
-
-                        <option value="+1">
-                            🇺🇸 +1
-                        </option>
-
-                        <option value="+44">
-                            🇬🇧 +44
-                        </option>
-
-                        <option value="+61">
-                            🇦🇺 +61
-                        </option>
-
-                        <option value="+971">
-                            🇦🇪 +971
-                        </option>
-
-                    </select>
-
-
-                    <input type="tel" formControlName="mobileNumber" maxlength="10" placeholder="Mobile number">
-
-                </div>
-
-            </div>
-
-
-            <button type="submit" class="save-button" [disabled]="savingProfile">
-
-                {{ savingProfile
-                ? 'Saving...'
-                : 'Save Changes'
-                }}
-
-            </button>
-
-        </form>
-
-
-        <!-- PASSWORD -->
-
-        <div class="password-section">
-
-            <button type="button" class="password-toggle" (click)="togglePasswordSection()">
-
-                {{ showPasswordSection
-                ? 'Cancel Change Password'
-                : 'Change Password'
-                }}
-
-            </button>
-
-
-            <form *ngIf="showPasswordSection" [formGroup]="passwordForm" (ngSubmit)="changePassword()">
-
-
-                <!-- CURRENT PASSWORD -->
-
-                <div class="form-group">
-
-                    <label>
-                        Current Password
-                    </label>
-
-                    <div class="password-container">
-
-                        <input [type]="
-                showCurrentPassword
-                  ? 'text'
-                  : 'password'
-              " formControlName="currentPassword" placeholder="Enter current password">
-
-                        <button type="button" class="eye-button" (click)="
-                showCurrentPassword =
-                !showCurrentPassword
-              ">
-
-                            {{ showCurrentPassword ? '🙉' : '🙈' }}
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- NEW PASSWORD -->
-
-                <div class="form-group">
-
-                    <label>
-                        New Password
-                    </label>
-
-                    <div class="password-container">
-
-                        <input [type]="
-                showNewPassword
-                  ? 'text'
-                  : 'password'
-              " formControlName="newPassword" placeholder="Enter new password">
-
-                        <button type="button" class="eye-button" (click)="
-                showNewPassword =
-                !showNewPassword
-              ">
-
-                            {{ showNewPassword ? '🙉' : '🙈' }}
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CONFIRM PASSWORD -->
-
-                <div class="form-group">
-
-                    <label>
-                        Confirm New Password
-                    </label>
-
-                    <div class="password-container">
-
-                        <input [type]="
-                showConfirmPassword
-                  ? 'text'
-                  : 'password'
-              " formControlName="confirmPassword" placeholder="Confirm new password">
-
-                        <button type="button" class="eye-button" (click)="
-                showConfirmPassword =
-                !showConfirmPassword
-              ">
-
-                            {{ showConfirmPassword ? '🙉' : '🙈' }}
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <button type="submit" class="change-password-button" [disabled]="changingPassword">
-
-                    {{ changingPassword
-                    ? 'Changing...'
-                    : 'Change Password'
-                    }}
-
-                </button>
-
-            </form>
 
         </div>
 
