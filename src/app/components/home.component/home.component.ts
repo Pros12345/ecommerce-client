@@ -375,40 +375,6 @@ export class HomeComponent implements OnInit {
 
 
   // ==========================================
-  // LOGOUT
-  // ==========================================
-
-  onLogout(): void {
-
-
-    // Remove authentication data
-
-    localStorage.removeItem(
-      'authToken'
-    );
-
-
-    localStorage.removeItem(
-      'userEmail'
-    );
-
-
-    localStorage.removeItem(
-      'userName'
-    );
-
-
-    // Navigate to login
-
-    this.router.navigate([
-      '/login'
-    ]);
-
-  }
-
-
-
-  // ==========================================
   // ADMIN CHECK
   // ==========================================
 

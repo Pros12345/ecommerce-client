@@ -2,7 +2,9 @@
 
     <div class="profile-card">
 
-        <!-- HEADER -->
+        <!-- ==========================================
+             PROFILE HEADER
+        =========================================== -->
 
         <div class="profile-header">
 
@@ -25,7 +27,9 @@
         </div>
 
 
-        <!-- MANAGE MY ACCOUNT -->
+        <!-- ==========================================
+             MANAGE MY ACCOUNT
+        =========================================== -->
 
         <div class="profile-option" routerLink="/manage-account">
 
@@ -52,7 +56,9 @@
         </div>
 
 
-        <!-- SAVED ADDRESS -->
+        <!-- ==========================================
+             SAVED ADDRESS
+        =========================================== -->
 
         <div class="profile-option">
 
@@ -79,7 +85,9 @@
         </div>
 
 
-        <!-- ORDERS -->
+        <!-- ==========================================
+             MY ORDERS
+        =========================================== -->
 
         <div class="profile-option">
 
@@ -106,7 +114,38 @@
         </div>
 
 
-        <!-- BACK -->
+        <!-- ==========================================
+             LOGOUT
+        =========================================== -->
+
+        <div class="profile-option logout-option" (click)="onLogout()">
+
+            <div class="option-icon logout-icon">
+                🚪
+            </div>
+
+            <div class="option-content">
+
+                <h3>
+                    Logout
+                </h3>
+
+                <p>
+                    Sign out from your account
+                </p>
+
+            </div>
+
+            <div class="option-arrow logout-arrow">
+                →
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             BACK TO HOME
+        =========================================== -->
 
         <button type="button" class="back-button" (click)="goHome()">
 

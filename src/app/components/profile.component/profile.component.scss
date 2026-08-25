@@ -1,56 +1,409 @@
+/* ==========================================
+   PROFILE PAGE
+========================================== */
+
 .profile-page {
+
     min-height: 100vh;
+
     display: flex;
+
     justify-content: center;
-    padding: 100px 20px 40px;
+
+    align-items: flex-start;
+
+    padding: 100px 20px 50px;
+
     background: #f4f7fb;
+
+    box-sizing: border-box;
 }
+
+
+/* ==========================================
+   PROFILE CARD
+========================================== */
 
 .profile-card {
+
     width: 550px;
+
     max-width: 100%;
+
     background: white;
+
     padding: 32px;
+
     border-radius: 12px;
+
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
 }
 
-.profile-option {
+
+/* ==========================================
+   PROFILE HEADER
+========================================== */
+
+.profile-header {
+
     display: flex;
+
     align-items: center;
+
     gap: 15px;
-    padding: 18px;
-    margin-bottom: 12px;
-    border: 1px solid #e1e5eb;
-    border-radius: 8px;
-    cursor: pointer;
+
+    margin-bottom: 25px;
 }
 
-.profile-option:hover {
-    background: #f5f8ff;
-    border-color: #2874f0;
+
+/* ==========================================
+   PROFILE ICON
+========================================== */
+
+.profile-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
 }
 
-.option-content {
+
+/* ==========================================
+   PROFILE USER INFO
+========================================== */
+
+.profile-user-info {
+
     flex: 1;
 }
 
-.option-content h3 {
+.profile-user-info h2 {
+
     margin: 0 0 5px;
+
+    font-size: 25px;
+
+    color: #222;
 }
 
-.option-content p {
+.profile-user-info p {
+
     margin: 0;
+
     color: #777;
+
+    font-size: 15px;
 }
 
-.option-arrow {
-    color: #2874f0;
+
+/* ==========================================
+   PROFILE OPTION
+========================================== */
+
+.profile-option {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+
+    min-height: 82px;
+
+    padding: 16px;
+
+    margin-bottom: 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e1e5eb;
+
+    border-radius: 8px;
+
+    background: white;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+/* ==========================================
+   PROFILE OPTION HOVER
+========================================== */
+
+.profile-option:hover {
+
+    background: #f5f8ff;
+
+    border-color: #2874f0;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================
+   OPTION ICON
+========================================== */
+
+.option-icon {
+
+    width: 32px;
+
+    min-width: 32px;
+
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
     font-size: 22px;
 }
 
+
+/* ==========================================
+   OPTION CONTENT
+========================================== */
+
+.option-content {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.option-content h3 {
+
+    margin: 0 0 5px;
+
+    font-size: 18px;
+
+    color: #222;
+}
+
+.option-content p {
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+/* ==========================================
+   OPTION ARROW
+========================================== */
+
+.option-arrow {
+
+    width: 25px;
+
+    min-width: 25px;
+
+    text-align: center;
+
+    color: #2874f0;
+
+    font-size: 24px;
+
+    font-weight: 400;
+}
+
+
+/* ==========================================
+   LOGOUT OPTION
+========================================== */
+
+.logout-option {
+
+    margin-top: 2px;
+
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   LOGOUT ICON
+========================================== */
+
+.logout-icon {
+
+    font-size: 21px;
+}
+
+
+/* ==========================================
+   LOGOUT ARROW
+========================================== */
+
+.logout-arrow {
+
+    color: #e53935;
+}
+
+
+/* ==========================================
+   LOGOUT HOVER
+========================================== */
+
+.logout-option:hover {
+
+    background: #fff5f5;
+
+    border-color: #e53935;
+}
+
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
+
 .back-button {
+
     width: 100%;
-    height: 44px;
-    margin-top: 20px;
+
+    height: 46px;
+
+    margin-top: 5px;
+
+    padding: 0 15px;
+
+    border: 1px solid #2874f0;
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: #2874f0;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* ==========================================
+   BACK BUTTON HOVER
+========================================== */
+
+.back-button:hover {
+
+    background: #2874f0;
+
+    color: white;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 600px) {
+
+    .profile-page {
+
+        padding: 90px 12px 30px;
+    }
+
+    .profile-card {
+
+        padding: 22px;
+
+        border-radius: 10px;
+    }
+
+    .profile-user-info h2 {
+
+        font-size: 22px;
+    }
+
+    .profile-option {
+
+        min-height: 76px;
+
+        padding: 14px;
+
+        gap: 12px;
+    }
+
+    .option-content h3 {
+
+        font-size: 16px;
+    }
+
+    .option-content p {
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* ==========================================
+   VERY SMALL DEVICES
+========================================== */
+
+@media (max-width: 400px) {
+
+    .profile-card {
+
+        padding: 18px;
+    }
+
+    .profile-option {
+
+        padding: 12px;
+    }
+
+    .option-icon {
+
+        width: 28px;
+
+        min-width: 28px;
+
+        font-size: 19px;
+    }
+
+    .option-content h3 {
+
+        font-size: 15px;
+    }
+
+    .option-content p {
+
+        font-size: 12px;
+    }
+
+    .option-arrow {
+
+        font-size: 20px;
+    }
+
 }
