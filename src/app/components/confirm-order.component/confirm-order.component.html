@@ -1,0 +1,358 @@
+<div class="confirm-order-container">
+
+
+    <!-- ==========================================
+         PAGE TITLE
+    =========================================== -->
+
+    <div class="page-title">
+
+        <h2>
+            Confirm Your Order
+        </h2>
+
+        <p>
+            Review your address, products and payment method
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         DELIVERY ADDRESS
+    =========================================== -->
+
+    <div class="section-card">
+
+        <div class="section-header">
+
+            <h3>
+                Delivery Address
+            </h3>
+
+            <button type="button" class="change-button" (click)="changeAddress()">
+
+                Change
+
+            </button>
+
+        </div>
+
+
+        <div class="address-box" *ngIf="selectedAddress">
+
+
+            <div class="address-name">
+
+                <strong>
+                    {{ selectedAddress.fullName }}
+                </strong>
+
+                <span class="address-type">
+
+                    {{ selectedAddress.addressType }}
+
+                </span>
+
+            </div>
+
+
+            <p>
+
+                <strong>
+                    Mobile:
+                </strong>
+
+                {{ selectedAddress.mobileNumber }}
+
+            </p>
+
+
+            <p>
+
+                {{ selectedAddress.addressLine1 }}
+
+                <span *ngIf="selectedAddress.addressLine2">
+
+                    ,
+                    {{ selectedAddress.addressLine2 }}
+
+                </span>
+
+            </p>
+
+
+            <p>
+
+                {{ selectedAddress.city }},
+
+                {{ selectedAddress.state }}
+
+                -
+
+                {{ selectedAddress.pincode }}
+
+            </p>
+
+
+            <p *ngIf="selectedAddress.landmark">
+
+                <strong>
+                    Landmark:
+                </strong>
+
+                {{ selectedAddress.landmark }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         ORDER ITEMS
+    =========================================== -->
+
+    <div class="section-card">
+
+        <div class="section-header">
+
+            <h3>
+                Order Summary
+            </h3>
+
+        </div>
+
+
+        <div class="product-item" *ngFor="let item of cartItems">
+
+
+            <!-- PRODUCT IMAGE -->
+
+            <img [src]="item.image" [alt]="item.name" class="product-image">
+
+
+            <!-- PRODUCT DETAILS -->
+
+            <div class="product-details">
+
+                <h4>
+                    {{ item.name }}
+                </h4>
+
+
+                <p>
+
+                    Quantity:
+                    {{ item.quantity }}
+
+                </p>
+
+
+                <p>
+
+                    Price:
+                    ₹{{ item.price | number:'1.2-2' }}
+
+                </p>
+
+            </div>
+
+
+            <!-- ITEM TOTAL -->
+
+            <div class="item-total">
+
+                ₹{{
+                item.price * item.quantity
+                | number:'1.2-2'
+                }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         PRICE DETAILS
+    =========================================== -->
+
+    <div class="section-card">
+
+        <div class="section-header">
+
+            <h3>
+                Price Details
+            </h3>
+
+        </div>
+
+
+        <div class="price-row">
+
+            <span>
+                Price
+            </span>
+
+
+            <span>
+
+                ₹{{
+                totalItemPrice
+                | number:'1.2-2'
+                }}
+
+            </span>
+
+        </div>
+
+
+        <div class="price-row">
+
+            <span>
+                Delivery Charges
+            </span>
+
+
+            <span class="free">
+                Free
+            </span>
+
+        </div>
+
+
+        <hr>
+
+
+        <div class="total-row">
+
+            <span>
+                Total Amount
+            </span>
+
+
+            <span>
+
+                ₹{{
+                totalAmount
+                | number:'1.2-2'
+                }}
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         PAYMENT METHOD
+    =========================================== -->
+
+    <div class="section-card">
+
+        <div class="section-header">
+
+            <h3>
+                Payment Method
+            </h3>
+
+        </div>
+
+
+        <div class="payment-option">
+
+
+            <!-- CASH ON DELIVERY ONLY -->
+
+            <input type="radio" id="cod" name="paymentMethod" value="COD" [(ngModel)]="paymentMethod">
+
+
+            <label for="cod">
+
+                <div class="payment-title">
+
+                    Cash on Delivery
+
+                </div>
+
+
+                <div class="payment-description">
+
+                    Pay when your order is delivered.
+
+                </div>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         FINAL CONFIRMATION
+    =========================================== -->
+
+    <div class="confirmation-section">
+
+        <p>
+
+            Please verify your delivery address,
+            products, total amount and payment method
+            before placing the order.
+
+        </p>
+
+
+        <!-- ======================================
+             CONFIRM & PLACE ORDER
+        ======================================= -->
+
+        <button type="button" class="place-order-button" [disabled]="placingOrder" (click)="placeOrder()">
+
+            {{
+            placingOrder
+            ? 'PLACING ORDER...'
+            : 'CONFIRM & PLACE ORDER'
+            }}
+
+        </button>
+
+
+        <!-- ==========================================
+             ADDRESS ACTION BUTTONS
+        =========================================== -->
+
+        <div class="address-action-buttons">
+
+
+            <!-- CHANGE ADDRESS -->
+
+            <button type="button" class="change-address-btn" (click)="changeAddress()">
+
+                CHANGE ADDRESS
+
+            </button>
+
+
+            <!-- BACK TO CART -->
+
+            <button type="button" class="back-cart-btn" (click)="backToCart()">
+
+                ← BACK TO CART
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

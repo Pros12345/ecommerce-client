@@ -87,10 +87,13 @@ export class CheckoutAddressComponent
   };
 
 
+  // ==========================================
+  // CONSTRUCTOR
+  // ==========================================
+
   constructor(
 
-    private addressService:
-      AddressService,
+    private addressService: AddressService,
 
     private router: Router
 
@@ -109,7 +112,7 @@ export class CheckoutAddressComponent
 
 
   // ==========================================
-  // LOAD SAVED ADDRESSES
+  // LOAD ADDRESSES
   // ==========================================
 
   loadAddresses(): void {
@@ -120,7 +123,7 @@ export class CheckoutAddressComponent
       .getAddresses()
       .subscribe({
 
-        next: (response) => {
+        next: (response: Address[]) => {
 
           this.addresses = response;
 
@@ -131,7 +134,7 @@ export class CheckoutAddressComponent
         error: (error) => {
 
           console.error(
-            'Unable to load addresses',
+            'Unable to load addresses:',
             error
           );
 
@@ -154,9 +157,7 @@ export class CheckoutAddressComponent
   // SELECT ADDRESS
   // ==========================================
 
-  selectAddress(
-    address: Address
-  ): void {
+  selectAddress(address: Address): void {
 
     this.selectedAddress = address;
 
@@ -184,9 +185,7 @@ export class CheckoutAddressComponent
   // EDIT ADDRESS
   // ==========================================
 
-  editAddress(
-    address: Address
-  ): void {
+  editAddress(address: Address): void {
 
     this.selectedAddress = address;
 
@@ -245,7 +244,7 @@ export class CheckoutAddressComponent
       .addAddress(this.newAddress)
       .subscribe({
 
-        next: (savedAddress) => {
+        next: (savedAddress: Address) => {
 
           this.addresses.push(
             savedAddress
@@ -268,6 +267,7 @@ export class CheckoutAddressComponent
         error: (error) => {
 
           console.error(
+            'Unable to save address:',
             error
           );
 
@@ -290,9 +290,7 @@ export class CheckoutAddressComponent
 
   updateAddress(): void {
 
-    if (
-      !this.selectedAddress?.id
-    ) {
+    if (!this.selectedAddress?.id) {
 
       return;
 
@@ -311,7 +309,7 @@ export class CheckoutAddressComponent
       )
       .subscribe({
 
-        next: (updatedAddress) => {
+        next: (updatedAddress: Address) => {
 
           const index =
             this.addresses.findIndex(
@@ -343,6 +341,7 @@ export class CheckoutAddressComponent
         error: (error) => {
 
           console.error(
+            'Unable to update address:',
             error
           );
 
@@ -360,7 +359,7 @@ export class CheckoutAddressComponent
 
 
   // ==========================================
-  // CONFIRM ADDRESS
+  // CONTINUE TO CONFIRM ORDER
   // ==========================================
 
   confirmAddress(): void {
@@ -377,80 +376,26 @@ export class CheckoutAddressComponent
 
     }
 
-    Swal.fire({
-
-      title: 'Confirm Address',
-
-      text:
-        'Do you want to deliver the order to this address?',
-
-      icon: 'question',
-
-      showCancelButton: true,
-
-      confirmButtonText:
-        'Confirm & Place Order',
-
-      cancelButtonText:
-        'Cancel',
-
-      confirmButtonColor:
-        '#ff641f'
-
-    }).then((result) => {
-
-      if (result.isConfirmed) {
-
-        this.placeOrder();
-
-      }
-
-    });
-
-  }
-
-
-  // ==========================================
-  // PLACE ORDER
-  // ==========================================
-
-  placeOrder(): void {
-
-    if (!this.selectedAddress?.id) {
-
-      return;
-
-    }
-
     /*
-     * IMPORTANT:
+     * Store the selected address temporarily.
      *
-     * Here you will call your existing
-     * OrderService.
-     *
-     * Example:
-     *
-     * this.orderService.placeOrder(
-     *   this.selectedAddress.id
-     * )
+     * ConfirmOrderComponent will read this
+     * address and display it.
      */
 
-    console.log(
-      'Selected address ID:',
-      this.selectedAddress.id
+    localStorage.setItem(
+      'selectedAddress',
+      JSON.stringify(
+        this.selectedAddress
+      )
     );
 
-    /*
-     * Temporarily navigate to order page
-     * until your existing OrderService
-     * is connected.
-     */
 
-    Swal.fire(
-      'Order',
-      'Address confirmed. Connect this to your existing order API.',
-      'success'
-    );
+    // Navigate to Confirm Order
+
+    this.router.navigate([
+      '/confirm-order'
+    ]);
 
   }
 
@@ -462,12 +407,19 @@ export class CheckoutAddressComponent
   validateAddress(): boolean {
 
     if (
+
       !this.newAddress.fullName ||
+
       !this.newAddress.mobileNumber ||
+
       !this.newAddress.addressLine1 ||
+
       !this.newAddress.city ||
+
       !this.newAddress.state ||
+
       !this.newAddress.pincode
+
     ) {
 
       Swal.fire(
@@ -517,7 +469,7 @@ export class CheckoutAddressComponent
 
 
   // ==========================================
-  // CANCEL
+  // CANCEL FORM
   // ==========================================
 
   cancelForm(): void {

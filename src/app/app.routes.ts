@@ -11,7 +11,7 @@ import { EditAddressComponent } from './components/saved-address.component/edit-
 import { SavedAddressComponent } from './components/saved-address.component/saved-address.component';
 import { ManageAccountComponent } from './components/manage-account.component/manage-account.component';
 import { CheckoutAddressComponent } from './components/address/checkout-address.component/checkout-address.component';
-import { authGuard } from './guards/auth.guard';
+import { ConfirmOrderComponent } from './components/confirm-order.component/confirm-order.component'; import { authGuard } from './guards/auth.guard';
 
 
 export const routes: Routes = [
@@ -47,6 +47,12 @@ export const routes: Routes = [
     {
         path: 'checkout-address',
         component: CheckoutAddressComponent,
+        canActivate: [authGuard]
+    },
+
+    {
+        path: 'confirm-order',
+        component: ConfirmOrderComponent,
         canActivate: [authGuard]
     },
     {

@@ -1,353 +1,550 @@
-<div class="checkout-page">
+<div class="checkout-address-container">
 
-    <div class="checkout-container">
-
-
-        <!-- =====================================
+    <!-- ==========================================
          PAGE HEADER
-    ====================================== -->
+    =========================================== -->
 
-        <div class="checkout-header">
+    <div class="page-header">
+
+        <h2>
+            Select Delivery Address
+        </h2>
+
+        <p>
+            Choose where you want your order delivered
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         LOADING
+    =========================================== -->
+
+    <div class="loading-container" *ngIf="loading">
+
+        <p>
+            Loading saved addresses...
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         NO SAVED ADDRESS
+    =========================================== -->
+
+    <div class="empty-address" *ngIf="!loading && addresses.length === 0">
+
+        <div class="empty-icon">
+            📍
+        </div>
+
+        <h3>
+            No Saved Addresses
+        </h3>
+
+        <p>
+            You haven't saved any delivery address yet.
+        </p>
+
+        <button type="button" class="add-first-address-button" (click)="addNewAddress()">
+
+            + Add New Address
+
+        </button>
+
+    </div>
+
+
+    <!-- ==========================================
+         SAVED ADDRESSES
+    =========================================== -->
+
+    <div class="address-list" *ngIf="!loading && addresses.length > 0">
+
+
+        <div class="address-card" *ngFor="let address of addresses" [class.selected]="
+                selectedAddress?.id === address.id
+            " (click)="selectAddress(address)">
+
+
+            <!-- ==================================
+                 ADDRESS HEADER
+            =================================== -->
+
+            <div class="address-header">
+
+                <div class="address-type">
+
+                    <span class="address-type-icon">
+                        📍
+                    </span>
+
+                    <strong>
+                        {{ address.addressType }}
+                    </strong>
+
+                </div>
+
+
+                <button type="button" class="edit-button" (click)="
+                        editAddress(address);
+                        $event.stopPropagation()
+                    ">
+
+                    Edit
+
+                </button>
+
+            </div>
+
+
+            <!-- ==================================
+                 ADDRESS DETAILS
+            =================================== -->
+
+            <div class="address-details">
+
+                <h3>
+                    {{ address.fullName }}
+                </h3>
+
+
+                <p>
+
+                    <strong>
+                        Mobile:
+                    </strong>
+
+                    {{ address.mobileNumber }}
+
+                </p>
+
+
+                <p>
+
+                    {{ address.addressLine1 }}
+
+                    <span *ngIf="address.addressLine2">
+
+                        ,
+                        {{ address.addressLine2 }}
+
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    {{ address.city }},
+
+                    {{ address.state }}
+
+                    -
+
+                    {{ address.pincode }}
+
+                </p>
+
+
+                <p *ngIf="address.landmark">
+
+                    <strong>
+                        Landmark:
+                    </strong>
+
+                    {{ address.landmark }}
+
+                </p>
+
+            </div>
+
+
+            <!-- ==================================
+                 SELECTED
+            =================================== -->
+
+            <div class="selected-indicator" *ngIf="
+                    selectedAddress?.id === address.id
+                ">
+
+                ✓ Selected Address
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         ADD NEW ADDRESS
+    =========================================== -->
+
+    <div class="address-form-card" *ngIf="isAddingNewAddress">
+
+
+        <div class="form-header">
 
             <h2>
-                Select Delivery Address
+                Add New Address
             </h2>
 
-            <p>
-                Choose where you want your order delivered
-            </p>
+        </div>
+
+
+        <!-- FULL NAME -->
+
+        <div class="form-group">
+
+            <label>
+                Full Name *
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.fullName" placeholder="Enter full name">
 
         </div>
 
 
-        <!-- =====================================
-         SAVED ADDRESSES
-    ====================================== -->
+        <!-- MOBILE -->
 
-        <div class="saved-address-section" *ngIf="
-        addresses.length > 0 &&
-        !isAddingNewAddress &&
-        !isEditing
-      ">
+        <div class="form-group">
 
-            <div class="address-card" *ngFor="
-          let address of addresses
-        " [class.selected]="
-          selectedAddress?.id === address.id
-        " (click)="selectAddress(address)">
+            <label>
+                Mobile Number *
+            </label>
 
-                <div class="address-top">
+            <input type="text" maxlength="10" [(ngModel)]="newAddress.mobileNumber" placeholder="Enter mobile number">
 
-                    <div>
-
-                        <span class="address-type">
-                            {{ address.addressType }}
-                        </span>
-
-                        <strong>
-                            {{ address.fullName }}
-                        </strong>
-
-                    </div>
-
-                    <input type="radio" name="selectedAddress" [checked]="
-              selectedAddress?.id === address.id
-            ">
-
-                </div>
+        </div>
 
 
-                <div class="address-details">
+        <!-- ADDRESS LINE 1 -->
 
-                    <p>
-                        {{ address.addressLine1 }}
-                    </p>
+        <div class="form-group">
 
-                    <p *ngIf="address.addressLine2">
-                        {{ address.addressLine2 }}
-                    </p>
+            <label>
+                Address *
+            </label>
 
-                    <p>
-                        {{ address.city }},
-                        {{ address.state }} -
-                        {{ address.pincode }}
-                    </p>
+            <input type="text" [(ngModel)]="newAddress.addressLine1" placeholder="House No. Street, Area">
 
-                    <p>
-                        Mobile:
-                        {{ address.mobileNumber }}
-                    </p>
-
-                    <p *ngIf="address.landmark">
-                        Landmark:
-                        {{ address.landmark }}
-                    </p>
-
-                </div>
+        </div>
 
 
-                <!-- EDIT -->
+        <!-- ADDRESS LINE 2 -->
 
-                <button type="button" class="edit-address-btn" (click)="
-            $event.stopPropagation();
-            editAddress(address)
-          ">
-                    Edit
-                </button>
+        <div class="form-group">
 
-            </div>
+            <label>
+                Address Line 2
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.addressLine2" placeholder="Apartment, Building, etc.">
+
+        </div>
 
 
-            <!-- ADD NEW -->
+        <!-- CITY -->
 
-            <button type="button" class="add-address-btn" (click)="addNewAddress()">
-                + Add New Address
+        <div class="form-group">
+
+            <label>
+                City *
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.city" placeholder="Enter city">
+
+        </div>
+
+
+        <!-- STATE -->
+
+        <div class="form-group">
+
+            <label>
+                State *
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.state" placeholder="Enter state">
+
+        </div>
+
+
+        <!-- PINCODE -->
+
+        <div class="form-group">
+
+            <label>
+                Pincode *
+            </label>
+
+            <input type="text" maxlength="6" [(ngModel)]="newAddress.pincode" placeholder="Enter pincode">
+
+        </div>
+
+
+        <!-- LANDMARK -->
+
+        <div class="form-group">
+
+            <label>
+                Landmark
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.landmark" placeholder="Enter landmark">
+
+        </div>
+
+
+        <!-- ADDRESS TYPE -->
+
+        <div class="form-group">
+
+            <label>
+                Address Type
+            </label>
+
+            <select [(ngModel)]="newAddress.addressType">
+
+                <option value="HOME">
+                    Home
+                </option>
+
+                <option value="WORK">
+                    Work
+                </option>
+
+                <option value="OTHER">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- FORM BUTTONS -->
+
+        <div class="form-buttons">
+
+            <button type="button" class="save-button" (click)="saveNewAddress()">
+
+                Save Address
+
+            </button>
+
+
+            <button type="button" class="cancel-button" (click)="cancelForm()">
+
+                Cancel
+
             </button>
 
         </div>
 
+    </div>
 
-        <!-- =====================================
-         NO ADDRESS
-    ====================================== -->
 
-        <div class="no-address" *ngIf="
-        addresses.length === 0 &&
-        !isAddingNewAddress
-      ">
+    <!-- ==========================================
+         EDIT ADDRESS FORM
+    =========================================== -->
 
-            <h3>
-                No saved address found
-            </h3>
+    <div class="address-form-card" *ngIf="isEditing">
 
-            <p>
-                Add an address to continue with your order.
-            </p>
 
-            <button class="add-address-btn" (click)="addNewAddress()">
-                + Add New Address
+        <div class="form-header">
+
+            <h2>
+                Edit Address
+            </h2>
+
+        </div>
+
+
+        <!-- FULL NAME -->
+
+        <div class="form-group">
+
+            <label>
+                Full Name *
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.fullName">
+
+        </div>
+
+
+        <!-- MOBILE -->
+
+        <div class="form-group">
+
+            <label>
+                Mobile Number *
+            </label>
+
+            <input type="text" maxlength="10" [(ngModel)]="newAddress.mobileNumber">
+
+        </div>
+
+
+        <!-- ADDRESS -->
+
+        <div class="form-group">
+
+            <label>
+                Address *
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.addressLine1">
+
+        </div>
+
+
+        <!-- ADDRESS LINE 2 -->
+
+        <div class="form-group">
+
+            <label>
+                Address Line 2
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.addressLine2">
+
+        </div>
+
+
+        <!-- CITY -->
+
+        <div class="form-group">
+
+            <label>
+                City *
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.city">
+
+        </div>
+
+
+        <!-- STATE -->
+
+        <div class="form-group">
+
+            <label>
+                State *
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.state">
+
+        </div>
+
+
+        <!-- PINCODE -->
+
+        <div class="form-group">
+
+            <label>
+                Pincode *
+            </label>
+
+            <input type="text" maxlength="6" [(ngModel)]="newAddress.pincode">
+
+        </div>
+
+
+        <!-- LANDMARK -->
+
+        <div class="form-group">
+
+            <label>
+                Landmark
+            </label>
+
+            <input type="text" [(ngModel)]="newAddress.landmark">
+
+        </div>
+
+
+        <!-- ADDRESS TYPE -->
+
+        <div class="form-group">
+
+            <label>
+                Address Type
+            </label>
+
+            <select [(ngModel)]="newAddress.addressType">
+
+                <option value="HOME">
+                    Home
+                </option>
+
+                <option value="WORK">
+                    Work
+                </option>
+
+                <option value="OTHER">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- UPDATE BUTTONS -->
+
+        <div class="form-buttons">
+
+            <button type="button" class="save-button" (click)="updateAddress()">
+
+                Update Address
+
+            </button>
+
+
+            <button type="button" class="cancel-button" (click)="cancelForm()">
+
+                Cancel
+
             </button>
 
         </div>
 
+    </div>
 
-        <!-- =====================================
-         ADD / EDIT ADDRESS FORM
-    ====================================== -->
 
-        <div class="address-form" *ngIf="
-        isAddingNewAddress ||
-        isEditing
-      ">
-
-            <h3>
-
-                {{
-                isEditing
-                ? 'Edit Address'
-                : 'Add New Address'
-                }}
-
-            </h3>
-
-
-            <!-- FULL NAME -->
-
-            <div class="form-group">
-
-                <label>
-                    Full Name *
-                </label>
-
-                <input type="text" [(ngModel)]="
-            newAddress.fullName
-          " placeholder="Enter full name">
-
-            </div>
-
-
-            <!-- MOBILE -->
-
-            <div class="form-group">
-
-                <label>
-                    Mobile Number *
-                </label>
-
-                <input type="text" [(ngModel)]="
-            newAddress.mobileNumber
-          " placeholder="Enter mobile number">
-
-            </div>
-
-
-            <!-- ADDRESS LINE 1 -->
-
-            <div class="form-group">
-
-                <label>
-                    Address *
-                </label>
-
-                <input type="text" [(ngModel)]="
-            newAddress.addressLine1
-          " placeholder="House No, Street, Area">
-
-            </div>
-
-
-            <!-- ADDRESS LINE 2 -->
-
-            <div class="form-group">
-
-                <label>
-                    Address Line 2
-                </label>
-
-                <input type="text" [(ngModel)]="
-            newAddress.addressLine2
-          " placeholder="Apartment, Floor, etc.">
-
-            </div>
-
-
-            <!-- CITY / STATE -->
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label>
-                        City *
-                    </label>
-
-                    <input type="text" [(ngModel)]="
-              newAddress.city
-            " placeholder="City">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        State *
-                    </label>
-
-                    <input type="text" [(ngModel)]="
-              newAddress.state
-            " placeholder="State">
-
-                </div>
-
-            </div>
-
-
-            <!-- PINCODE / LANDMARK -->
-
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label>
-                        Pincode *
-                    </label>
-
-                    <input type="text" maxlength="6" [(ngModel)]="
-              newAddress.pincode
-            " placeholder="Pincode">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Landmark
-                    </label>
-
-                    <input type="text" [(ngModel)]="
-              newAddress.landmark
-            " placeholder="Landmark">
-
-                </div>
-
-            </div>
-
-
-            <!-- ADDRESS TYPE -->
-
-            <div class="form-group">
-
-                <label>
-                    Address Type
-                </label>
-
-                <select [(ngModel)]="
-            newAddress.addressType
-          ">
-
-                    <option value="HOME">
-                        Home
-                    </option>
-
-                    <option value="OFFICE">
-                        Office
-                    </option>
-
-                    <option value="OTHER">
-                        Other
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- FORM ACTIONS -->
-
-            <div class="form-actions">
-
-                <button type="button" class="cancel-btn" (click)="cancelForm()">
-                    Cancel
-                </button>
-
-
-                <button *ngIf="isAddingNewAddress" type="button" class="save-btn" (click)="saveNewAddress()">
-                    Save Address
-                </button>
-
-
-                <button *ngIf="isEditing" type="button" class="save-btn" (click)="updateAddress()">
-                    Update Address
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- =====================================
+    <!-- ==========================================
          BOTTOM ACTIONS
-    ====================================== -->
+    =========================================== -->
 
-        <div class="checkout-actions" *ngIf="
-        selectedAddress &&
-        !isAddingNewAddress &&
-        !isEditing
-      ">
+    <div class="checkout-actions" *ngIf="
+            !isAddingNewAddress &&
+            !isEditing
+        ">
 
-            <button type="button" class="back-btn" (click)="backToCart()">
-                Back to Cart
-            </button>
+        <button type="button" class="add-address-button" (click)="addNewAddress()">
+
+            + Add New Address
+
+        </button>
 
 
-            <button type="button" class="confirm-btn" (click)="confirmAddress()">
-                Confirm & Place Order
-            </button>
+        <button type="button" class="continue-button" (click)="confirmAddress()" [disabled]="!selectedAddress">
 
-        </div>
+            CONTINUE TO CONFIRM ORDER
 
+        </button>
+
+
+        <button type="button" class="back-button" (click)="backToCart()">
+
+            ← Back to Cart
+
+        </button>
 
     </div>
 

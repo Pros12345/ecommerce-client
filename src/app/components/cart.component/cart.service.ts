@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
+
 import { Product } from '../../../model/product';
 import { environment } from '../../../environments/environment';
+
 
 export interface CartItem {
 
     id: number;
+
     name: string;
+
     price: number;
+
     quantity: number;
+
     availableQuantity: number;
+
     image: string;
 
 }
+
 
 @Injectable({
     providedIn: 'root'
@@ -19,49 +27,138 @@ export interface CartItem {
 export class CartService {
 
     private STORAGE_KEY = 'cartItems';
+
+
+    // ==========================================
+    // CLEAR CART
+    // ==========================================
+
     clearCart(): void {
-        localStorage.removeItem(this.STORAGE_KEY);
+
+        localStorage.removeItem(
+            this.STORAGE_KEY
+        );
+
     }
+
+
+    // ==========================================
+    // GET CART ITEMS
+    // ==========================================
 
     getCartItems(): CartItem[] {
-        return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]');
+
+        return JSON.parse(
+            localStorage.getItem(this.STORAGE_KEY) || '[]'
+        );
+
     }
+
+
+    // ==========================================
+    // ADD TO CART
+    // ==========================================
 
     addToCart(product: Product): void {
+
         const cart = this.getCartItems();
-        const existing = cart.find(item => item.id === product.id);
+
+        const existing =
+            cart.find(item => item.id === product.id);
+
+
         if (existing) {
-            if (existing.quantity >= existing.availableQuantity) {
-                alert('Only ' + existing.availableQuantity + ' item(s) available in stock.');
+
+            if (
+                existing.quantity >=
+                existing.availableQuantity
+            ) {
+
+                alert(
+                    'Only ' +
+                    existing.availableQuantity +
+                    ' item(s) available in stock.'
+                );
+
                 return;
             }
+
             existing.quantity++;
+
         } else {
+
             cart.push({
+
                 id: product.id,
+
                 name: product.name,
+
                 price: product.price,
+
                 quantity: 1,
-                availableQuantity: product.quantity,
-                image: product.images.length > 0
-                    ? `${environment.apiBaseUrl}/images/${product.images[0].id}`
-                    : 'assets/no-image.png'
+
+                availableQuantity:
+                    product.quantity,
+
+                image:
+                    product.images.length > 0
+                        ? `${environment.apiBaseUrl}/images/${product.images[0].id}`
+                        : 'assets/no-image.png'
+
             });
+
         }
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart));
+
+
+        localStorage.setItem(
+            this.STORAGE_KEY,
+            JSON.stringify(cart)
+        );
+
     }
+
+
+    // ==========================================
+    // REMOVE ITEM
+    // ==========================================
 
     removeItem(id: number): void {
-        const cart = this.getCartItems().filter(item => item.id !== id);
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart));
+
+        const cart =
+            this.getCartItems()
+                .filter(item => item.id !== id);
+
+        localStorage.setItem(
+            this.STORAGE_KEY,
+            JSON.stringify(cart)
+        );
 
     }
+
+
+    // ==========================================
+    // UPDATE CART
+    // ==========================================
 
     updateCart(cart: CartItem[]): void {
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(cart));
+
+        localStorage.setItem(
+            this.STORAGE_KEY,
+            JSON.stringify(cart)
+        );
+
     }
 
+
+    // ==========================================
+    // CHECK PRODUCT IN CART
+    // ==========================================
+
     isInCart(productId: number): boolean {
-        return this.getCartItems().some(item => item.id === productId);
+
+        return this.getCartItems()
+            .some(item => item.id === productId);
+
     }
+
 }

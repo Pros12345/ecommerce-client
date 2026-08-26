@@ -1,0 +1,723 @@
+/* ==========================================
+   CONFIRM ORDER CONTAINER
+========================================== */
+
+.confirm-order-container {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    padding: 40px 20px 60px;
+
+    background: #f4f7fb;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+.page-title {
+
+    width: 800px;
+
+    max-width: 100%;
+
+    margin: 0 auto 25px;
+
+    text-align: left;
+
+}
+
+.page-title h2 {
+
+    margin: 0 0 6px;
+
+    font-size: 28px;
+
+    color: #222;
+
+}
+
+.page-title p {
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 15px;
+
+}
+
+
+/* ==========================================
+   SECTION CARD
+========================================== */
+
+.section-card {
+
+    width: 800px;
+
+    max-width: 100%;
+
+    margin: 0 auto 20px;
+
+    padding: 22px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    border: 1px solid #e1e5eb;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ==========================================
+   SECTION HEADER
+========================================== */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+
+}
+
+.section-header h3 {
+
+    margin: 0;
+
+    font-size: 19px;
+
+    color: #222;
+
+}
+
+
+/* ==========================================
+   CHANGE BUTTON
+========================================== */
+
+.change-button {
+
+    padding: 8px 18px;
+
+    border: 1px solid #2874f0;
+
+    border-radius: 5px;
+
+    background: white;
+
+    color: #2874f0;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+
+}
+
+.change-button:hover {
+
+    background: #2874f0;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   ADDRESS BOX
+========================================== */
+
+.address-box {
+
+    padding: 18px;
+
+    border: 1px solid #e1e5eb;
+
+    border-radius: 6px;
+
+    background: #fafafa;
+
+}
+
+.address-name {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 10px;
+
+}
+
+.address-name strong {
+
+    font-size: 16px;
+
+    color: #222;
+
+}
+
+.address-type {
+
+    padding: 3px 9px;
+
+    border-radius: 4px;
+
+    background: #e8f0fe;
+
+    color: #2874f0;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+.address-box p {
+
+    margin: 6px 0;
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ==========================================
+   PRODUCT ITEM
+========================================== */
+
+.product-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+.product-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+/* ==========================================
+   PRODUCT IMAGE
+========================================== */
+
+.product-image {
+
+    width: 75px;
+
+    height: 75px;
+
+    object-fit: contain;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 6px;
+
+    background: white;
+
+}
+
+
+/* ==========================================
+   PRODUCT DETAILS
+========================================== */
+
+.product-details {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+.product-details h4 {
+
+    margin: 0 0 8px;
+
+    font-size: 16px;
+
+    color: #222;
+
+}
+
+.product-details p {
+
+    margin: 4px 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   ITEM TOTAL
+========================================== */
+
+.item-total {
+
+    min-width: 100px;
+
+    text-align: right;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #222;
+
+}
+
+
+/* ==========================================
+   PRICE DETAILS
+========================================== */
+
+.price-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 14px;
+
+    font-size: 15px;
+
+    color: #555;
+
+}
+
+.price-row span:last-child {
+
+    font-weight: 500;
+
+    color: #222;
+
+}
+
+.free {
+
+    color: #008000 !important;
+
+    font-weight: 600 !important;
+
+}
+
+.section-card hr {
+
+    border: none;
+
+    border-top: 1px solid #eeeeee;
+
+    margin: 15px 0;
+
+}
+
+
+/* ==========================================
+   TOTAL ROW
+========================================== */
+
+.total-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #222;
+
+}
+
+
+/* ==========================================
+   PAYMENT OPTION
+========================================== */
+
+.payment-option {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    border: 1px solid #2874f0;
+
+    border-radius: 6px;
+
+    background: #f8fbff;
+
+}
+
+.payment-option input {
+
+    width: 18px;
+
+    height: 18px;
+
+    cursor: pointer;
+
+}
+
+.payment-option label {
+
+    cursor: pointer;
+
+    flex: 1;
+
+}
+
+.payment-title {
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #222;
+
+    margin-bottom: 4px;
+
+}
+
+.payment-description {
+
+    font-size: 13px;
+
+    color: #777;
+
+}
+
+
+/* ==========================================
+   CONFIRMATION SECTION
+========================================== */
+
+.confirmation-section {
+
+    width: 800px;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding: 22px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    border: 1px solid #e1e5eb;
+
+    box-sizing: border-box;
+
+}
+
+.confirmation-section>p {
+
+    margin: 0 0 20px;
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ==========================================
+   PLACE ORDER BUTTON
+========================================== */
+
+.place-order-button {
+
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #2874f0;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+
+}
+
+.place-order-button:hover {
+
+    background: #125bd1;
+
+    transform: translateY(-1px);
+
+}
+
+.place-order-button:disabled {
+
+    background: #a8a8a8;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* ==========================================
+   ADDRESS ACTION BUTTONS
+========================================== */
+
+.address-action-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    width: 100%;
+
+    margin-top: 15px;
+
+}
+
+
+/* ==========================================
+   CHANGE ADDRESS BUTTON
+========================================== */
+
+.change-address-btn {
+
+    flex: 1;
+
+    height: 46px;
+
+    padding: 0 15px;
+
+    border: 1px solid #2874f0;
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: #2874f0;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+.change-address-btn:hover {
+
+    background: #2874f0;
+
+    color: white;
+
+    border-color: #2874f0;
+
+}
+
+
+/* ==========================================
+   BACK TO CART BUTTON
+========================================== */
+
+.back-cart-btn {
+
+    flex: 1;
+
+    height: 46px;
+
+    padding: 0 15px;
+
+    border: 1px solid #777;
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: #555;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+.back-cart-btn:hover {
+
+    background: #f5f5f5;
+
+    border-color: #2874f0;
+
+    color: #2874f0;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .confirm-order-container {
+
+        padding: 25px 12px 40px;
+
+    }
+
+    .section-card,
+    .confirmation-section {
+
+        padding: 18px;
+
+    }
+
+    .page-title h2 {
+
+        font-size: 24px;
+
+    }
+
+    .product-item {
+
+        gap: 12px;
+
+    }
+
+    .product-image {
+
+        width: 60px;
+
+        height: 60px;
+
+    }
+
+    .item-total {
+
+        min-width: 75px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE ACTION BUTTONS
+========================================== */
+
+@media (max-width: 500px) {
+
+    .address-action-buttons {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+    .change-address-btn,
+    .back-cart-btn {
+
+        width: 100%;
+
+        flex: none;
+
+    }
+
+    .section-header {
+
+        gap: 10px;
+
+    }
+
+    .change-button {
+
+        padding: 7px 12px;
+
+    }
+
+    .address-name {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+    }
+
+}

@@ -200,7 +200,7 @@
                  PLACE ORDER
             =================================== -->
 
-            <button class="place-order-button" [disabled]="cartItems.length === 0" (click)="placeOrder()">
+            <button class="place-order-button" (click)="placeOrder()" [disabled]="cartItems.length === 0">
 
                 PLACE ORDER
 
