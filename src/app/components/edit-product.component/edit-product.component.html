@@ -1,130 +1,394 @@
 <div class="add-product-container">
 
-    <h2>Edit Product</h2>
+    <h2>
+        Edit Product
+    </h2>
+
 
     <form [formGroup]="productForm" (ngSubmit)="updateProduct()" enctype="multipart/form-data">
 
-        <!-- Name -->
+
+        <!-- ======================================
+             NAME
+        ======================================= -->
 
         <div class="form-row">
-            <label>Name:</label>
+
+            <label>
+                Name:
+            </label>
+
             <input type="text" formControlName="name" placeholder="Product Name">
+
         </div>
 
-        <!-- Description -->
+
+        <!-- ======================================
+             DESCRIPTION
+        ======================================= -->
 
         <div class="form-row">
-            <label>Description:</label>
+
+            <label>
+                Description:
+            </label>
+
             <textarea rows="4" formControlName="description" placeholder="Product Description">
             </textarea>
+
         </div>
 
-        <!-- Quantity -->
+
+        <!-- ======================================
+             QUANTITY
+        ======================================= -->
 
         <div class="form-row">
-            <label>Quantity:</label>
+
+            <label>
+                Quantity:
+            </label>
+
             <input type="number" formControlName="quantity" min="0">
+
         </div>
 
-        <!-- Price -->
+
+        <!-- ======================================
+             PRICE
+        ======================================= -->
 
         <div class="form-row">
-            <label>Price:</label>
+
+            <label>
+                Price:
+            </label>
+
             <input type="number" formControlName="price" min="1">
+
         </div>
 
-        <!-- product is inactive or active  -->
+
+        <!-- ======================================
+             STATUS
+        ======================================= -->
+
         <div class="form-row">
-            <label>Status:</label>
+
+            <label>
+                Status:
+            </label>
+
             <div class="status-group">
+
                 <label>
+
                     <input type="radio" formControlName="status" value="Active">
+
                     Active
+
                 </label>
+
+
                 <label>
+
                     <input type="radio" formControlName="status" value="Inactive">
+
                     Inactive
+
                 </label>
+
             </div>
+
         </div>
 
-        <!-- Existing Images -->
+
+        <!-- ======================================
+             EXISTING IMAGES
+        ======================================= -->
 
         <div class="form-row">
 
-            <label>Existing Images</label>
+            <label>
+                Existing Images
+            </label>
+
+
             <div class="selected-images" *ngIf="existingImages.length > 0">
-                <div class="image-item" *ngFor="let image of existingImages">
-                    <img [src]="'http://localhost:8080/api/images/' + image.id" alt="Product Image">
-                    <button type="button" class="delete-btn" (click)="removeExistingImage(image)">
+
+
+                <div class="image-item" *ngFor="let image of existingImages" [class.primary-image]="
+                        selectedPrimaryKey ===
+                        'existing:' + image.id
+                    ">
+
+
+                    <!-- IMAGE -->
+
+                    <img [src]="
+                            'http://localhost:8080/api/images/' +
+                            image.id
+                        " [alt]="
+                            image.fileName ||
+                            'Product Image'
+                        " class="product-image" loading="lazy" (error)="
+                            $any($event.target).src =
+                            'assets/Logo.png'
+                        ">
+
+
+                    <!-- FILE NAME -->
+
+                    <span>
+
+                        {{
+                        image.fileName ||
+                        'Product Image'
+                        }}
+
+                    </span>
+
+
+                    <!-- PRIMARY -->
+
+                    <label class="primary-option">
+
+                        <input type="radio" name="primaryImage" [checked]="
+                                selectedPrimaryKey ===
+                                'existing:' + image.id
+                            " (change)="
+                                selectExistingPrimary(
+                                    image.id
+                                )
+                            ">
+
+                        Primary Image
+
+                    </label>
+
+
+                    <!-- DELETE -->
+
+                    <button type="button" class="delete-btn" (click)="
+                            removeExistingImage(
+                                image
+                            )
+                        ">
+
                         Delete
+
                     </button>
+
+
                 </div>
+
             </div>
 
-            <div *ngIf="existingImages.length==0" class="empty-images">
+
+            <!-- NO EXISTING IMAGES -->
+
+            <div *ngIf="existingImages.length === 0" class="empty-images">
+
                 No Existing Images
+
             </div>
 
         </div>
 
-        <!-- Upload New Images -->
+
+        <!-- ======================================
+             NEW IMAGES
+        ======================================= -->
 
         <div class="form-row">
-            <label>Add New Images</label>
-            <input #fileInput type="file" multiple accept="image/*" (change)="onFileChange($event)">
+
+            <label>
+                Add New Images
+            </label>
+
+
+            <input #fileInput type="file" multiple accept="image/*" (change)="
+                    onFileChange($event)
+                ">
+
         </div>
 
-        <!-- Selected New Images -->
 
-        <div class="selected-images" *ngIf="selectedFiles.length>0">
+        <!-- ======================================
+             NEW IMAGE LIST
+        ======================================= -->
 
-            <h4>New Images</h4>
+        <div class="selected-images" *ngIf="selectedFiles.length > 0">
 
-            <div class="image-item" *ngFor="let file of selectedFiles; let i=index">
-                <span>{{file.name}}</span>
-                <button type="button" class="delete-btn" (click)="removeNewImage(i)">
+
+            <h4>
+                New Images
+            </h4>
+
+
+            <div class="image-item" *ngFor="
+                    let file of selectedFiles;
+                    let i = index
+                " [class.primary-image]="
+                    selectedPrimaryKey ===
+                    'new:' + i
+                ">
+
+
+                <!-- IMAGE -->
+
+                <img [src]="getFilePreview(file)" [alt]="file.name" class="product-image">
+
+
+                <!-- FILE NAME -->
+
+                <span>
+
+                    {{ file.name }}
+
+                </span>
+
+
+                <!-- PRIMARY -->
+
+                <label class="primary-option">
+
+                    <input type="radio" name="primaryImage" [checked]="
+                            selectedPrimaryKey ===
+                            'new:' + i
+                        " (change)="
+                            selectNewPrimary(i)
+                        ">
+
+                    Primary Image
+
+                </label>
+
+
+                <!-- REMOVE -->
+
+                <button type="button" class="delete-btn" (click)="
+                        removeNewImage(i)
+                    ">
+
                     Remove
+
                 </button>
+
             </div>
 
         </div>
 
-        <!-- Buttons -->
+
+        <!-- ======================================
+             PRIMARY IMAGE INFORMATION
+        ======================================= -->
+
+        <div class="primary-message" *ngIf="selectedPrimaryKey">
+
+
+            Primary Image:
+
+
+            <!-- EXISTING PRIMARY -->
+
+            <strong *ngIf="
+                    selectedPrimaryKey
+                        .startsWith('existing:')
+                ">
+
+                Existing Image
+
+            </strong>
+
+
+            <!-- NEW PRIMARY -->
+
+            <strong *ngIf="
+                    selectedPrimaryKey
+                        .startsWith('new:')
+                ">
+
+                {{
+                selectedFiles[
+                +selectedPrimaryKey.split(':')[1]
+                ]?.name
+                }}
+
+            </strong>
+
+        </div>
+
+
+        <!-- ======================================
+             BUTTONS
+        ======================================= -->
 
         <div class="button-group">
 
-            <button type="submit" [disabled]="productForm.invalid">
+
+            <button type="submit" [disabled]="
+                    productForm.invalid
+                ">
+
                 Update Product
+
             </button>
+
 
             <button type="button" class="cancel-btn" routerLink="/home">
+
                 Cancel
+
             </button>
 
         </div>
 
-        <!-- Success -->
+
+        <!-- ======================================
+             SUCCESS MESSAGE
+        ======================================= -->
 
         <div class="form-row" *ngIf="uploadSuccess">
+
             <span class="success-message">
+
                 Product Updated Successfully.
+
             </span>
 
         </div>
+
+
+        <!-- ======================================
+             HOME
+        ======================================= -->
 
         <div class="home-link">
-            <a routerLink="/home">Go to Home</a>
+
+            <a routerLink="/home">
+
+                Go to Home
+
+            </a>
+
         </div>
 
-        <!-- Error -->
+
+        <!-- ======================================
+             ERROR
+        ======================================= -->
 
         <div class="form-row" *ngIf="uploadError">
+
             <span class="error-message">
-                {{uploadError}}
+
+                {{ uploadError }}
+
             </span>
 
         </div>
+
 
     </form>
 

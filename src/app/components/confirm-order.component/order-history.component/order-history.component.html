@@ -33,7 +33,10 @@
          NO ORDERS
     =========================================== -->
 
-    <div class="no-orders" *ngIf="!loading && orders.length === 0">
+    <div class="no-orders" *ngIf="
+            !loading &&
+            orders.length === 0
+        ">
 
         <div class="no-orders-icon">
             📦
@@ -62,6 +65,9 @@
         ======================================= -->
 
         <div class="order-header">
+
+
+            <!-- ORDER INFORMATION -->
 
             <div>
 
@@ -109,6 +115,7 @@
 
             </span>
 
+
         </div>
 
 
@@ -125,15 +132,26 @@
 
             <div class="product-image-container">
 
+
+                <!--
+                    image is created in the
+                    component from imageId.
+
+                    If image loading fails,
+                    Logo.png will be displayed.
+                -->
+
                 <img [src]="
-                        item.image
-                        || 'assets/Logo.png'
+                        item.image ||
+                        'assets/Logo.png'
                     " [alt]="
-                        item.productName
-                        || 'Product'
+                        item.productName ||
+                        'Product'
                     " class="product-image" loading="lazy" (error)="
-                        item.image = 'assets/Logo.png'
-                    ">
+                        item.image =
+                            'assets/Logo.png'
+                    " />
+
 
             </div>
 
@@ -144,16 +162,22 @@
 
             <div class="product-details">
 
+
                 <h4>
 
-                    {{ item.productName }}
+                    {{
+                    item.productName
+                    }}
 
                 </h4>
 
 
                 <p>
 
-                    Quantity:
+                    <strong>
+                        Quantity:
+                    </strong>
+
                     {{ item.quantity }}
 
                 </p>
@@ -161,13 +185,17 @@
 
                 <p>
 
-                    Price:
+                    <strong>
+                        Price:
+                    </strong>
+
                     ₹{{
                     item.price
                     | number:'1.2-2'
                     }}
 
                 </p>
+
 
             </div>
 
@@ -185,6 +213,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -193,6 +222,7 @@
         ======================================= -->
 
         <div class="order-total">
+
 
             <span>
 
@@ -209,6 +239,7 @@
                 }}
 
             </strong>
+
 
         </div>
 
@@ -229,7 +260,9 @@
                     &&
                     order.orderStatus !== 'DELIVERED'
                 " type="button" class="cancel-button" (click)="
-                    cancelOrder(order.orderId)
+                    cancelOrder(
+                        order.orderId
+                    )
                 ">
 
                 Cancel Order
@@ -244,12 +277,15 @@
             <button *ngIf="
                     order.orderStatus === 'CANCELLED'
                 " type="button" class="delete-button" (click)="
-                    deleteOrder(order.orderId)
+                    deleteOrder(
+                        order.orderId
+                    )
                 ">
 
                 Delete Order
 
             </button>
+
 
         </div>
 

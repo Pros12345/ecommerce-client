@@ -16,6 +16,8 @@ import {
   HttpClient
 } from '@angular/common/http';
 
+import Swal from 'sweetalert2';
+
 import {
   OrderService,
   OrderResponse,
@@ -67,10 +69,6 @@ export class OrderHistoryComponent
 
   // ==========================================
   // IMAGE OBJECT URLS
-  //
-  // Blob URLs created for product images.
-  // They are released when component is
-  // destroyed.
   // ==========================================
 
   private imageObjectUrls: string[] = [];
@@ -421,17 +419,6 @@ export class OrderHistoryComponent
 
   // ==========================================
   // LOAD PRODUCT IMAGE
-  //
-  // Backend:
-  //
-  // GET /api/images/{id}
-  //
-  // Example:
-  //
-  // GET http://localhost:8080/api/images/5
-  //
-  // The response is converted to Blob and
-  // then to a browser Object URL.
   // ==========================================
 
   loadProductImage(
@@ -491,12 +478,10 @@ export class OrderHistoryComponent
 
     // ==========================================
     // REQUEST IMAGE
-    //
-    // HttpClient is used so the AuthInterceptor
-    // can add JWT if required.
     // ==========================================
 
     this.http
+
       .get(
 
         imageUrl,
@@ -506,6 +491,7 @@ export class OrderHistoryComponent
         }
 
       )
+
       .subscribe({
 
         // ======================================
@@ -658,103 +644,198 @@ export class OrderHistoryComponent
   // ==========================================
 
   cancelOrder(
-
     orderId: number
-
   ): void {
 
 
-    if (
+    Swal.fire({
 
-      !confirm(
-        'Are you sure you want to cancel this order?'
-      )
+      title: 'Cancel Order?',
 
-    ) {
+      html: `
+        <div style="font-size: 15px; line-height: 1.6;">
+          Are you sure you want to cancel
+          <strong>Order #${orderId}</strong>?
+          <br>
+          <span style="color: #777;">
+            This action cannot be undone.
+          </span>
+        </div>
+      `,
 
-      return;
+      icon: 'warning',
 
-    }
+      showCancelButton: true,
 
+      confirmButtonText: 'Yes, Cancel Order',
 
-    this.orderService
-      .cancelOrder(
-        orderId
-      )
-      .subscribe({
+      cancelButtonText: 'No, Keep Order',
 
-        next: (
+      confirmButtonColor: '#d33',
 
-          response: OrderResponse
+      cancelButtonColor: '#6c757d',
 
-        ) => {
+      reverseButtons: true,
 
+      focusCancel: true
 
-          console.log(
-            'ORDER CANCELLED:',
-            response
-          );
-
-
-          const order =
-            this.orders.find(
-
-              o =>
-                o.orderId === orderId
-
-            );
+    }).then((result) => {
 
 
-          if (order) {
+      // ==========================================
+      // USER CLICKED NO
+      // ==========================================
 
-            // Use status returned by backend
-            order.orderStatus =
-              response.orderStatus;
+      if (!result.isConfirmed) {
 
-          }
+        return;
 
-        },
-
-
-        error: (
-
-          error
-
-        ) => {
+      }
 
 
-          console.error(
-            'Unable to cancel order:',
-            error
-          );
+      // ==========================================
+      // SHOW LOADING
+      // ==========================================
 
+      Swal.fire({
 
-          const message =
-            error?.error?.message
-            ||
-            'Unable to cancel order.';
+        title: 'Cancelling Order...',
 
+        text: 'Please wait while we cancel your order.',
 
-          alert(
-            message
-          );
+        allowOutsideClick: false,
+
+        allowEscapeKey: false,
+
+        didOpen: () => {
+
+          Swal.showLoading();
 
         }
 
       });
+
+
+      // ==========================================
+      // CANCEL ORDER API
+      // ==========================================
+
+      this.orderService
+        .cancelOrder(orderId)
+        .subscribe({
+
+          // ======================================
+          // SUCCESS
+          // ======================================
+
+          next: (
+            response: OrderResponse
+          ) => {
+
+
+            console.log(
+              'ORDER CANCELLED:',
+              response
+            );
+
+
+            // ====================================
+            // FIND ORDER
+            // ====================================
+
+            const order =
+              this.orders.find(
+                o =>
+                  o.orderId === orderId
+              );
+
+
+            // ====================================
+            // UPDATE STATUS
+            // ====================================
+
+            if (order) {
+
+              order.orderStatus =
+                response.orderStatus;
+
+            }
+
+
+            // ====================================
+            // SUCCESS MESSAGE
+            // ====================================
+
+            Swal.fire({
+
+              title: 'Order Cancelled!',
+
+              text:
+                `Order #${orderId} has been cancelled successfully.`,
+
+              icon: 'success',
+
+              confirmButtonText: 'OK',
+
+              confirmButtonColor: '#2874f0',
+
+              timer: 2500,
+
+              timerProgressBar: true
+
+            });
+
+          },
+
+
+          // ======================================
+          // ERROR
+          // ======================================
+
+          error: (
+
+            error
+
+          ) => {
+
+
+            console.error(
+              'Unable to cancel order:',
+              error
+            );
+
+
+            const message =
+              error?.error?.message
+              ||
+              'Unable to cancel order. Please try again.';
+
+
+            Swal.fire({
+
+              title: 'Cancellation Failed',
+
+              text: message,
+
+              icon: 'error',
+
+              confirmButtonText: 'OK',
+
+              confirmButtonColor: '#d33'
+
+            });
+
+          }
+
+        });
+
+    });
 
   }
 
 
   // ==========================================
   // MARK ORDER ON THE WAY
-  //
-  // This method is available if you want to
-  // call the ON_THE_WAY API from Angular.
-  //
-  // IMPORTANT:
-  // For a real application this should be
-  // available only to an ADMIN/DELIVERY USER.
   // ==========================================
 
   markOrderOnTheWay(
@@ -843,71 +924,183 @@ export class OrderHistoryComponent
   ): void {
 
 
-    if (
+    // ==========================================
+    // SWEETALERT DELETE CONFIRMATION
+    // ==========================================
 
-      !confirm(
-        'Are you sure you want to delete this cancelled order?'
-      )
+    Swal.fire({
 
-    ) {
+      title: 'Delete Order?',
 
-      return;
+      html: `
+        <div style="font-size: 15px; line-height: 1.6;">
+          Are you sure you want to delete
+          <strong>Order #${orderId}</strong>?
+          <br>
+          <span style="color: #777;">
+            This cancelled order will be permanently removed
+            from your order history.
+          </span>
+        </div>
+      `,
 
-    }
+      icon: 'warning',
 
+      showCancelButton: true,
 
-    this.orderService
-      .deleteOrder(
-        orderId
-      )
-      .subscribe({
+      confirmButtonText: 'Yes, Delete Order',
 
-        next: () => {
+      cancelButtonText: 'No, Keep Order',
 
+      confirmButtonColor: '#d33',
 
-          console.log(
-            'ORDER DELETED:',
-            orderId
-          );
+      cancelButtonColor: '#6c757d',
 
+      reverseButtons: true,
 
-          this.orders =
-            this.orders.filter(
+      focusCancel: true
 
-              order =>
-                order.orderId !== orderId
-
-            );
-
-        },
-
-
-        error: (
-
-          error
-
-        ) => {
+    }).then((result) => {
 
 
-          console.error(
-            'Unable to delete order:',
-            error
-          );
+      // ==========================================
+      // USER CLICKED CANCEL
+      // ==========================================
+
+      if (!result.isConfirmed) {
+
+        return;
+
+      }
 
 
-          const message =
-            error?.error?.message
-            ||
-            'Unable to delete order.';
+      // ==========================================
+      // SHOW LOADING
+      // ==========================================
 
+      Swal.fire({
 
-          alert(
-            message
-          );
+        title: 'Deleting Order...',
+
+        text: 'Please wait while we remove the order.',
+
+        allowOutsideClick: false,
+
+        allowEscapeKey: false,
+
+        didOpen: () => {
+
+          Swal.showLoading();
 
         }
 
       });
+
+
+      // ==========================================
+      // DELETE ORDER API
+      // ==========================================
+
+      this.orderService
+        .deleteOrder(
+          orderId
+        )
+        .subscribe({
+
+          // ======================================
+          // SUCCESS
+          // ======================================
+
+          next: () => {
+
+
+            console.log(
+              'ORDER DELETED:',
+              orderId
+            );
+
+
+            // ====================================
+            // REMOVE ORDER FROM UI
+            // ====================================
+
+            this.orders =
+              this.orders.filter(
+
+                order =>
+                  order.orderId !== orderId
+
+              );
+
+
+            // ====================================
+            // SUCCESS MESSAGE
+            // ====================================
+
+            Swal.fire({
+
+              title: 'Order Deleted!',
+
+              text:
+                `Order #${orderId} has been deleted successfully.`,
+
+              icon: 'success',
+
+              confirmButtonText: 'OK',
+
+              confirmButtonColor: '#2874f0',
+
+              timer: 2500,
+
+              timerProgressBar: true
+
+            });
+
+          },
+
+
+          // ======================================
+          // ERROR
+          // ======================================
+
+          error: (
+
+            error
+
+          ) => {
+
+
+            console.error(
+              'Unable to delete order:',
+              error
+            );
+
+
+            const message =
+              error?.error?.message
+              ||
+              'Unable to delete order. Please try again.';
+
+
+            Swal.fire({
+
+              title: 'Delete Failed',
+
+              text: message,
+
+              icon: 'error',
+
+              confirmButtonText: 'OK',
+
+              confirmButtonColor: '#d33'
+
+            });
+
+          }
+
+        });
+
+    });
 
   }
 
@@ -918,7 +1111,6 @@ export class OrderHistoryComponent
 
   backToProfile(): void {
 
-
     this.router.navigate([
       '/profile'
     ]);
@@ -928,8 +1120,6 @@ export class OrderHistoryComponent
 
   // ==========================================
   // COMPONENT DESTROY
-  //
-  // Release Blob URLs.
   // ==========================================
 
   ngOnDestroy(): void {

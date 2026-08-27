@@ -59,15 +59,23 @@ export class CartService {
     // ADD TO CART
     // ==========================================
 
-    addToCart(product: Product): void {
+    addToCart(
+        product: Product
+    ): void {
 
-        const cart = this.getCartItems();
+        const cart =
+            this.getCartItems();
+
 
         const existing =
-            cart.find(item => item.id === product.id);
+            cart.find(
+                item =>
+                    item.id === product.id
+            );
 
 
         if (existing) {
+
 
             if (
                 existing.quantity >=
@@ -81,29 +89,60 @@ export class CartService {
                 );
 
                 return;
+
             }
+
 
             existing.quantity++;
 
-        } else {
+
+        }
+
+        else {
+
+
+            // ======================================
+            // PRIMARY IMAGE
+            // ======================================
+            //
+            // Backend puts primary image at index 0.
+            // ======================================
+
+            const primaryImage =
+                product.images
+                    ?.find(
+                        image =>
+                            image.primaryImage === true
+                    )
+                ||
+                product.images?.[0];
+
+
+            const imageUrl =
+                primaryImage
+                    ? `${environment.apiBaseUrl}/images/${primaryImage.id}`
+                    : 'assets/Logo.png';
+
 
             cart.push({
 
-                id: product.id,
+                id:
+                    product.id,
 
-                name: product.name,
+                name:
+                    product.name,
 
-                price: product.price,
+                price:
+                    product.price,
 
-                quantity: 1,
+                quantity:
+                    1,
 
                 availableQuantity:
                     product.quantity,
 
                 image:
-                    product.images.length > 0
-                        ? `${environment.apiBaseUrl}/images/${product.images[0].id}`
-                        : 'assets/no-image.png'
+                    imageUrl
 
             });
 
@@ -111,12 +150,16 @@ export class CartService {
 
 
         localStorage.setItem(
+
             this.STORAGE_KEY,
-            JSON.stringify(cart)
+
+            JSON.stringify(
+                cart
+            )
+
         );
 
     }
-
 
     // ==========================================
     // REMOVE ITEM

@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+
 import { Product } from '../../../model/product';
 import { ProductService } from '../../../model/product.service';
 import { CartService } from '../cart.component/cart.service';
@@ -47,7 +48,6 @@ export class HomeComponent implements OnInit {
   searchText: string = '';
 
 
-
   // ==========================================
   // CONSTRUCTOR
   // ==========================================
@@ -65,7 +65,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
 
-
   // ==========================================
   // INITIALIZATION
   // ==========================================
@@ -75,7 +74,6 @@ export class HomeComponent implements OnInit {
     this.loadProducts();
 
   }
-
 
 
   // ==========================================
@@ -88,33 +86,87 @@ export class HomeComponent implements OnInit {
       .getProducts()
       .subscribe({
 
-        next: (response) => {
+        next: (response: Product[]) => {
+
+          console.log(
+            'Products received from backend:',
+            response
+          );
 
 
-          this.allProducts = this.canAddProduct
+          // ======================================
+          // PREPARE PRODUCTS
+          // ======================================
 
-            ? response
+          const preparedProducts = response.map(
+            product => {
 
-            : response.filter(
-              product =>
-                product.status === 'Active'
-            );
+              /*
+               * IMPORTANT:
+               *
+               * Backend may return images in any order.
+               *
+               * We must move the image having
+               *
+               * primaryImage === true
+               *
+               * to index 0.
+               */
 
+              product.images =
+                this.movePrimaryImageFirst(
+                  product.images
+                );
+
+
+              // First image will now ALWAYS
+              // be the primary image.
+
+              product.currentImageIndex = 0;
+
+
+              // Description state
+
+              (product as any).showMore = false;
+
+
+              // Debugging
+
+              console.log(
+                `Product: ${product.name}`,
+                'Images:',
+                product.images
+              );
+
+
+              return product;
+
+            }
+          );
+
+
+          // ======================================
+          // ADMIN / USER PRODUCT FILTER
+          // ======================================
+
+          this.allProducts =
+            this.canAddProduct
+
+              ? preparedProducts
+
+              : preparedProducts.filter(
+                product =>
+                  product.status === 'Active'
+              );
+
+
+          // ======================================
+          // DISPLAY PRODUCTS
+          // ======================================
 
           this.products = [
             ...this.allProducts
           ];
-
-
-          this.products.forEach(
-            product => {
-
-              product.currentImageIndex = 0;
-
-              (product as any).showMore = false;
-
-            }
-          );
 
         },
 
@@ -133,6 +185,95 @@ export class HomeComponent implements OnInit {
   }
 
 
+  // ==========================================
+  // MOVE PRIMARY IMAGE FIRST
+  // ==========================================
+
+  movePrimaryImageFirst(
+    images: any[] | undefined
+  ): any[] {
+
+    // ------------------------------------------
+    // No images
+    // ------------------------------------------
+
+    if (
+      !images ||
+      images.length === 0
+    ) {
+
+      return [];
+
+    }
+
+
+    // ------------------------------------------
+    // Make a copy
+    // ------------------------------------------
+    //
+    // Do not directly manipulate the original
+    // array received from the API.
+    //
+
+    const imageList = [
+      ...images
+    ];
+
+
+    // ------------------------------------------
+    // Find primary image
+    // ------------------------------------------
+
+    const primaryIndex =
+      imageList.findIndex(
+        image =>
+          image.primaryImage === true
+      );
+
+
+    // ------------------------------------------
+    // No primary image found
+    // ------------------------------------------
+    //
+    // Keep backend order.
+    //
+
+    if (
+      primaryIndex === -1
+    ) {
+
+      console.warn(
+        'No primary image found. Keeping original image order:',
+        imageList
+      );
+
+      return imageList;
+
+    }
+
+
+    // ------------------------------------------
+    // Remove primary image
+    // ------------------------------------------
+
+    const primaryImage =
+      imageList.splice(
+        primaryIndex,
+        1
+      )[0];
+
+
+    // ------------------------------------------
+    // Put primary image at index 0
+    // ------------------------------------------
+
+    return [
+      primaryImage,
+      ...imageList
+    ];
+
+  }
+
 
   // ==========================================
   // SEARCH PRODUCTS
@@ -146,6 +287,10 @@ export class HomeComponent implements OnInit {
         .toLowerCase();
 
 
+    // ------------------------------------------
+    // Empty search
+    // ------------------------------------------
+
     if (!keyword) {
 
       this.products = [
@@ -156,6 +301,10 @@ export class HomeComponent implements OnInit {
 
     }
 
+
+    // ------------------------------------------
+    // Search
+    // ------------------------------------------
 
     this.products =
       this.allProducts.filter(
@@ -175,7 +324,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   // ==========================================
   // GET CURRENT IMAGE
   // ==========================================
@@ -184,21 +332,56 @@ export class HomeComponent implements OnInit {
     product: Product
   ): string {
 
+    // ------------------------------------------
+    // No images
+    // ------------------------------------------
 
     if (
       !product.images ||
       product.images.length === 0
     ) {
 
-      return 'assets/no-image.png';
+      return 'assets/Logo.png';
 
     }
 
 
-    return `${environment.apiBaseUrl}/images/${product.images[product.currentImageIndex ?? 0].id}`;
+    // ------------------------------------------
+    // Current index
+    // ------------------------------------------
+
+    const index =
+      product.currentImageIndex ?? 0;
+
+
+    // ------------------------------------------
+    // Get image
+    // ------------------------------------------
+
+    const image =
+      product.images[index];
+
+
+    // ------------------------------------------
+    // Image not found
+    // ------------------------------------------
+
+    if (!image) {
+
+      return 'assets/Logo.png';
+
+    }
+
+
+    // ------------------------------------------
+    // Image URL
+    // ------------------------------------------
+
+    return (
+      `${environment.apiBaseUrl}/images/${image.id}`
+    );
 
   }
-
 
 
   // ==========================================
@@ -208,7 +391,6 @@ export class HomeComponent implements OnInit {
   nextImage(
     product: Product
   ): void {
-
 
     if (
       !product.images ||
@@ -233,7 +415,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   // ==========================================
   // PREVIOUS IMAGE
   // ==========================================
@@ -241,7 +422,6 @@ export class HomeComponent implements OnInit {
   previousImage(
     product: Product
   ): void {
-
 
     if (
       !product.images ||
@@ -267,7 +447,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   // ==========================================
   // SET IMAGE
   // ==========================================
@@ -282,7 +461,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   // ==========================================
   // ADD TO CART
   // ==========================================
@@ -290,7 +468,6 @@ export class HomeComponent implements OnInit {
   addToCart(
     product: Product
   ): void {
-
 
     if (
       !this.authService.isLoggedIn()
@@ -312,7 +489,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   // ==========================================
   // CHECK PRODUCT IN CART
   // ==========================================
@@ -327,7 +503,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   // ==========================================
   // LOGIN STATUS
   // ==========================================
@@ -339,7 +514,6 @@ export class HomeComponent implements OnInit {
     );
 
   }
-
 
 
   // ==========================================
@@ -357,7 +531,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   // ==========================================
   // USER EMAIL
   // ==========================================
@@ -371,7 +544,6 @@ export class HomeComponent implements OnInit {
     );
 
   }
-
 
 
   // ==========================================
@@ -390,11 +562,11 @@ export class HomeComponent implements OnInit {
       email
         ?.toLowerCase()
         .includes('prosenjit')
-      ?? false
+      ??
+      false
     );
 
   }
-
 
 
   // ==========================================
@@ -415,11 +587,11 @@ export class HomeComponent implements OnInit {
         .includes(
           'prosenjitchakrabortty'
         )
-      ?? false
+      ??
+      false
     );
 
   }
-
 
 
   // ==========================================
@@ -429,7 +601,6 @@ export class HomeComponent implements OnInit {
   deleteProduct(
     id: number
   ): void {
-
 
     if (
       !confirm(
@@ -448,7 +619,6 @@ export class HomeComponent implements OnInit {
 
         next: () => {
 
-
           alert(
             'Product deleted successfully'
           );
@@ -460,7 +630,6 @@ export class HomeComponent implements OnInit {
 
 
         error: (err) => {
-
 
           console.error(
             err
@@ -478,7 +647,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   // ==========================================
   // PERMANENT DELETE
   // ==========================================
@@ -486,7 +654,6 @@ export class HomeComponent implements OnInit {
   permanentlyDeleteProduct(
     id: number
   ): void {
-
 
     Swal.fire({
 
@@ -513,18 +680,15 @@ export class HomeComponent implements OnInit {
 
       .then((result) => {
 
-
         if (
           result.isConfirmed
         ) {
-
 
           this.productService
             .permanentlyDeleteProduct(id)
             .subscribe({
 
               next: () => {
-
 
                 Swal.fire({
 
@@ -547,7 +711,6 @@ export class HomeComponent implements OnInit {
 
 
               error: (err) => {
-
 
                 console.error(
                   'Permanent delete error:',
@@ -575,7 +738,6 @@ export class HomeComponent implements OnInit {
       });
 
   }
-
 
 
   // ==========================================

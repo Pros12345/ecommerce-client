@@ -1,56 +1,225 @@
 <div class="add-product-container">
-    <h2>Add New Product</h2>
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-        <div class="form-row">
-            <label>Name:</label>
-            <input formControlName="name" type="text" placeholder="Product Name" required>
-        </div>
-        <div class="form-row">
-            <label>Description:</label>
-            <input formControlName="description" type="text" placeholder="Product Description">
-        </div>
-        <div class="form-row">
-            <label>Quantity:</label>
-            <input formControlName="quantity" type="number" min="1" placeholder="Quantity" required>
-        </div>
-        <div class="form-row">
-            <label>Price:</label>
-            <input formControlName="price" type="number" min="1" placeholder="price" required>
-        </div>
-        <div class="form-row">
-            <label>Images:</label>
 
-            <input #fileInput type="file" multiple (change)="onFileChange($event)" accept="image/*" required>
+
+    <h2>
+        Add New Product
+    </h2>
+
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+
+        <!-- ======================================
+             NAME
+        ======================================= -->
+
+        <div class="form-row">
+
+            <label>
+                Name:
+            </label>
+
+            <input formControlName="name" type="text" placeholder="Product Name" required>
+
+        </div>
+
+
+        <!-- ======================================
+             DESCRIPTION
+        ======================================= -->
+
+        <div class="form-row">
+
+            <label>
+                Description:
+            </label>
+
+            <input formControlName="description" type="text" placeholder="Product Description">
+
+        </div>
+
+
+        <!-- ======================================
+             QUANTITY
+        ======================================= -->
+
+        <div class="form-row">
+
+            <label>
+                Quantity:
+            </label>
+
+            <input formControlName="quantity" type="number" min="1" placeholder="Quantity" required>
+
+        </div>
+
+
+        <!-- ======================================
+             PRICE
+        ======================================= -->
+
+        <div class="form-row">
+
+            <label>
+                Price:
+            </label>
+
+            <input formControlName="price" type="number" min="1" placeholder="Price" required>
+
+        </div>
+
+
+        <!-- ======================================
+             IMAGES
+        ======================================= -->
+
+        <div class="form-row">
+
+
+            <label>
+                Images:
+            </label>
+
+
+            <input #fileInput type="file" multiple accept="image/*" (change)="onFileChange($event)">
+
+
+            <!-- ==================================
+                 IMAGE PREVIEW
+            =================================== -->
+
             <div class="selected-images" *ngIf="selectedFiles.length > 0">
 
-                <div class="image-item" *ngFor="let file of selectedFiles; let i = index">
 
-                    <span>{{ file.name }}</span>
+                <div class="image-item" *ngFor="
+                        let file of selectedFiles;
+                        let i = index
+                    " [class.primary-image]="
+                        primaryImageIndex === i
+                    ">
+
+
+                    <!-- IMAGE PREVIEW -->
+
+                    <img [src]="getFilePreview(file)" [alt]="file.name" class="product-image">
+
+
+                    <!-- FILE NAME -->
+
+                    <span>
+
+                        {{ file.name }}
+
+                    </span>
+
+
+                    <!-- PRIMARY RADIO -->
+
+                    <label class="primary-option">
+
+                        <input type="radio" name="primaryImage" [checked]="
+                                primaryImageIndex === i
+                            " (change)="
+                                selectPrimaryImage(i)
+                            ">
+
+                        <span>
+                            Primary Image
+                        </span>
+
+                    </label>
+
+
+                    <!-- DELETE -->
 
                     <button type="button" class="delete-btn" (click)="removeImage(i)">
+
                         Delete
+
                     </button>
+
 
                 </div>
 
+
             </div>
 
+
+            <!-- ==================================
+                 PRIMARY MESSAGE
+            =================================== -->
+
+            <div class="primary-message" *ngIf="selectedFiles.length > 0">
+
+                Selected Primary Image:
+
+                <strong>
+
+                    {{
+                    selectedFiles[
+                    primaryImageIndex
+                    ]?.name
+                    }}
+
+                </strong>
+
+            </div>
+
+
         </div>
+
+
+        <!-- ======================================
+             SUBMIT
+        ======================================= -->
+
         <div class="form-row">
-            <button type="submit" [disabled]="productForm.invalid || !selectedFiles">Add Product</button>
+
+
+            <button type="submit" [disabled]="
+                    productForm.invalid ||
+                    selectedFiles.length === 0
+                ">
+
+                Add Product
+
+            </button>
+
+
         </div>
+
+
+        <!-- ======================================
+             HOME
+        ======================================= -->
 
         <div class="home-link">
+
             <a routerLink="/home">
-                <span>Go to Home</span>
+
+                Go to Home
+
             </a>
+
         </div>
 
-        <div class="form-row" *ngIf="uploadSuccess">
-            <span class="success-message">Product added successfully!</span>
-        </div>
+
+        <!-- ======================================
+             ERROR
+        ======================================= -->
+
         <div class="form-row" *ngIf="uploadError">
-            <span class="error-message">{{uploadError}}</span>
+
+            <span class="error-message">
+
+                {{ uploadError }}
+
+            </span>
+
         </div>
+
+
     </form>
+
+
 </div>
