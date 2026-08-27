@@ -1,0 +1,271 @@
+<div class="order-history-container">
+
+
+    <!-- ==========================================
+         PAGE HEADER
+    =========================================== -->
+
+    <div class="page-header">
+
+        <h2>
+            My Orders
+        </h2>
+
+        <p>
+            View your order history
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         LOADING
+    =========================================== -->
+
+    <div class="loading-message" *ngIf="loading">
+
+        Loading your orders...
+
+    </div>
+
+
+    <!-- ==========================================
+         NO ORDERS
+    =========================================== -->
+
+    <div class="no-orders" *ngIf="!loading && orders.length === 0">
+
+        <div class="no-orders-icon">
+            📦
+        </div>
+
+        <h3>
+            No Orders Found
+        </h3>
+
+        <p>
+            You have not placed any orders yet.
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         ORDER LIST
+    =========================================== -->
+
+    <div class="order-card" *ngFor="let order of orders">
+
+
+        <!-- ======================================
+             ORDER HEADER
+        ======================================= -->
+
+        <div class="order-header">
+
+            <div>
+
+                <h3>
+                    Order #{{ order.orderId }}
+                </h3>
+
+                <p>
+
+                    {{
+                    order.orderDate
+                    | date:'dd MMM yyyy, hh:mm a'
+                    }}
+
+                </p>
+
+            </div>
+
+
+            <!-- ==================================
+                 ORDER STATUS
+            =================================== -->
+
+            <span class="order-status" [ngClass]="{
+
+                    'placed':
+                        order.orderStatus === 'PLACED',
+
+                    'on-the-way':
+                        order.orderStatus === 'ON_THE_WAY',
+
+                    'cancelled':
+                        order.orderStatus === 'CANCELLED',
+
+                    'delivered':
+                        order.orderStatus === 'DELIVERED'
+
+                }">
+
+                {{
+                getOrderStatusLabel(
+                order.orderStatus
+                )
+                }}
+
+            </span>
+
+        </div>
+
+
+        <!-- ======================================
+             ORDER ITEMS
+        ======================================= -->
+
+        <div class="order-item" *ngFor="let item of order.items">
+
+
+            <!-- ==================================
+                 PRODUCT IMAGE
+            =================================== -->
+
+            <div class="product-image-container">
+
+                <img [src]="
+                        item.image
+                        || 'assets/Logo.png'
+                    " [alt]="
+                        item.productName
+                        || 'Product'
+                    " class="product-image" loading="lazy" (error)="
+                        item.image = 'assets/Logo.png'
+                    ">
+
+            </div>
+
+
+            <!-- ==================================
+                 PRODUCT DETAILS
+            =================================== -->
+
+            <div class="product-details">
+
+                <h4>
+
+                    {{ item.productName }}
+
+                </h4>
+
+
+                <p>
+
+                    Quantity:
+                    {{ item.quantity }}
+
+                </p>
+
+
+                <p>
+
+                    Price:
+                    ₹{{
+                    item.price
+                    | number:'1.2-2'
+                    }}
+
+                </p>
+
+            </div>
+
+
+            <!-- ==================================
+                 ITEM TOTAL
+            =================================== -->
+
+            <div class="item-total">
+
+                ₹{{
+                item.total
+                | number:'1.2-2'
+                }}
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             ORDER TOTAL
+        ======================================= -->
+
+        <div class="order-total">
+
+            <span>
+
+                Total Amount
+
+            </span>
+
+
+            <strong>
+
+                ₹{{
+                order.totalAmount
+                | number:'1.2-2'
+                }}
+
+            </strong>
+
+        </div>
+
+
+        <!-- ======================================
+             ORDER ACTIONS
+        ======================================= -->
+
+        <div class="order-actions">
+
+
+            <!-- ==================================
+                 CANCEL ORDER
+            =================================== -->
+
+            <button *ngIf="
+                    order.orderStatus !== 'CANCELLED'
+                    &&
+                    order.orderStatus !== 'DELIVERED'
+                " type="button" class="cancel-button" (click)="
+                    cancelOrder(order.orderId)
+                ">
+
+                Cancel Order
+
+            </button>
+
+
+            <!-- ==================================
+                 DELETE CANCELLED ORDER
+            =================================== -->
+
+            <button *ngIf="
+                    order.orderStatus === 'CANCELLED'
+                " type="button" class="delete-button" (click)="
+                    deleteOrder(order.orderId)
+                ">
+
+                Delete Order
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ==========================================
+         BACK TO PROFILE
+    =========================================== -->
+
+    <button type="button" class="back-button" (click)="backToProfile()">
+
+        ← Back to Profile
+
+    </button>
+
+
+</div>

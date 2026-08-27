@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register.component/register.comp
 import { AddProductComponent } from './components/add-product.component/add-product.component';
 import { EditProductComponent } from './components/edit-product.component/edit-product.component';
 import { ProfileComponent } from './components/profile.component/profile.component';
+import { OrderHistoryComponent } from './components/confirm-order.component/order-history.component/order-history.component';
 import { EditAddressComponent } from './components/saved-address.component/edit-address.component/edit-address.component';
 import { SavedAddressComponent } from './components/saved-address.component/saved-address.component';
 import { ManageAccountComponent } from './components/manage-account.component/manage-account.component';
@@ -63,6 +64,11 @@ export const routes: Routes = [
     {
         path: 'edit-address/:id',
         component: EditAddressComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'my-orders',
+        component: OrderHistoryComponent,
         canActivate: [authGuard]
     },
 ];
