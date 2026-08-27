@@ -1,13 +1,10 @@
 <div class="add-product-container">
 
-
     <h2>
         Add New Product
     </h2>
 
-
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-
 
         <!-- ======================================
              NAME
@@ -75,11 +72,9 @@
 
         <div class="form-row">
 
-
             <label>
                 Images:
             </label>
-
 
             <input #fileInput type="file" multiple accept="image/*" (change)="onFileChange($event)">
 
@@ -90,14 +85,12 @@
 
             <div class="selected-images" *ngIf="selectedFiles.length > 0">
 
-
                 <div class="image-item" *ngFor="
                         let file of selectedFiles;
                         let i = index
                     " [class.primary-image]="
                         primaryImageIndex === i
                     ">
-
 
                     <!-- IMAGE PREVIEW -->
 
@@ -107,9 +100,7 @@
                     <!-- FILE NAME -->
 
                     <span>
-
                         {{ file.name }}
-
                     </span>
 
 
@@ -133,14 +124,10 @@
                     <!-- DELETE -->
 
                     <button type="button" class="delete-btn" (click)="removeImage(i)">
-
                         Delete
-
                     </button>
 
-
                 </div>
-
 
             </div>
 
@@ -154,17 +141,14 @@
                 Selected Primary Image:
 
                 <strong>
-
                     {{
                     selectedFiles[
                     primaryImageIndex
                     ]?.name
                     }}
-
                 </strong>
 
             </div>
-
 
         </div>
 
@@ -175,29 +159,31 @@
 
         <div class="form-row">
 
-
             <button type="submit" [disabled]="
                     productForm.invalid ||
                     selectedFiles.length === 0
                 ">
-
                 Add Product
-
             </button>
-
 
         </div>
 
 
         <!-- ======================================
-             HOME
+             HOME BUTTON
         ======================================= -->
 
         <div class="home-link">
 
-            <a routerLink="/home">
+            <a routerLink="/home" class="home-button" aria-label="Go to Home">
 
-                Go to Home
+                <span class="home-icon" aria-hidden="true">
+                    ←
+                </span>
+
+                <span>
+                    Go to Home
+                </span>
 
             </a>
 
@@ -211,15 +197,11 @@
         <div class="form-row" *ngIf="uploadError">
 
             <span class="error-message">
-
                 {{ uploadError }}
-
             </span>
 
         </div>
 
-
     </form>
-
 
 </div>

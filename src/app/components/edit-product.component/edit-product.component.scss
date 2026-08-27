@@ -1,65 +1,92 @@
 .add-product-container {
 
     max-width: 700px;
+
     margin: 40px auto;
+
     padding: 30px;
+
     background: #fff;
+
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
 
-    h2 {
-
-        text-align: center;
-        color: #2874f0;
-        margin-bottom: 30px;
-
-    }
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, .12);
 
 }
+
+
+.add-product-container h2 {
+
+    text-align: center;
+
+    color: #2874f0;
+
+    margin-bottom: 30px;
+
+}
+
 
 form {
 
     display: flex;
+
     flex-direction: column;
+
     gap: 20px;
 
 }
 
+
 .form-row {
 
     display: flex;
+
     flex-direction: column;
 
 }
 
+
 .form-row label {
 
     margin-bottom: 8px;
+
     font-weight: 600;
+
     color: #444;
 
 }
+
 
 .form-row input[type=text],
 .form-row input[type=number],
 .form-row textarea {
 
     padding: 12px;
+
     border: 1px solid #ddd;
+
     border-radius: 6px;
+
     font-size: 15px;
+
     outline: none;
+
     transition: .3s;
 
 }
+
 
 .form-row input:focus,
 .form-row textarea:focus {
 
     border-color: #2874f0;
-    box-shadow: 0 0 5px rgba(40, 116, 240, .3);
+
+    box-shadow:
+        0 0 5px rgba(40, 116, 240, .3);
 
 }
+
 
 .form-row textarea {
 
@@ -67,63 +94,122 @@ form {
 
 }
 
+
 input[type=file] {
 
     margin-top: 10px;
 
 }
 
+
+/* ==========================================
+   SELECTED IMAGES
+========================================== */
+
 .selected-images {
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
     gap: 20px;
+
     margin-top: 15px;
 
 }
 
+
+/* ==========================================
+   IMAGE ITEM
+========================================== */
+
 .image-item {
 
     border: 1px solid #ddd;
+
     border-radius: 8px;
+
     padding: 10px;
+
     text-align: center;
+
     background: #fafafa;
 
 }
 
+
 .image-item img {
 
     width: 100%;
+
     height: 160px;
+
     object-fit: contain;
+
     margin-bottom: 10px;
+
     border-radius: 6px;
 
 }
+
+
+/* ==========================================
+   FILE NAME
+========================================== */
 
 .image-item span {
 
     display: block;
+
     word-break: break-word;
+
     font-size: 14px;
+
     margin-bottom: 10px;
 
 }
 
+
+/* ==========================================
+   PRIMARY IMAGE
+========================================== */
+
+.image-item.primary-image {
+
+    border: 2px solid #2874f0;
+
+    background: #f5f9ff;
+
+}
+
+
+/* ==========================================
+   DELETE BUTTON
+========================================== */
+
 .delete-btn {
 
     width: 100%;
+
     padding: 10px;
+
     border: none;
+
     border-radius: 6px;
+
     background: #e53935;
+
     color: #fff;
+
     cursor: pointer;
+
     font-weight: 600;
+
     transition: .3s;
 
 }
+
 
 .delete-btn:hover {
 
@@ -131,43 +217,66 @@ input[type=file] {
 
 }
 
+
+/* ==========================================
+   EMPTY IMAGES
+========================================== */
+
 .empty-images {
 
     color: #777;
+
     font-style: italic;
+
     margin-top: 10px;
 
 }
 
-/* ---------------- Buttons ---------------- */
+
+/* ==========================================
+   BUTTON GROUP
+========================================== */
 
 .button-group {
 
     display: flex;
+
     gap: 15px;
+
     margin-top: 20px;
 
 }
 
+
 .button-group button {
 
     flex: 1;
+
     padding: 14px;
+
     border: none;
+
     border-radius: 6px;
+
     font-size: 16px;
+
     font-weight: 600;
+
     cursor: pointer;
+
     transition: .3s;
 
 }
 
+
 .button-group button[type=submit] {
 
     background: #2874f0;
+
     color: white;
 
 }
+
 
 .button-group button[type=submit]:hover {
 
@@ -175,19 +284,28 @@ input[type=file] {
 
 }
 
+
 .button-group button[type=submit]:disabled {
 
     background: #9fc2ff;
+
     cursor: not-allowed;
 
 }
 
+
+/* ==========================================
+   CANCEL BUTTON
+========================================== */
+
 .cancel-btn {
 
     background: #757575;
+
     color: white;
 
 }
+
 
 .cancel-btn:hover {
 
@@ -195,28 +313,204 @@ input[type=file] {
 
 }
 
+
+/* ==========================================
+   GO TO HOME BUTTON
+========================================== */
+
+.home-link {
+
+    margin-top: 2px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eeeeee;
+
+}
+
+
+.home-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-width: 150px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #2874f0;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #2874f0;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.home-button:hover {
+
+    background: #2874f0;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 3px 8px rgba(40, 116, 240, 0.25);
+
+    transform: translateY(-1px);
+
+}
+
+
+.home-button:active {
+
+    transform: translateY(0);
+
+}
+
+
+.home-button:focus-visible {
+
+    outline:
+        3px solid rgba(40, 116, 240, 0.25);
+
+    outline-offset: 2px;
+
+}
+
+
+.home-icon {
+
+    font-size: 18px;
+
+    line-height: 1;
+
+}
+
+
+/* ==========================================
+   SUCCESS / ERROR
+========================================== */
+
 .success-message {
 
     color: #2e7d32;
+
     font-weight: bold;
 
 }
+
 
 .error-message {
 
     color: #d32f2f;
+
     font-weight: bold;
 
 }
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.status-group {
+
+    display: flex;
+
+    gap: 30px;
+
+    margin-top: 10px;
+
+}
+
+
+.status-option {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+.status-option:hover {
+
+    border-color: #2874f0;
+
+    background: #f5f9ff;
+
+}
+
+
+.status-option input[type="radio"] {
+
+    width: 18px;
+
+    height: 18px;
+
+    cursor: pointer;
+
+}
+
+
+.status-option span {
+
+    font-weight: 600;
+
+    color: #444;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
 
 @media(max-width:768px) {
 
     .add-product-container {
 
         margin: 20px;
+
         padding: 20px;
 
     }
+
 
     .button-group {
 
@@ -224,59 +518,26 @@ input[type=file] {
 
     }
 
+
     .selected-images {
 
         grid-template-columns: 1fr;
 
     }
 
-    /* ---------------- Status ---------------- */
+
+    .home-button {
+
+        width: 100%;
+
+    }
+
 
     .status-group {
 
-        display: flex;
-        gap: 30px;
-        margin-top: 10px;
+        flex-direction: column;
 
-    }
-
-    .status-option {
-
-        display: flex;
-        align-items: center;
-        gap: 8px;
-
-        padding: 10px 16px;
-
-        border: 1px solid #ddd;
-        border-radius: 6px;
-
-        cursor: pointer;
-
-        transition: .3s;
-
-    }
-
-    .status-option:hover {
-
-        border-color: #2874f0;
-        background: #f5f9ff;
-
-    }
-
-    .status-option input[type="radio"] {
-
-        width: 18px;
-        height: 18px;
-
-        cursor: pointer;
-
-    }
-
-    .status-option span {
-
-        font-weight: 600;
-        color: #444;
+        gap: 10px;
 
     }
 

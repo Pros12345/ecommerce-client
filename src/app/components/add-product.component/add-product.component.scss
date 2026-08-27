@@ -168,7 +168,7 @@
 
 
 /* ==========================================
-   BUTTON
+   ADD PRODUCT BUTTON
 ========================================== */
 
 button[type="submit"] {
@@ -195,16 +195,71 @@ button[type="submit"]:disabled {
 
 
 /* ==========================================
-   HOME LINK
+   GO TO HOME BUTTON
 ========================================== */
 
 .home-link {
-    margin-top: 20px;
+    margin-top: 8px;
+    padding-top: 18px;
+
+    border-top: 1px solid #eeeeee;
 }
 
-.home-link a {
+.home-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-width: 150px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #2874f0;
+    border-radius: 6px;
+
+    background: #ffffff;
     color: #2874f0;
+
+    font-size: 15px;
+    font-weight: 600;
+
     text-decoration: none;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.home-button:hover {
+    background: #2874f0;
+    color: #ffffff;
+
+    box-shadow: 0 3px 8px rgba(40, 116, 240, 0.25);
+
+    transform: translateY(-1px);
+}
+
+.home-button:active {
+    transform: translateY(0);
+}
+
+.home-button:focus-visible {
+    outline: 3px solid rgba(40, 116, 240, 0.25);
+    outline-offset: 2px;
+}
+
+.home-icon {
+    font-size: 18px;
+    line-height: 1;
 }
 
 
@@ -243,4 +298,7 @@ button[type="submit"]:disabled {
         height: 160px;
     }
 
+    .home-button {
+        width: 100%;
+    }
 }

@@ -33,8 +33,7 @@
                 Description:
             </label>
 
-            <textarea rows="4" formControlName="description" placeholder="Product Description">
-            </textarea>
+            <textarea rows="4" formControlName="description" placeholder="Product Description"></textarea>
 
         </div>
 
@@ -116,7 +115,6 @@
 
             <div class="selected-images" *ngIf="existingImages.length > 0">
 
-
                 <div class="image-item" *ngFor="let image of existingImages" [class.primary-image]="
                         selectedPrimaryKey ===
                         'existing:' + image.id
@@ -174,9 +172,7 @@
                                 image
                             )
                         ">
-
                         Delete
-
                     </button>
 
 
@@ -188,9 +184,7 @@
             <!-- NO EXISTING IMAGES -->
 
             <div *ngIf="existingImages.length === 0" class="empty-images">
-
                 No Existing Images
-
             </div>
 
         </div>
@@ -220,7 +214,6 @@
 
         <div class="selected-images" *ngIf="selectedFiles.length > 0">
 
-
             <h4>
                 New Images
             </h4>
@@ -243,9 +236,7 @@
                 <!-- FILE NAME -->
 
                 <span>
-
                     {{ file.name }}
-
                 </span>
 
 
@@ -270,9 +261,7 @@
                 <button type="button" class="delete-btn" (click)="
                         removeNewImage(i)
                     ">
-
                     Remove
-
                 </button>
 
             </div>
@@ -286,7 +275,6 @@
 
         <div class="primary-message" *ngIf="selectedPrimaryKey">
 
-
             Primary Image:
 
 
@@ -296,9 +284,7 @@
                     selectedPrimaryKey
                         .startsWith('existing:')
                 ">
-
                 Existing Image
-
             </strong>
 
 
@@ -330,16 +316,12 @@
             <button type="submit" [disabled]="
                     productForm.invalid
                 ">
-
                 Update Product
-
             </button>
 
 
             <button type="button" class="cancel-btn" routerLink="/home">
-
                 Cancel
-
             </button>
 
         </div>
@@ -361,14 +343,20 @@
 
 
         <!-- ======================================
-             HOME
+             GO TO HOME BUTTON
         ======================================= -->
 
         <div class="home-link">
 
-            <a routerLink="/home">
+            <a routerLink="/home" class="home-button" aria-label="Go to Home">
 
-                Go to Home
+                <span class="home-icon" aria-hidden="true">
+                    ←
+                </span>
+
+                <span>
+                    Go to Home
+                </span>
 
             </a>
 
@@ -382,9 +370,7 @@
         <div class="form-row" *ngIf="uploadError">
 
             <span class="error-message">
-
                 {{ uploadError }}
-
             </span>
 
         </div>
