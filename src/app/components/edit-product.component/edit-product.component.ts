@@ -29,6 +29,10 @@ import {
   EditProductService
 } from './edit-product.service';
 
+import {
+  environment
+} from '../../../environments/environment';
+
 
 @Component({
 
@@ -54,6 +58,13 @@ import {
 
 export class EditProductComponent
   implements OnInit {
+
+
+  // ==========================================
+  // ENVIRONMENT
+  // ==========================================
+
+  environment = environment;
 
 
   // ==========================================
@@ -306,6 +317,19 @@ export class EditProductComponent
 
 
   // ==========================================
+  // GET IMAGE URL
+  // ==========================================
+
+  getImageUrl(
+    imageId: number
+  ): string {
+
+    return `${environment.imageBaseUrl}${imageId}`;
+
+  }
+
+
+  // ==========================================
   // GET FILE PREVIEW
   // ==========================================
 
@@ -454,6 +478,7 @@ export class EditProductComponent
       }
 
     }
+
 
     else if (
       this.selectedPrimaryKey

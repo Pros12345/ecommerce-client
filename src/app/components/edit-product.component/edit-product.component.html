@@ -123,16 +123,8 @@
 
                     <!-- IMAGE -->
 
-                    <img [src]="
-                            'http://localhost:8080/api/images/' +
-                            image.id
-                        " [alt]="
-                            image.fileName ||
-                            'Product Image'
-                        " class="product-image" loading="lazy" (error)="
-                            $any($event.target).src =
-                            'assets/Logo.png'
-                        ">
+                    <img [src]="environment.imageBaseUrl + image.id" [alt]="image.fileName || 'Product Image'"
+                        class="product-image" loading="lazy" (error)="$any($event.target).src = 'assets/Logo.png'">
 
 
                     <!-- FILE NAME -->
