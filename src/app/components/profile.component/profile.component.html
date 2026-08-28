@@ -114,6 +114,49 @@
 
         </div>
 
+        <!-- ==========================================
+     USER ADMINISTRATION
+     
+     Visible ONLY when the logged-in email
+     contains "prosenjitchakrabortty"
+     case-insensitively.
+=========================================== -->
+
+        <div *ngIf="authService.isProsenjitEmail()" class="profile-option admin-option" routerLink="/admin/users">
+
+
+            <div class="option-icon">
+
+                🛠️
+
+            </div>
+
+
+            <div class="option-content">
+
+                <h3>
+
+                    User Administration
+
+                </h3>
+
+
+                <p>
+
+                    View all users, addresses and orders
+
+                </p>
+
+            </div>
+
+
+            <div class="option-arrow">
+
+                →
+
+            </div>
+
+        </div>
 
         <!-- ==========================================
              LOGOUT

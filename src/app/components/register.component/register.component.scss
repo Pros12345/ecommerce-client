@@ -3,11 +3,13 @@
 ========================================== */
 
 .registration-container {
+
     min-height: 100vh;
 
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     padding: 20px;
@@ -15,8 +17,16 @@
     box-sizing: border-box;
 
     background:
-        radial-gradient(circle at 8% 25%, #dbe7f8 0, #dbe7f8 8%, transparent 8.2%),
-        radial-gradient(circle at 90% 65%, #f8e8e5 0, #f8e8e5 9%, transparent 9.2%),
+        radial-gradient(circle at 8% 25%,
+            #dbe7f8 0,
+            #dbe7f8 8%,
+            transparent 8.2%),
+
+        radial-gradient(circle at 90% 65%,
+            #f8e8e5 0,
+            #f8e8e5 9%,
+            transparent 9.2%),
+
         #f4f7fb;
 }
 
@@ -26,6 +36,7 @@
 ========================================== */
 
 .registration-card {
+
     width: 430px;
 
     max-width: 100%;
@@ -48,6 +59,7 @@
 ========================================== */
 
 .card-header {
+
     text-align: center;
 
     margin-bottom: 25px;
@@ -55,9 +67,11 @@
 
 
 .brand-logo {
+
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     gap: 8px;
@@ -73,11 +87,13 @@
 
 
 .brand-icon {
+
     font-size: 28px;
 }
 
 
 .card-header h2 {
+
     margin: 0;
 
     color: #222;
@@ -87,6 +103,7 @@
 
 
 .card-header p {
+
     margin-top: 8px;
 
     color: #888;
@@ -100,11 +117,13 @@
 ========================================== */
 
 .form-group {
+
     margin-bottom: 18px;
 }
 
 
 .form-group label {
+
     display: block;
 
     margin-bottom: 7px;
@@ -122,6 +141,7 @@
 ========================================== */
 
 .form-group>input {
+
     width: 100%;
 
     height: 44px;
@@ -143,6 +163,7 @@
 
 
 .form-group>input:focus {
+
     border-color: #2878e8;
 }
 
@@ -152,6 +173,7 @@
 ========================================== */
 
 .mobile-input-container {
+
     display: flex;
 
     width: 100%;
@@ -159,6 +181,7 @@
 
 
 .mobile-input-container select {
+
     width: 100px;
 
     height: 44px;
@@ -180,6 +203,7 @@
 
 
 .mobile-input-container input {
+
     flex: 1;
 
     min-width: 0;
@@ -201,6 +225,7 @@
 
 
 .mobile-input-container input:focus {
+
     border-color: #2878e8;
 }
 
@@ -210,6 +235,7 @@
 ========================================== */
 
 .password-container {
+
     position: relative;
 
     width: 100%;
@@ -217,6 +243,7 @@
 
 
 .password-container input {
+
     width: 100%;
 
     height: 44px;
@@ -238,6 +265,7 @@
 
 
 .password-container input:focus {
+
     border-color: #2878e8;
 }
 
@@ -247,6 +275,7 @@
 ========================================== */
 
 .eye-button {
+
     position: absolute;
 
     right: 10px;
@@ -272,6 +301,7 @@
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     font-size: 17px;
@@ -279,6 +309,7 @@
 
 
 .eye-button:hover {
+
     color: #2878e8;
 }
 
@@ -288,6 +319,7 @@
 ========================================== */
 
 .error-message {
+
     margin-top: 6px;
 
     color: #e53935;
@@ -297,6 +329,7 @@
 
 
 .mismatch-error {
+
     margin-top: -8px;
 
     margin-bottom: 15px;
@@ -308,6 +341,7 @@
 ========================================== */
 
 .signup-button {
+
     width: 100%;
 
     height: 48px;
@@ -331,11 +365,13 @@
 
 
 .signup-button:hover:not(:disabled) {
+
     background: #e95616;
 }
 
 
 .signup-button:disabled {
+
     opacity: 0.6;
 
     cursor: not-allowed;
@@ -347,6 +383,7 @@
 ========================================== */
 
 .login-link {
+
     text-align: center;
 
     margin-top: 20px;
@@ -354,6 +391,7 @@
 
 
 .login-link p {
+
     margin: 0;
 
     color: #666;
@@ -363,6 +401,7 @@
 
 
 .login-link a {
+
     margin-left: 5px;
 
     color: #2878e8;
@@ -374,6 +413,7 @@
 
 
 .login-link a:hover {
+
     text-decoration: underline;
 }
 
@@ -383,6 +423,7 @@
 ========================================== */
 
 .divider {
+
     display: flex;
 
     align-items: center;
@@ -399,6 +440,7 @@
 
 .divider::before,
 .divider::after {
+
     content: "";
 
     flex: 1;
@@ -414,6 +456,7 @@
 ========================================== */
 
 .home-link a {
+
     width: 100%;
 
     height: 44px;
@@ -421,6 +464,7 @@
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     box-sizing: border-box;
@@ -442,6 +486,7 @@
 
 
 .home-link a:hover {
+
     background: #2878e8;
 
     color: white;
@@ -449,10 +494,11 @@
 
 
 /* ==========================================
-   ERROR POPUP OVERLAY
+   POPUP OVERLAY
 ========================================== */
 
 .popup-overlay {
+
     position: fixed;
 
     inset: 0;
@@ -462,6 +508,7 @@
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     background: rgba(0, 0, 0, 0.45);
@@ -473,6 +520,7 @@
 ========================================== */
 
 .error-popup {
+
     width: 350px;
 
     max-width: 90%;
@@ -492,31 +540,132 @@
 }
 
 
-.popup-icon {
-    font-size: 35px;
-
-    margin-bottom: 10px;
-}
-
-
 .error-popup h3 {
+
     margin: 0 0 10px;
 
-    color: #333;
+    color: #e53935;
+
+    font-size: 21px;
 }
 
 
 .error-popup p {
+
     color: #666;
 
     font-size: 14px;
 
     line-height: 1.5;
+
+    margin: 0;
 }
 
 
+/* ==========================================
+   SUCCESS POPUP
+========================================== */
+
+.success-popup {
+
+    width: 350px;
+
+    max-width: 90%;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    background: white;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+.success-popup h3 {
+
+    margin: 0 0 10px;
+
+    color: #2e7d32;
+
+    font-size: 21px;
+}
+
+
+.success-popup p {
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin: 0;
+}
+
+
+/* ==========================================
+   POPUP ICON
+========================================== */
+
+.popup-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   SUCCESS ICON
+========================================== */
+
+.success-icon {
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+}
+
+
+/* ==========================================
+   ERROR ICON
+========================================== */
+
+.error-icon {
+
+    background: #ffebee;
+
+    color: #e53935;
+}
+
+
+/* ==========================================
+   POPUP BUTTON
+========================================== */
+
 .popup-button {
-    margin-top: 15px;
+
+    margin-top: 20px;
 
     padding: 10px 30px;
 
@@ -524,13 +673,45 @@
 
     border-radius: 5px;
 
-    background: #ff641f;
-
     color: white;
 
     font-weight: 600;
 
     cursor: pointer;
+
+    transition: background 0.2s;
+}
+
+
+/* ==========================================
+   ERROR BUTTON
+========================================== */
+
+.error-popup .popup-button {
+
+    background: #e53935;
+}
+
+
+.error-popup .popup-button:hover {
+
+    background: #c62828;
+}
+
+
+/* ==========================================
+   SUCCESS BUTTON
+========================================== */
+
+.success-button {
+
+    background: #2e7d32;
+}
+
+
+.success-button:hover {
+
+    background: #256628;
 }
 
 
@@ -542,15 +723,20 @@
 
     .registration-card,
     .login-card {
+
         padding: 25px 20px;
     }
 
+
     .card-header h2,
     .login-header h2 {
+
         font-size: 24px;
     }
 
+
     .mobile-input-container select {
+
         width: 90px;
     }
 

@@ -1,4 +1,35 @@
 <!-- ==========================================
+     SUCCESS POPUP
+========================================== -->
+
+<div class="popup-overlay" *ngIf="showSuccess" (click)="closeSuccessPopup()">
+
+    <div class="success-popup" (click)="$event.stopPropagation()">
+
+        <div class="popup-icon success-icon">
+            ✓
+        </div>
+
+        <h3>
+            Registration Successful
+        </h3>
+
+        <p>
+            {{ successMessage }}
+        </p>
+
+        <button type="button" class="popup-button success-button" (click)="closeSuccessPopup()">
+
+            Continue to Login
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
      ERROR POPUP
 ========================================== -->
 
@@ -6,7 +37,7 @@
 
     <div class="error-popup" (click)="$event.stopPropagation()">
 
-        <div class="popup-icon">
+        <div class="popup-icon error-icon">
             ⚠
         </div>
 
@@ -19,7 +50,9 @@
         </p>
 
         <button type="button" class="popup-button" (click)="closeErrorPopup()">
+
             OK
+
         </button>
 
     </div>
@@ -37,8 +70,8 @@
 
 
         <!-- ==========================================
-         HEADER
-    =========================================== -->
+             HEADER
+        =========================================== -->
 
         <div class="card-header">
 
@@ -66,15 +99,15 @@
 
 
         <!-- ==========================================
-         REGISTRATION FORM
-    =========================================== -->
+             REGISTRATION FORM
+        =========================================== -->
 
         <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
 
 
             <!-- ==========================================
-           NAME
-      =========================================== -->
+                 NAME
+            =========================================== -->
 
             <div class="form-group">
 
@@ -86,18 +119,20 @@
                     autocomplete="name">
 
                 <div class="error-message" *ngIf="
-            registrationForm.get('firstName')?.invalid &&
-            registrationForm.get('firstName')?.touched
-          ">
+                        registrationForm.get('firstName')?.invalid &&
+                        registrationForm.get('firstName')?.touched
+                    ">
+
                     Please enter your name.
+
                 </div>
 
             </div>
 
 
             <!-- ==========================================
-           EMAIL
-      =========================================== -->
+                 EMAIL
+            =========================================== -->
 
             <div class="form-group">
 
@@ -109,18 +144,20 @@
                     autocomplete="email">
 
                 <div class="error-message" *ngIf="
-            registrationForm.get('email')?.invalid &&
-            registrationForm.get('email')?.touched
-          ">
+                        registrationForm.get('email')?.invalid &&
+                        registrationForm.get('email')?.touched
+                    ">
+
                     Please enter a valid email address.
+
                 </div>
 
             </div>
 
 
             <!-- ==========================================
-           MOBILE NUMBER
-      =========================================== -->
+                 MOBILE NUMBER
+            =========================================== -->
 
             <div class="form-group">
 
@@ -166,18 +203,20 @@
 
 
                 <div class="error-message" *ngIf="
-            registrationForm.get('mobileNumber')?.invalid &&
-            registrationForm.get('mobileNumber')?.touched
-          ">
+                        registrationForm.get('mobileNumber')?.invalid &&
+                        registrationForm.get('mobileNumber')?.touched
+                    ">
+
                     Please enter a valid 10 digit mobile number.
+
                 </div>
 
             </div>
 
 
             <!-- ==========================================
-           PASSWORD
-      =========================================== -->
+                 PASSWORD
+            =========================================== -->
 
             <div class="form-group">
 
@@ -185,19 +224,32 @@
                     Password
                 </label>
 
-
                 <div class="password-container">
 
-                    <input id="password" [type]="showRegistrationPassword ? 'text' : 'password'"
-                        formControlName="password" placeholder="Create a password" autocomplete="new-password">
+                    <input id="password" [type]="
+                            showRegistrationPassword
+                                ? 'text'
+                                : 'password'
+                        " formControlName="password" placeholder="Create a password" autocomplete="new-password">
 
 
                     <!-- Eye Button -->
 
-                    <button type="button" class="eye-button"
-                        (click)="showRegistrationPassword = !showRegistrationPassword"
-                        [attr.aria-label]="showRegistrationPassword ? 'Hide password' : 'Show password'">
-                        {{ showRegistrationPassword ? '🙉' : '🙈' }}
+                    <button type="button" class="eye-button" (click)="
+                            showRegistrationPassword =
+                            !showRegistrationPassword
+                        " [attr.aria-label]="
+                            showRegistrationPassword
+                                ? 'Hide password'
+                                : 'Show password'
+                        ">
+
+                        {{
+                        showRegistrationPassword
+                        ? '🙉'
+                        : '🙈'
+                        }}
+
                     </button>
 
                 </div>
@@ -206,8 +258,8 @@
 
 
             <!-- ==========================================
-           CONFIRM PASSWORD
-      =========================================== -->
+                 CONFIRM PASSWORD
+            =========================================== -->
 
             <div class="form-group">
 
@@ -215,23 +267,33 @@
                     Confirm Password
                 </label>
 
-
                 <div class="password-container">
 
-                    <input id="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'"
-                        formControlName="confirmPassword" placeholder="Confirm your password"
+                    <input id="confirmPassword" [type]="
+                            showConfirmPassword
+                                ? 'text'
+                                : 'password'
+                        " formControlName="confirmPassword" placeholder="Confirm your password"
                         autocomplete="new-password">
 
 
                     <!-- Eye Button -->
 
-                    <button type="button" class="eye-button" (click)="showConfirmPassword = !showConfirmPassword"
-                        [attr.aria-label]="
-              showConfirmPassword
-                ? 'Hide confirm password'
-                : 'Show confirm password'
-            ">
-                        {{ showConfirmPassword ? '🙉' : '🙈' }}
+                    <button type="button" class="eye-button" (click)="
+                            showConfirmPassword =
+                            !showConfirmPassword
+                        " [attr.aria-label]="
+                            showConfirmPassword
+                                ? 'Hide confirm password'
+                                : 'Show confirm password'
+                        ">
+
+                        {{
+                        showConfirmPassword
+                        ? '🙉'
+                        : '🙈'
+                        }}
+
                     </button>
 
                 </div>
@@ -240,18 +302,20 @@
 
 
             <!-- ==========================================
-           PASSWORD MISMATCH
-      =========================================== -->
+                 PASSWORD MISMATCH
+            =========================================== -->
 
             <div *ngIf="
-          registrationForm.errors?.['passwordsMismatch'] &&
-          (
-            registrationForm.get('confirmPassword')?.dirty ||
-            registrationForm.get('confirmPassword')?.touched
-          )
-        " class="error-message mismatch-error">
+                    registrationForm.errors?.['passwordsMismatch'] &&
+                    (
+                        registrationForm.get('confirmPassword')?.dirty ||
+                        registrationForm.get('confirmPassword')?.touched
+                    )
+                " class="error-message mismatch-error">
 
-                <span>⚠</span>
+                <span>
+                    ⚠
+                </span>
 
                 Passwords do not match.
 
@@ -259,8 +323,8 @@
 
 
             <!-- ==========================================
-           SUBMIT
-      =========================================== -->
+                 SUBMIT
+            =========================================== -->
 
             <button type="submit" class="signup-button" [disabled]="!registrationForm.valid">
 
@@ -272,8 +336,8 @@
 
 
             <!-- ==========================================
-           LOGIN
-      =========================================== -->
+                 LOGIN
+            =========================================== -->
 
             <div class="login-link">
 
@@ -291,8 +355,8 @@
 
 
             <!-- ==========================================
-           DIVIDER
-      =========================================== -->
+                 DIVIDER
+            =========================================== -->
 
             <div class="divider">
 
@@ -304,8 +368,8 @@
 
 
             <!-- ==========================================
-           HOME
-      =========================================== -->
+                 HOME
+            =========================================== -->
 
             <div class="home-link">
 

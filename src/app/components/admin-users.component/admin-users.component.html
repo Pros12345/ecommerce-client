@@ -1,0 +1,339 @@
+<div class="admin-page">
+
+
+    <!-- ==========================================
+         PAGE HEADER
+    =========================================== -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                User Administration
+            </h1>
+
+            <p>
+                View users, saved addresses and order history.
+            </p>
+
+        </div>
+
+
+        <button type="button" class="back-button" (click)="backToProfile()">
+
+            ← Back to Profile
+
+        </button>
+
+    </div>
+
+
+    <!-- ==========================================
+         LOADING
+    =========================================== -->
+
+    <div *ngIf="loading" class="state-card">
+
+        Loading users...
+
+    </div>
+
+
+    <!-- ==========================================
+         NO USERS
+    =========================================== -->
+
+    <div *ngIf="
+            !loading &&
+            users.length === 0
+        " class="state-card">
+
+        No users found.
+
+    </div>
+
+
+    <!-- ==========================================
+         USERS
+    =========================================== -->
+
+    <div *ngFor="let user of users" class="user-card">
+
+
+        <!-- ==========================================
+             USER HEADER
+        =========================================== -->
+
+        <div class="user-header">
+
+            <div>
+
+                <h2>
+                    {{ user.firstName }}
+                </h2>
+
+                <p>
+                    {{ user.email }}
+                </p>
+
+                <p>
+                    {{ user.countryCode }}
+                    {{ user.mobileNumber }}
+                </p>
+
+            </div>
+
+
+            <button type="button" class="delete-user-button" (click)="deleteUser(user)">
+
+                Delete User
+
+            </button>
+
+        </div>
+
+
+        <!-- ==========================================
+             ADDRESSES
+        =========================================== -->
+
+        <div class="section">
+
+            <h3>
+                Saved Addresses
+                ({{ user.addresses?.length || 0 }})
+            </h3>
+
+
+            <div *ngIf="
+                    !user.addresses?.length
+                " class="empty-section">
+
+                No saved addresses.
+
+            </div>
+
+
+            <div *ngFor="
+                    let address of user.addresses
+                " class="address-card">
+
+
+                <strong>
+
+                    {{ address.fullName }}
+
+                    —
+
+                    {{ address.addressType }}
+
+                </strong>
+
+
+                <div>
+                    {{ address.mobileNumber }}
+                </div>
+
+
+                <div>
+                    {{ address.addressLine1 }}
+                </div>
+
+
+                <div *ngIf="address.addressLine2">
+
+                    {{ address.addressLine2 }}
+
+                </div>
+
+
+                <div>
+
+                    {{ address.city }},
+                    {{ address.state }}
+                    -
+                    {{ address.pincode }}
+
+                </div>
+
+
+                <div *ngIf="address.landmark">
+
+                    Landmark:
+                    {{ address.landmark }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             ORDERS
+        =========================================== -->
+
+        <div class="section">
+
+            <h3>
+
+                Orders
+                ({{ user.orders?.length || 0 }})
+
+            </h3>
+
+
+            <div *ngIf="
+                    !user.orders?.length
+                " class="empty-section">
+
+                No orders.
+
+            </div>
+
+
+            <div *ngFor="
+                    let order of user.orders
+                " class="order-card">
+
+
+                <!-- ORDER HEADER -->
+
+                <div class="order-header">
+
+                    <div>
+
+                        <strong>
+
+                            Order #{{ order.orderId }}
+
+                        </strong>
+
+
+                        <span>
+
+                            {{
+                            order.orderDate
+                            | date:'medium'
+                            }}
+
+                        </span>
+
+                    </div>
+
+
+                    <span class="status">
+
+                        {{ order.orderStatus }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- ORDER INFORMATION -->
+
+                <div class="order-info">
+
+                    <span>
+
+                        Payment:
+                        {{ order.paymentMethod }}
+
+                    </span>
+
+
+                    <strong>
+
+                        Total:
+                        ₹{{ order.totalAmount
+                        | number:'1.2-2' }}
+
+                    </strong>
+
+                </div>
+
+
+                <!-- DELIVERY ADDRESS -->
+
+                <div class="order-address">
+
+                    <strong>
+                        Delivery Address
+                    </strong>
+
+
+                    <div>
+                        {{ order.address.fullName }}
+                    </div>
+
+
+                    <div>
+                        {{ order.address.addressLine1 }}
+                    </div>
+
+
+                    <div *ngIf="
+                            order.address.addressLine2
+                        ">
+
+                        {{ order.address.addressLine2 }}
+
+                    </div>
+
+
+                    <div>
+
+                        {{ order.address.city }},
+                        {{ order.address.state }}
+                        -
+                        {{ order.address.pincode }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ORDER ITEMS -->
+
+                <div class="items">
+
+                    <div *ngFor="
+                            let item of order.items
+                        " class="item-row">
+
+
+                        <span>
+
+                            {{ item.productName }}
+
+                        </span>
+
+
+                        <span>
+
+                            Qty:
+                            {{ item.quantity }}
+
+                        </span>
+
+
+                        <span>
+
+                            ₹{{ item.price
+                            | number:'1.2-2' }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

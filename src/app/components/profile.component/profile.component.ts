@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  Router,
-  RouterModule
-} from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../authservice/authservice.component';
 
 @Component({
 
@@ -32,7 +29,11 @@ export class ProfileComponent {
   // ==========================================
 
   constructor(
-    private router: Router
+
+    private router: Router,
+
+    public authService: AuthService
+
   ) { }
 
 
