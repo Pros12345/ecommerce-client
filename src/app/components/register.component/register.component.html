@@ -223,7 +223,6 @@
                 <label for="password">
                     Password
                 </label>
-
                 <div class="password-container">
 
                     <input id="password" [type]="
@@ -252,6 +251,12 @@
 
                     </button>
 
+                </div>
+
+                <!-- PASSWORD LENGTH ERROR -->
+                <div class="error-message"
+                    *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.errors?.['minlength']">
+                    Password must contain at least 8 digit.
                 </div>
 
             </div>
