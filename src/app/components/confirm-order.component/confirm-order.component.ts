@@ -490,12 +490,6 @@ export class ConfirmOrderComponent
     };
 
 
-    console.log(
-      'Sending order request:',
-      orderRequest
-    );
-
-
     // ========================================
     // CALL BACKEND
     // ========================================
@@ -509,12 +503,6 @@ export class ConfirmOrderComponent
         // ====================================
 
         next: (response) => {
-
-          console.log(
-            'Order placed successfully:',
-            response
-          );
-
 
           this.placingOrder = false;
 

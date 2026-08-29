@@ -204,20 +204,7 @@ export class AddProductComponent {
 
         this.primaryImageIndex =
             index;
-
-
-        console.log(
-            'Primary image index:',
-            this.primaryImageIndex
-        );
-
-
-        console.log(
-            'Primary image:',
-            this.selectedFiles[
-                this.primaryImageIndex
-            ]?.name
-        );
+        
 
     }
 
@@ -421,20 +408,6 @@ export class AddProductComponent {
         };
 
 
-        console.log(
-            'Product Data:',
-            productData
-        );
-
-
-        console.log(
-            'Primary Image:',
-            this.selectedFiles[
-                this.primaryImageIndex
-            ]?.name
-        );
-
-
         // --------------------------------------
         // API CALL
         // --------------------------------------
@@ -448,11 +421,6 @@ export class AddProductComponent {
 
                 next: response => {
 
-
-                    console.log(
-                        'Product added:',
-                        response
-                    );
 
 
                     // ----------------------------------

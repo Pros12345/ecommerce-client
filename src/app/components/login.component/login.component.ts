@@ -103,12 +103,6 @@ export class LoginComponent {
     };
 
 
-    console.log(
-      'Login Request:',
-      loginRequest
-    );
-
-
     // ==============================
     // API CALL
     // ==============================
@@ -131,11 +125,6 @@ export class LoginComponent {
         // ==============================
 
         next: (response) => {
-
-          console.log(
-            'Login successful:',
-            response
-          );
 
 
           // JWT TOKEN

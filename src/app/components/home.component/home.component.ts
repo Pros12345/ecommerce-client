@@ -88,11 +88,6 @@ export class HomeComponent implements OnInit {
 
         next: (response: Product[]) => {
 
-          console.log(
-            'Products received from backend:',
-            response
-          );
-
 
           // ======================================
           // PREPARE PRODUCTS
@@ -128,15 +123,6 @@ export class HomeComponent implements OnInit {
               // Description state
 
               (product as any).showMore = false;
-
-
-              // Debugging
-
-              console.log(
-                `Product: ${product.name}`,
-                'Images:',
-                product.images
-              );
 
 
               return product;

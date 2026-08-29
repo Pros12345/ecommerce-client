@@ -273,11 +273,6 @@ export class ManageAccountComponent implements OnInit {
 
         next: (response) => {
 
-          console.log(
-            'Profile updated:',
-            response
-          );
-
 
           const updatedProfile =
             response?.user ?? response;
@@ -523,12 +518,6 @@ export class ManageAccountComponent implements OnInit {
       .subscribe({
 
         next: (response) => {
-
-          console.log(
-            'Account deleted successfully:',
-            response
-          );
-
 
           this.deletingAccount = false;
 

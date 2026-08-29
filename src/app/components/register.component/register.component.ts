@@ -286,9 +286,6 @@ export class RegisterComponent
       this.registrationForm
         .markAllAsTouched();
 
-      console.log(
-        'Form is invalid.'
-      );
 
       return;
 
@@ -317,18 +314,6 @@ export class RegisterComponent
           response: any
         ) => {
 
-          console.log(
-            'User registered:',
-            response
-          );
-
-
-          /*
-           * Show custom success popup.
-           *
-           * IMPORTANT:
-           * No browser alert() is used here.
-           */
 
           this.successMessage =
             response?.message ||

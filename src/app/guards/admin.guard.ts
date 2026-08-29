@@ -21,10 +21,6 @@ export const adminGuard: CanActivateFn = () => {
 
     if (!authService.isLoggedIn()) {
 
-        console.log(
-            'User is not logged in.'
-        );
-
         return router.createUrlTree([
             '/login'
         ]);
@@ -35,10 +31,6 @@ export const adminGuard: CanActivateFn = () => {
     // =====================================================
 
     if (!authService.isProsenjitEmail()) {
-
-        console.log(
-            'User is not authorized for admin page.'
-        );
 
         return router.createUrlTree([
             '/home'

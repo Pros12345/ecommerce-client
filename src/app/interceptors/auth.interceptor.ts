@@ -9,10 +9,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
     const token = localStorage.getItem('authToken');
 
-    console.log('Auth Interceptor Called');
-    console.log('Request URL:', req.url);
-    console.log('Token exists:', !!token);
-
 
     // ==========================================
     // NO TOKEN
@@ -38,8 +34,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         }
 
     });
-
-    console.log('Authorization header added');
 
 
     // ==========================================

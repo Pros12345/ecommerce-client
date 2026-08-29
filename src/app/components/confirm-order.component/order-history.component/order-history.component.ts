@@ -125,19 +125,6 @@ export class OrderHistoryComponent
           response: OrderResponse[]
         ) => {
 
-          console.log(
-            '===================================='
-          );
-
-          console.log(
-            'ORDER API RESPONSE:',
-            response
-          );
-
-          console.log(
-            '===================================='
-          );
-
 
           this.orders =
             response.map(
@@ -145,30 +132,6 @@ export class OrderHistoryComponent
               (
                 order: OrderResponse
               ) => {
-
-
-                console.log(
-                  'ORDER:',
-                  order
-                );
-
-
-                console.log(
-                  'ORDER ID:',
-                  order.orderId
-                );
-
-
-                console.log(
-                  'ORDER STATUS:',
-                  order.orderStatus
-                );
-
-
-                console.log(
-                  'ORDER ITEMS:',
-                  order.items
-                );
 
 
                 // ==================================
@@ -192,42 +155,6 @@ export class OrderHistoryComponent
                       ) => {
 
 
-                        console.log(
-                          '--------------------------------'
-                        );
-
-
-                        console.log(
-                          'ORDER ITEM:',
-                          item
-                        );
-
-
-                        console.log(
-                          'PRODUCT NAME:',
-                          item.productName
-                        );
-
-
-                        // ==================================
-                        // IMPORTANT
-                        //
-                        // imageId comes from backend.
-                        //
-                        // Do NOT use item.image here.
-                        // ==================================
-
-                        console.log(
-                          'IMAGE ID:',
-                          item.imageId
-                        );
-
-
-                        console.log(
-                          'IMAGE ID TYPE:',
-                          typeof item.imageId
-                        );
-
 
                         // ==================================
                         // DEFAULT FALLBACK IMAGE
@@ -245,11 +172,6 @@ export class OrderHistoryComponent
                           Number(item.imageId);
 
 
-                        console.log(
-                          'CONVERTED IMAGE ID:',
-                          imageId
-                        );
-
 
                         // ==================================
                         // VALIDATE IMAGE ID
@@ -266,12 +188,6 @@ export class OrderHistoryComponent
                           imageId > 0
 
                         ) {
-
-
-                          console.log(
-                            'VALID IMAGE ID:',
-                            imageId
-                          );
 
 
                           // ==================================
@@ -337,11 +253,6 @@ export class OrderHistoryComponent
 
           this.loading = false;
 
-
-          console.log(
-            'FINAL ORDERS:',
-            this.orders
-          );
 
         },
 
@@ -470,12 +381,6 @@ export class OrderHistoryComponent
       `${environment.apiBaseUrl}/images/${imageId}`;
 
 
-    console.log(
-      'REQUESTING ORDER IMAGE:',
-      imageUrl
-    );
-
-
     // ==========================================
     // REQUEST IMAGE
     // ==========================================
@@ -503,24 +408,6 @@ export class OrderHistoryComponent
           blob: Blob
 
         ) => {
-
-
-          console.log(
-            'ORDER IMAGE RESPONSE:',
-            imageId
-          );
-
-
-          console.log(
-            'BLOB SIZE:',
-            blob.size
-          );
-
-
-          console.log(
-            'BLOB TYPE:',
-            blob.type
-          );
 
 
           // ====================================
@@ -563,18 +450,6 @@ export class OrderHistoryComponent
             );
 
 
-          console.log(
-            'ORDER IMAGE LOADED:',
-            imageId
-          );
-
-
-          console.log(
-            'BLOB OBJECT URL:',
-            objectUrl
-          );
-
-
           // ====================================
           // STORE OBJECT URL
           // ====================================
@@ -591,11 +466,6 @@ export class OrderHistoryComponent
           item.image =
             objectUrl;
 
-
-          console.log(
-            'IMAGE ASSIGNED:',
-            item.image
-          );
 
         },
 
@@ -733,12 +603,6 @@ export class OrderHistoryComponent
           ) => {
 
 
-            console.log(
-              'ORDER CANCELLED:',
-              response
-            );
-
-
             // ====================================
             // FIND ORDER
             // ====================================
@@ -856,12 +720,6 @@ export class OrderHistoryComponent
           response: OrderResponse
 
         ) => {
-
-
-          console.log(
-            'ORDER MARKED ON THE WAY:',
-            response
-          );
 
 
           const order =
@@ -1014,12 +872,6 @@ export class OrderHistoryComponent
           next: () => {
 
 
-            console.log(
-              'ORDER DELETED:',
-              orderId
-            );
-
-
             // ====================================
             // REMOVE ORDER FROM UI
             // ====================================
@@ -1123,11 +975,6 @@ export class OrderHistoryComponent
   // ==========================================
 
   ngOnDestroy(): void {
-
-
-    console.log(
-      'Releasing image object URLs...'
-    );
 
 
     this.imageObjectUrls.forEach(
