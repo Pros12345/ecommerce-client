@@ -1,78 +1,73 @@
-# 🚀 MyStore — E-Commerce Backend
+# 🛒 MyStore — E-Commerce Frontend
 
-A secure and production-oriented **E-Commerce REST API backend** built using **Java 17**, **Spring Boot 3.5.5**, **Spring Security**, **JWT**, **Spring Data JPA/Hibernate**, and **MySQL**.
+A full-featured **E-Commerce web application frontend** built with **Angular 20**, **TypeScript**, **RxJS**, and a REST API backend. The application provides customer shopping functionality, account management, address management, order history, and product administration.
 
-The backend provides authentication, user profile management, product management, product image storage/retrieval, shopping orders, saved addresses, and administrative user operations for the Angular frontend.
+## 🌐 Live Demo
 
----
+### 👉 [Open MyStore](https://ecommerce-client-pros12345s-projects.vercel.app)
 
-## 🌐 Live Application
+The frontend is deployed on **Vercel** and connects to the production Spring Boot backend.
 
-### 👉 [Open MyStore Frontend](https://ecommerce-client-pros12345s-projects.vercel.app)
-
-**Production backend API:**
+**Production API Base URL**
 
 ```text
 https://ecommerce-server-production-b652.up.railway.app/api
 ```
 
-The Angular frontend is deployed on Vercel and the Spring Boot backend is configured for production deployment using the Railway environment.
-
 ---
 
 ## ✨ Key Features
 
-### 🔐 Authentication & Security
+### 👤 Authentication & Account
 
 - User registration
-- Login using email or mobile number
-- JWT token generation
-- JWT request authentication filter
-- BCrypt password hashing
-- Protected REST endpoints
-- CORS configuration
-- Automatic handling of invalid/expired JWT requests
+- Login using **email or mobile number**
+- JWT-based authentication
+- Automatic JWT attachment using an HTTP interceptor
+- Protected routes using Angular route guards
+- Session-expiry handling on HTTP `401`
+- Manage profile information
+- Change password
+- Delete account
 
-### 👤 User Management
+### 🛍️ Product & Shopping
 
-- User profile retrieval
-- Profile update
-- Password change
-- Account deletion
-- Saved address CRUD
-- Admin user listing
-- Admin user deletion
+- Product listing
+- Product details
+- Product image display
+- Shopping cart
+- Increase/decrease cart quantity
+- Remove items from cart
+- Checkout flow
+- Address selection during checkout
+- Order placement
+- Order history
+- Order cancellation
 
-### 🛍️ Product Management
+### 🏠 Address Management
 
-- Create products
-- Read products
-- Read product by ID
-- Update products
-- Soft/delete product operations
-- Permanent product deletion
-- Multiple image upload
-- Image retrieval through REST endpoint
-- Image replacement/removal during product update
+- View saved addresses
+- Add new address
+- Edit address
+- Delete address
+- Select an address during checkout
 
-### 🛒 Order Management
+### 🛠️ Product Administration
 
-- Create orders
-- View current user's orders
-- Cancel orders
-- Delete orders
-- Order items and pricing information
-- Delivery address association
+- Add products
+- Upload multiple product images
+- Edit products
+- Add/remove product images
+- Delete products
+- Admin-only user management page
 
-### 🧱 Application Design
+### 🎨 UI / UX
 
-- Layered architecture
-- Controller → Service → Repository separation
-- DTOs for request/response models
-- JPA entities
-- Repository implementations for custom persistence operations
-- Centralized exception handling
-- Bean validation
+- Responsive e-commerce interface
+- Form validation
+- User-friendly success/error notifications
+- SweetAlert2 notifications
+- Separate customer and administration functionality
 
 ---
 
@@ -80,67 +75,50 @@ The Angular frontend is deployed on Vercel and the Spring Boot backend is config
 
 | Technology | Usage |
 |---|---|
-| **Java 17** | Backend language |
-| **Spring Boot 3.5.5** | Application framework |
-| **Spring Web** | REST APIs |
-| **Spring Security** | Authentication and authorization |
-| **JWT / JJWT 0.11.5** | Token-based authentication |
-| **Spring Data JPA** | Persistence |
-| **Hibernate** | ORM |
-| **MySQL** | Relational database |
-| **Lombok** | Boilerplate reduction |
-| **Maven** | Build/dependency management |
-| **Docker** | Containerization |
-| **Railway** | Production backend deployment |
+| **Angular 20** | Frontend framework |
+| **TypeScript 5.9** | Application development |
+| **RxJS 7.8** | Reactive programming / HTTP streams |
+| **Angular Router** | SPA navigation and route protection |
+| **Angular HttpClient** | REST API integration |
+| **SweetAlert2** | Alerts and notifications |
+| **HTML5 / SCSS** | UI structure and styling |
+| **Node.js 20** | Build/runtime environment |
+| **Nginx** | Production static-file server |
+| **Docker** | Containerized frontend deployment |
+| **Vercel** | Live frontend deployment |
 
 ---
 
-## 🏗️ Backend Architecture
+## 🏗️ Frontend Architecture
 
 ```text
-                         Angular Frontend
-                                │
-                                │ HTTP / JSON
-                                ▼
-                    ┌─────────────────────────┐
-                    │    Spring Boot API      │
-                    │                         │
-                    │ Controllers             │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │       Service Layer     │
-                    │                         │
-                    │ Business Logic           │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │     Repository Layer    │
-                    │                         │
-                    │ JPA + Custom Repository │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │       MySQL Database    │
-                    └─────────────────────────┘
-
-
-       JWT Request
-           │
-           ▼
-   JwtAuthenticationFilter
-           │
-           ▼
-    JwtUtil validates token
-           │
-           ▼
-    Spring Security Context
-           │
-           ▼
-       Controller
+                    ┌──────────────────────────────┐
+                    │        Angular 20 UI         │
+                    │                              │
+                    │ Home / Products / Cart       │
+                    │ Login / Register / Profile   │
+                    │ Orders / Addresses / Admin   │
+                    └──────────────┬───────────────┘
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │       Angular Services       │
+                    │                              │
+                    │ Product / Cart / Order       │
+                    │ Address / Profile / Auth     │
+                    └──────────────┬───────────────┘
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │     HTTP Interceptor         │
+                    │  Authorization: Bearer JWT   │
+                    └──────────────┬───────────────┘
+                                   │
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │ Spring Boot REST API         │
+                    │ ecommerce-server             │
+                    └──────────────────────────────┘
 ```
 
 ---
@@ -148,232 +126,157 @@ The Angular frontend is deployed on Vercel and the Spring Boot backend is config
 ## 📂 Project Structure
 
 ```text
-src/main/java/eCommerse/
+src/
+├── app/
+│   ├── components/
+│   │   ├── add-product.component/
+│   │   ├── address/
+│   │   ├── admin-users.component/
+│   │   ├── cart.component/
+│   │   ├── confirm-order.component/
+│   │   ├── edit-product.component/
+│   │   ├── home.component/
+│   │   ├── login.component/
+│   │   ├── manage-account.component/
+│   │   ├── navbar.component/
+│   │   ├── product-detail.component/
+│   │   ├── profile.component/
+│   │   ├── register.component/
+│   │   └── saved-address.component/
+│   │
+│   ├── guards/
+│   │   ├── auth.guard.ts
+│   │   └── admin.guard.ts
+│   │
+│   ├── interceptors/
+│   │   └── auth.interceptor.ts
+│   │
+│   ├── model/
+│   ├── app.config.ts
+│   ├── app.routes.ts
+│   └── app.ts
 │
-├── controller/
-│   ├── AddressController.java
-│   ├── AdminUserController.java
-│   ├── OrderController.java
-│   ├── ProductController.java
-│   ├── ProductDisplayController.java
-│   ├── UserController.java
-│   └── UserProfileController.java
+├── environments/
+│   ├── environment.ts
+│   └── environment.prod.ts
 │
-├── dto/
-│   ├── AddressRequest.java
-│   ├── AddressResponse.java
-│   ├── LoginRequest.java
-│   ├── LoginResponse.java
-│   ├── OrderRequest.java
-│   ├── OrderResponse.java
-│   ├── UpdateProfileRequest.java
-│   └── ...
-│
-├── entity/
-│   ├── Address.java
-│   ├── Order.java
-│   ├── OrderItem.java
-│   ├── Product.java
-│   ├── ProductImage.java
-│   └── User.java
-│
-├── exception/
-│   └── GlobalExceptionHandler.java
-│
-├── repository/
-│   ├── AddressRepository.java
-│   ├── OrderRepository.java
-│   ├── OrderItemRepository.java
-│   ├── ProductsRepository.java
-│   ├── ProductsDisplayRepository.java
-│   ├── UserRepository.java
-│   └── impl/
-│
-├── security/
-│   ├── AuthController.java
-│   ├── JwtAuthenticationFilter.java
-│   ├── JwtUtil.java
-│   └── SecurityConfig.java
-│
-└── service/
-    ├── AddressService.java
-    ├── AdminUserService.java
-    ├── OrderService.java
-    ├── ProductsDisplayService.java
-    ├── ProductsService.java
-    ├── UserService.java
-    └── impl/
+├── assets/
+├── main.ts
+└── styles.scss
 ```
 
 ---
 
-# 🔗 REST API Endpoints
+## 🔐 Authentication Flow
 
-The API base path is:
-
-```text
-/api
-```
-
-## Authentication
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/auth/login` | Login using email/mobile and password |
-| `POST` | `/api/users/register` | Register a new user |
-
-## Products
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/productsDisplay` | Get all products |
-| `GET` | `/api/products/{id}` | Get product by ID |
-| `POST` | `/api/products` | Create product with images |
-| `PUT` | `/api/products/{id}` | Update product/images |
-| `DELETE` | `/api/products/{id}` | Delete product |
-| `DELETE` | `/api/products/permanent/{id}` | Permanently delete product |
-| `GET` | `/api/images/{id}` | Retrieve product image |
-
-## Orders
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/orders` | Create order |
-| `GET` | `/api/orders/my-orders` | Get logged-in user's orders |
-| `PUT` | `/api/orders/{orderId}/cancel` | Cancel order |
-| `DELETE` | `/api/orders/{orderId}` | Delete order |
-
-## Addresses
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/user/addresses` | Get saved addresses |
-| `GET` | `/api/user/addresses/{addressId}` | Get address |
-| `POST` | `/api/user/addresses` | Create address |
-| `PUT` | `/api/user/addresses/{addressId}` | Update address |
-| `DELETE` | `/api/user/addresses/{addressId}` | Delete address |
-
-## Profile
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/user/profile` | Get current profile |
-| `PUT` | `/api/user/profile` | Update profile |
-| `PUT` | `/api/user/change-password` | Change password |
-| `DELETE` | `/api/user/profile` | Delete current account |
-
-## Administration
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/admin/users` | Get users for administration |
-| `DELETE` | `/api/admin/users/{userId}` | Delete an admin-managed user |
-
----
-
-## 🔐 JWT Authentication
-
-The authentication flow is:
+The application uses JWT authentication.
 
 ```text
+User Login
+    │
+    ▼
 POST /api/auth/login
-        │
-        ▼
-Validate email/mobile + password
-        │
-        ▼
-Generate JWT
-        │
-        ▼
-Return token to Angular
-        │
-        ▼
-Angular sends:
-Authorization: Bearer <token>
-        │
-        ▼
-JwtAuthenticationFilter
-        │
-        ▼
-Extract username/email
-        │
-        ▼
-Validate JWT
-        │
-        ▼
-SecurityContext
-        │
-        ▼
-Protected Controller
+    │
+    ▼
+Spring Boot validates credentials
+    │
+    ▼
+JWT returned to Angular
+    │
+    ▼
+JWT stored in browser storage
+    │
+    ▼
+Angular HTTP Interceptor
+    │
+    ▼
+Authorization: Bearer <JWT>
+    │
+    ▼
+Protected backend API
 ```
 
-The JWT implementation currently uses **HS256** and has a configured token lifetime of approximately **10 hours**.
+If the backend returns `401 Unauthorized`, the interceptor clears authentication data and redirects the user to the login page.
 
 ---
 
-## 🛡️ Spring Security
+## 🛡️ Route Protection
 
-Security is configured through `SecurityConfig`.
+The application contains two types of route protection:
 
-The application:
+### Authenticated Routes
 
-- Disables CSRF for the REST API
-- Enables CORS
-- Allows preflight `OPTIONS` requests
-- Permits authentication/product/image/public API paths as configured
-- Protects authenticated user APIs
-- Adds `JwtAuthenticationFilter` before `UsernamePasswordAuthenticationFilter`
-- Uses `BCryptPasswordEncoder` for passwords
-
----
-
-## 🗄️ Database
-
-The production profile uses **MySQL**.
-
-```properties
-spring.datasource.url=${SPRING_DATASOURCE_URL}
-spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
-spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
-```
-
-### Main Entities
+Examples:
 
 ```text
-User
- ├── Address
- └── Order
-      └── OrderItem
-            └── Product
-
-Product
- └── ProductImage
+/cart
+/profile
+/manage-account
+/checkout-address
+/confirm-order
+/saved-address
+/edit-address/:id
+/my-orders
 ```
+
+These routes use `authGuard`.
+
+### Admin Route
+
+```text
+/admin/users
+```
+
+This route uses `adminGuard` and verifies that the current user satisfies the application's admin authorization rule.
 
 ---
 
-## ⚙️ Configuration Profiles
+## 🔗 Important Routes
 
-The project contains:
+| Route | Purpose |
+|---|---|
+| `/` | Home page |
+| `/login` | Login |
+| `/register` | Registration |
+| `/product/:id` | Product details |
+| `/cart` | Shopping cart |
+| `/profile` | User profile |
+| `/manage-account` | Account management |
+| `/saved-address` | Saved addresses |
+| `/my-orders` | Order history |
+| `/checkout-address` | Checkout address |
+| `/confirm-order` | Confirm order |
+| `/addProduct` | Add product |
+| `/editProduct/:id` | Edit product |
+| `/admin/users` | Admin user management |
 
-```text
-application.properties
-application-local.properties
-application-docker.properties
-application-prod.properties
+---
+
+## ⚙️ Environment Configuration
+
+### Development
+
+`src/environments/environment.ts`
+
+```ts
+export const environment = {
+  production: false,
+  apiBaseUrl: 'http://localhost:8080/api',
+  imageBaseUrl: 'http://localhost:8080/api/images/'
+};
 ```
 
-The default application configuration activates the production profile:
+### Production
 
-```properties
-spring.application.name=ecommerce-server
-spring.profiles.active=prod
+`src/environments/environment.prod.ts`
+
+```ts
+export const environment = {
+  production: true,
+  apiBaseUrl: 'https://ecommerce-server-production-b652.up.railway.app/api',
+  imageBaseUrl: 'https://ecommerce-server-production-b652.up.railway.app/api/images/'
+};
 ```
-
-Production database credentials are supplied through environment variables.
 
 ---
 
@@ -381,194 +284,159 @@ Production database credentials are supplied through environment variables.
 
 ### Prerequisites
 
-- Java 17+
-- Maven 3.9+
-- MySQL 8+
-- Git
+- Node.js 20+
+- npm
+- Angular CLI 20
+- Running Spring Boot backend
 
 ### 1. Clone the repository
 
 ```bash
-git clone <your-server-repository-url>
-cd ecommerce_server
+git clone <your-client-repository-url>
+cd ecommerce_client
 ```
 
-### 2. Configure MySQL
-
-Create the required database and configure the local profile/environment variables.
-
-Example:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce_db
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-```
-
-### 3. Build
+### 2. Install dependencies
 
 ```bash
-mvn clean install
+npm install
 ```
 
-### 4. Run
+### 3. Configure the backend URL
+
+For local development:
+
+```ts
+apiBaseUrl: 'http://localhost:8080/api'
+```
+
+### 4. Start Angular
 
 ```bash
-mvn spring-boot:run
+npm start
 ```
 
-The API starts on:
+or:
+
+```bash
+ng serve
+```
+
+### 5. Open the application
 
 ```text
-http://localhost:8080
+http://localhost:4200
 ```
 
 ---
 
 ## 🐳 Docker
 
-The backend includes a multi-stage Dockerfile.
+The project includes a multi-stage Dockerfile.
 
 ### Build
 
 ```bash
-docker build --no-cache -t ecommerce-server:latest .
+docker build --no-cache -t ecommerce-client:latest .
 ```
 
 ### Run
 
 ```bash
-docker run -p 8080:8080 \
-  -e SPRING_DATASOURCE_URL="jdbc:mysql://<host>:3306/<database>" \
-  -e SPRING_DATASOURCE_USERNAME="<username>" \
-  -e SPRING_DATASOURCE_PASSWORD="<password>" \
-  ecommerce-server:latest
+docker run -p 4200:80 ecommerce-client:latest
 ```
 
-The Docker image uses:
-
-```text
-Maven + Eclipse Temurin 17
-        ↓
-Spring Boot executable JAR
-        ↓
-Eclipse Temurin 17 Alpine runtime
-```
+The Angular application is built in a Node.js container and served using Nginx.
 
 ---
 
-## 🧪 Testing
+# 📸 Application Screenshots
 
-The project includes Spring Boot test dependencies and Spring Security test support.
+## 1. Create Account
 
-Run:
+The registration screen allows a new customer to create an account with name, email, mobile number, password, and confirmation password.
 
-```bash
-mvn test
-```
+![Create Account](screenshots/01-register.png)
 
 ---
 
-## 🔒 Production Security Notes
+## 2. Login
 
-Before using the project in a production environment, the following should be reviewed:
+Customers can log in using their email address or mobile number.
 
-1. Move the JWT signing secret from source code to an environment variable or secret manager.
-2. Use strong, rotated secrets.
-3. Restrict CORS to the exact trusted frontend origins.
-4. Never log JWT tokens or passwords.
-5. Use HTTPS for all production traffic.
-6. Review authorization rules for every administrative endpoint.
-7. Store database credentials only in environment variables/secrets.
-8. Consider a stronger production secret-management strategy such as Railway secrets, AWS Secrets Manager, Azure Key Vault, or Vault.
+![Login](screenshots/02-login.png)
 
 ---
 
-# 📸 Frontend Screenshots
+## 3. Add New Product
 
-These screenshots demonstrate the Angular frontend that consumes this backend API.
-
-## 1. User Registration
-
-![User Registration](screenshots/01-register.png)
-
-## 2. User Login
-
-![User Login](screenshots/02-login.png)
-
-## 3. Add Product
+Product administrators can create products and upload multiple images.
 
 ![Add Product](screenshots/03-add-product.png)
 
+---
+
 ## 4. Shopping Cart
+
+The cart displays products, quantities, prices, delivery charges, and the final order amount.
 
 ![Shopping Cart](screenshots/04-cart.png)
 
+---
+
 ## 5. Saved Addresses
+
+Customers can manage saved delivery addresses.
 
 ![Saved Addresses](screenshots/05-saved-addresses.png)
 
+---
+
 ## 6. Order History
+
+Customers can view previously placed orders, item details, prices, totals, and order status.
 
 ![Order History](screenshots/06-orders.png)
 
-## 7. Manage Account
+---
+
+## 7. Manage My Account
+
+Customers can update profile information, change their password, and delete their account.
 
 ![Manage Account](screenshots/07-manage-account.png)
 
 ---
 
-## 🔄 Frontend ↔ Backend Flow
+## 🧪 Testing
 
-```text
-Angular 20
-   │
-   │ REST API
-   │ JWT Authorization
-   ▼
-Spring Boot 3.5.5
-   │
-   ├── Spring Security
-   ├── JWT Filter
-   ├── Controller
-   ├── Service
-   ├── Repository
-   └── Global Exception Handler
-   │
-   ▼
-Hibernate / JPA
-   │
-   ▼
-MySQL
+The project contains Angular/Jasmine test specifications for application components.
+
+Run tests with:
+
+```bash
+npm test
 ```
 
 ---
 
-## 🚀 Deployment
+## 📌 Production Deployment
 
-### Frontend
+The frontend is configured for production builds:
 
-```text
-Angular → Production Build → Vercel
+```bash
+ng build --configuration production
 ```
 
-Live frontend:
+The Dockerfile uses:
 
 ```text
-https://ecommerce-client-pros12345s-projects.vercel.app
+Node.js → Angular production build → Nginx
 ```
 
-### Backend
+The live frontend is deployed at:
 
-```text
-Spring Boot → Docker → Railway
-```
-
-Production API:
-
-```text
-https://ecommerce-server-production-b652.up.railway.app/api
-```
+**https://ecommerce-client-pros12345s-projects.vercel.app**
 
 ---
 
@@ -584,6 +452,6 @@ Java Backend / Full Stack Developer
 
 ## 📄 Related Project
 
-This backend serves the Angular frontend.
+This frontend consumes REST APIs exposed by the Spring Boot backend.
 
-See the frontend README for UI features, screenshots, Angular architecture, local setup, and frontend deployment details.
+See the backend README for API, security, database, Docker, and server-side architecture details.
